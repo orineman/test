@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_c4p" default="compile.module.c4p">
+    <dirname property="module.c4p.basedir" file="${ant.file.module_c4p}"/>
+
+    <property name="module.jdk.home.c4p" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.c4p" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.c4p" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.c4p" value="${compiler.args}"/>
+
+    <property name="c4p.output.dir" value="${module.c4p.basedir}/../classes/production/c4p"/>
+    <property name="c4p.testoutput.dir" value="${module.c4p.basedir}/../classes/test/c4p"/>
+    <property name="jar.dir" value="${basedir}/release"/>
+    <path id="c4p.module.bootclasspath">
+        <path path="${basedir}/c4p"/>
+    </path>
+
+    <path id="c4p.module.classpath">
+        <path refid="${module.jdk.classpath.c4p}"/>
+        <path refid="library.c4p.classpath"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.c4p">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.c4p">
+        <patternset refid="excluded.from.module.c4p"/>
+    </patternset>
+
+    <path id="c4p.module.sourcepath">
+        <dirset dir="${module.c4p.basedir}/../">
+            <include name="c4p"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.c4p" depends="compile.module.c4p.production,compile.module.c4p.tests"
+            description="Compile module c4p"/>
+
+    <target name="compile.module.c4p.production" description="Compile module c4p; production classes">
+        <mkdir dir="${c4p.output.dir}"/>
+        <javac destdir="${c4p.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.c4p}/javac">
+            <compilerarg line="${compiler.args.c4p}"/>
+            <bootclasspath refid="c4p.module.bootclasspath"/>
+            <classpath refid="c4p.module.classpath"/>
+            <src refid="c4p.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.c4p"/>
+        </javac>
+
+        <copy todir="${c4p.output.dir}/com/infowave/c4p">
+            <fileset dir="${module.c4p.basedir}">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.c4p.tests" depends="compile.module.c4p.production"
+            description="compile module c4p; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.c4p" description="cleanup module">
+        <delete dir="${c4p.output.dir}"/>
+        <delete dir="${c4p.testoutput.dir}"/>
+    </target>
+
+    <target name="compile.c4p.jar.build" description="build jar for c4p">
+        <dirname property="jar.dir" file="${basedir}/release"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/c4p.jar" duplicate="preserve">
+            <manifest>
+                <attribute name="Created-By" value="IntelliJ IDEA"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+            <zipfileset dir="${c4p.output.dir}" prefix=""/>
+        </jar>
+        <!--<copy file="${jar.dir}/c4p.jar" tofile="${basedir}/www/WEB-INF/lib/c4p.jar"/>-->
+    </target>
+</project>

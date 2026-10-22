@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_llcenter" default="compile.module.llcenter">
+    <dirname property="module.llcenter.basedir" file="${ant.file.module_llcenter}"/>
+
+    <property name="module.jdk.home.llcenter" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.llcenter" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.llcenter" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.llcenter" value="${compiler.args}"/>
+
+    <property name="llcenter.output.dir" value="${module.llcenter.basedir}/../classes/production/llcenter"/>
+    <property name="llcenter.testoutput.dir" value="${module.llcenter.basedir}/../classes/test/llcenter"/>
+    <property name="jar.dir" value="${basedir}/release"/>
+    <path id="llcenter.module.bootclasspath">
+        <!-- Paths to be included in compilation bootclasspath -->
+    </path>
+
+    <path id="llcenter.module.classpath">
+        <path refid="${module.jdk.classpath.llcenter}"/>
+        <path refid="library.llcenter.classpath"/>
+        <pathelement location="${c4p.output.dir}"/>
+        <pathelement location="${c4p.testoutput.dir}"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.llcenter">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.llcenter">
+        <patternset refid="excluded.from.module.llcenter"/>
+    </patternset>
+
+    <path id="llcenter.module.sourcepath">
+        <dirset dir="${module.llcenter.basedir}/../">
+            <include name="llcenter"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.llcenter" depends="compile.module.llcenter.production,compile.module.llcenter.tests"
+            description="Compile module llcenter"/>
+
+    <target name="compile.module.llcenter.production" depends="compile.module.c4p"
+            description="Compile module llcenter; production classes">
+        <mkdir dir="${llcenter.output.dir}"/>
+        <javac destdir="${llcenter.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.llcenter}/javac">
+            <compilerarg line="${compiler.args.llcenter}"/>
+            <bootclasspath refid="llcenter.module.bootclasspath"/>
+            <classpath refid="llcenter.module.classpath"/>
+            <src refid="llcenter.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.llcenter"/>
+        </javac>
+
+        <copy todir="${llcenter.output.dir}">
+            <fileset dir="${module.llcenter.basedir}">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.llcenter.tests" depends="compile.module.llcenter.production"
+            description="compile module llcenter; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.llcenter" description="cleanup module">
+        <delete dir="${llcenter.output.dir}"/>
+        <delete dir="${llcenter.testoutput.dir}"/>
+    </target>
+
+    <target name="compile.llcenter.jar.build" description="build jar for llcenter">
+        <dirname property="jar.dir" file="${basedir}/release"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/llcenter.jar" duplicate="preserve">
+            <manifest>
+                <attribute name="Created-By" value="IntelliJ IDEA"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+            <zipfileset dir="${llcenter.output.dir}" prefix=""/>
+        </jar>
+        <!--<copy file="${jar.dir}/llcenter.jar" tofile="${basedir}/www/WEB-INF/lib/llcenter.jar"/>-->
+    </target>
+
+</project>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_c4plaplink" default="compile.module.c4plaplink">
+  <dirname property="module.c4plaplink.basedir" file="${ant.file.module_c4plaplink}"/>
+  
+  <property name="module.jdk.home.c4plaplink" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.c4plaplink" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.c4plaplink" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.c4plaplink" value="${compiler.args}"/>
+  
+  <property name="c4plaplink.output.dir" value="${module.c4plaplink.basedir}/../classes/production/c4plaplink"/>
+  <property name="c4plaplink.testoutput.dir" value="${module.c4plaplink.basedir}/../classes/test/c4plaplink"/>
+  
+  <path id="c4plaplink.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="c4plaplink.module.classpath">
+    <path refid="${module.jdk.classpath.c4plaplink}"/>
+    <pathelement location="${c4psecurity.output.dir}"/>
+    <pathelement location="${c4psecurity.testoutput.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.c4plaplink">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.c4plaplink">
+    <patternset refid="excluded.from.module.c4plaplink"/>
+  </patternset>
+  
+  <path id="c4plaplink.module.sourcepath">
+    <dirset dir="${module.c4plaplink.basedir}/../">
+      <include name="c4plaplink"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.c4plaplink" depends="compile.module.c4plaplink.production,compile.module.c4plaplink.tests" description="Compile module c4plaplink"/>
+  
+  <target name="compile.module.c4plaplink.production" depends="compile.module.c4psecurity" description="Compile module c4plaplink; production classes">
+    <mkdir dir="${c4plaplink.output.dir}"/>
+    <javac destdir="${c4plaplink.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.c4plaplink}/javac">
+      <compilerarg line="${compiler.args.c4plaplink}"/>
+      <bootclasspath refid="c4plaplink.module.bootclasspath"/>
+      <classpath refid="c4plaplink.module.classpath"/>
+      <src refid="c4plaplink.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.c4plaplink"/>
+    </javac>
+    
+    <copy todir="${c4plaplink.output.dir}">
+      <fileset dir="${module.c4plaplink.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.c4plaplink.tests" depends="compile.module.c4plaplink.production" description="compile module c4plaplink; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.c4plaplink" description="cleanup module">
+    <delete dir="${c4plaplink.output.dir}"/>
+    <delete dir="${c4plaplink.testoutput.dir}"/>
+  </target>
+
+  <target name="compile.c4plaplink.jar.build" description="build jar for c4plaplink">
+        <dirname property="jar.dir" file="${basedir}/release"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/c4plaplink.jar" duplicate="preserve">
+            <manifest>
+                <attribute name="Created-By" value="IntelliJ IDEA"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+            <zipfileset dir="${c4plaplink.output.dir}" prefix=""/>
+        </jar>
+      <copy file="${jar.dir}/c4plaplink.jar" tofile="${tomcat.home}/common/lib/c4plaplink.jar"/>
+      <copy file="${jar.dir}/c4plaplink.jar" tofile="${tomcat.home}/server/lib/c4plaplink.jar"/>
+    </target>
+</project>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" initialize="initPanel()">
+	
+    <mx:Metadata>
+        [Event(name="hostSelected", type="ascript.events.HostPanelEvent")]
+    </mx:Metadata>
+
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ListEvent;
+			import ascript.events.HostPanelEvent;
+			import mx.collections.XMLListCollection;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.AbstractOperation;
+			import ascript.request.ProtocolService;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.mxml.HTTPService;			
+			import flash.xml.XMLNode;
+			
+			private var service:ProtocolService;
+			
+			private var xmlResult : XMLNode;
+			
+			private var xmlList : XMLList;
+			
+			private var xmlError : XMLNode;
+			
+			private var clientCommands : HTTPService;
+			
+			[Bindable]
+			private var hosts : XMLListCollection;						
+			
+			private function initPanel():void {					
+				service = new ProtocolService();
+				clientCommands = service.getXMLClientCommands();
+				clientCommands.addEventListener(ResultEvent.RESULT,this._getHostListComplete);					
+				clientCommands.addEventListener(FaultEvent.FAULT,this._getHostListFault);					
+				clientCommands.request = getHostList;
+				clientCommands.send();
+			}			
+		]]>
+	</mx:Script>
+	
+	<mx:Script>
+		<![CDATA[
+			private function _getHostListFault(event:FaultEvent):void {
+				xmlError = XMLNode(event.fault);
+			}
+		
+			private function _getHostListComplete(event:ResultEvent):void {
+				xmlResult = XMLNode(event.result);
+				xmlList = new XMLList(xmlResult);
+				hosts = new XMLListCollection(xmlList.HostInfo.Name);				
+			}	
+			
+			private function _dispatchHostEvent():void {
+				var hostlist:XMLListCollection = new XMLListCollection(new XMLList(xmlResult).HostInfo);		
+				var host:Object = hostlist.getItemAt(HostList.selectedIndex);			
+				trace("Enter to host: "+host.Name+", did : "+host.ID + " host owner : "+host.Owner);
+				var hostEvent:HostPanelEvent = new HostPanelEvent(HostPanelEvent.HOST_PANEL_EVENT,host);
+				dispatchEvent(hostEvent);	
+			}		
+		]]>
+	</mx:Script>
+	
+	<!-- requests -->
+	<!-- get accesible host list -->
+	<mx:XML id="getHostList" format="e4x">
+		<LLERequest>
+			<Command>
+				<ID>3</ID>
+			</Command>
+		</LLERequest>		
+	</mx:XML>
+		
+	<mx:List width="100%" 
+			 height="100%" 
+			 dataProvider="{hosts}" 
+			 id="HostList" 
+			 enabled="true"	
+			 doubleClickEnabled="true"		
+			 doubleClick="{_dispatchHostEvent()}"></mx:List>
+	<mx:ControlBar width="100%">
+		<mx:Button label="Logout"/>
+		<mx:Spacer width="100%" id="spacer1"/>
+		<mx:Button label="GO!" click="_dispatchHostEvent()"/>
+	</mx:ControlBar>		
+</mx:VBox>

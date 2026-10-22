@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Tree xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" dropEnabled="false"
+            dragMoveEnabled="false" labelField="@name" height="100%">
+	<mx:Script>
+		<![CDATA[
+			import mx.events.DragEvent;
+			import ascript.utils.Emails;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.events.TreeEvent;
+			import mx.rpc.http.mxml.HTTPService;
+			import ascript.request.ProtocolService;			
+			
+			[Bindable]
+			private var _emailService:Emails;
+			
+			[Inspectable(name="emails",verbose=1,type="Object")]
+			public function set emails(_emailService:Emails):void {
+				this._emailService = _emailService;
+			}			
+			
+			private var _clientToHostCommands:HTTPService;
+			
+			[Bindable]
+			private var _xmlResult:XML;
+			[Bindable]
+			private var _xmlList:XMLList;			
+			[Bindable]
+			private var _emailFolders:XMLListCollection;					
+			[Bindable]
+			private var _destinationFolderID:String;					
+ 			[Bindable]
+			private var _selectedEmailMessageID:String;
+			[Bindable]
+			private var _operationID:String = "2";			
+			[Bindable]
+			private var _typeToInclude:String = "4";
+			
+			private var _openTempItems:Array = new Array();
+			
+			public function initTree():void {
+				//Request Proccesing
+				_clientToHostCommands = _emailService.initE4XEmailRequest(GetEmailListRequest,
+													  this._getGetEmailListComplete,
+									    			  this._getGetEmailListFault);
+				//++++++++++++++++++++//	
+				//Event Listeners
+				//++++++++++++++++++++//				
+				this.addEventListener(TreeEvent.ITEM_OPENING,this._emailTreeFolderOpen);
+				this.addEventListener(Event.CHANGE,this._emailTreeFolderChange);
+				this.addEventListener(TreeEvent.ITEM_CLOSE,this._emailTreeFolderClose);
+				this.addEventListener(DragEvent.DRAG_ENTER,this._onDragEnter);
+				this.addEventListener(DragEvent.DRAG_OVER,this._onDragOver);
+				this.addEventListener(DragEvent.DRAG_DROP,this._onDragDrop);
+			}
+											
+			private function _openNewFolder(item:XML):void {
+				this._emailService.FolderID = item.@id;
+				if (!item.hasOwnProperty("folder")) {
+					this._operationID = "0";
+					this._clientToHostCommands.send();
+					this._openTempItems.push(item);
+				}
+			}
+			
+			private function expandTreeNodes():void {
+ 				var treeData:XML = this.dataProvider[0];
+				this.openItems = treeData..folder;
+			}		
+			
+			private function moveEmailToFolder():void {
+				_emailService.initObjectEmailRequest(MoveEmail,this._moveEmailComplete,this._moveEmailFault);	
+			}
+		]]>		
+		
+	</mx:Script>
+	<!-- EVENT HANDLERS -->
+	<mx:Script source="handlers/EmailFolderTreeHandlers.as"/>	
+	
+	<!-- Requests -->
+	<!-- GetEmailFolderList -->
+	<mx:Model id="GetEmailListRequest">
+		<root>
+			<LLERequest>
+				<Command>
+					<ID>8</ID>
+				</Command>
+				<EmailFolder>
+					<ID>{this._emailService.FolderID}</ID>
+					<ResultsNumber>0</ResultsNumber>
+					<StartingNumber>0</StartingNumber>
+				</EmailFolder>
+				<Filters>
+					<Fields>
+					     <Field1>Email\ID</Field1>
+				         <Field2>Email\Read</Field2>
+				         <Field3>Email\FromName</Field3>
+				         <Field4>Email\To</Field4>
+				         <Field5>Email\Subject</Field5>
+				         <Field6>Email\ReceivingDate</Field6>
+				         <Field7>Email\Size</Field7>	
+	    			     <Field8>Email\NotSend</Field8>
+				         <Field9>Email\FromMe</Field9>
+				         <Field10>Email\AttachesPresent</Field10>
+				         <Field11>Email\Preview</Field11>
+					</Fields>
+					<Behaviour>
+						<TypeToInclude>{this._typeToInclude}</TypeToInclude>
+						<IDOperation>{this._operationID}</IDOperation>
+					</Behaviour>
+					<OrderBy>
+						<Field>
+				            <Name>Email\ReceivingDate</Name>
+				            <Direction>1</Direction>			
+						</Field>
+					</OrderBy>
+				</Filters>
+			</LLERequest>
+		</root>		
+	</mx:Model>			
+	
+	<!-- Move Email -->
+	<mx:Model id="MoveEmail">
+	<root>
+		<LLERequest>
+			<Command>
+				<ID>15</ID>
+			</Command>
+			<Source>
+				<EmailFolder>
+					<ID>{this._emailService.FolderID}</ID>
+					<Email>
+						<ID>{this._selectedEmailMessageID}</ID>
+					</Email>
+				</EmailFolder>
+			</Source>
+			<Destination>
+				<EmailFolder>
+					<ID>{this._destinationFolderID}</ID>
+				</EmailFolder>
+			</Destination>
+		</LLERequest>
+	</root>
+	</mx:Model>
+	
+</mx:Tree>

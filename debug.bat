@@ -1,0 +1,1 @@
+java -Dcatalina.home="C:\Program Files\Apache Software Foundation\Tomcat 5.5" -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=8000,suspend=y,server=n -jar bootstrap.jar

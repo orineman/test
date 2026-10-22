@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_pda" default="compile.module.pda">
+    <dirname property="module.pda.basedir" file="${ant.file.module_pda}"/>
+
+    <property name="module.jdk.home.pda" value="${project.jdk.home}"/>
+    <property name="module.jdk.bin.pda" value="${project.jdk.bin}"/>
+    <property name="module.jdk.classpath.pda" value="${project.jdk.classpath}"/>
+
+    <property name="compiler.args.pda" value="${compiler.args}"/>
+
+    <property name="pda.output.dir" value="${module.pda.basedir}/../classes/production/pda"/>
+    <property name="pda.testoutput.dir" value="${module.pda.basedir}/../classes/test/pda"/>
+    <property name="jar.dir" value="${basedir}/release"/>
+    <path id="pda.module.bootclasspath">
+        <path path="${basedir}/pda"/>
+    </path>
+
+    <path id="pda.module.classpath">
+        <path refid="${module.jdk.classpath.pda}"/>
+        <path refid="library.pda.classpath"/>
+    </path>
+
+
+    <patternset id="excluded.from.module.pda">
+        <patternset refid="ignored.files"/>
+    </patternset>
+
+    <patternset id="excluded.from.compilation.pda">
+        <patternset refid="excluded.from.module.pda"/>
+    </patternset>
+
+    <path id="pda.module.sourcepath">
+        <dirset dir="${module.pda.basedir}/../">
+            <include name="pda"/>
+        </dirset>
+    </path>
+
+
+    <target name="compile.module.pda" depends="compile.module.pda.production,compile.module.pda.tests"
+            description="Compile module pda"/>
+
+    <target name="compile.module.pda.production" description="Compile module pda; production classes">
+        <mkdir dir="${pda.output.dir}"/>
+        <javac destdir="${pda.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
+               memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.pda}/javac">
+            <compilerarg line="${compiler.args.pda}"/>
+            <bootclasspath refid="pda.module.bootclasspath"/>
+            <classpath refid="pda.module.classpath"/>
+            <src refid="pda.module.sourcepath"/>
+            <patternset refid="excluded.from.compilation.pda"/>
+        </javac>
+
+        <copy todir="${pda.output.dir}/com/infowave/pda">
+            <fileset dir="${module.pda.basedir}">
+                <patternset refid="compiler.resources"/>
+                <type type="file"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile.module.pda.tests" depends="compile.module.pda.production"
+            description="compile module pda; test classes" unless="skip.tests"/>
+
+    <target name="clean.module.pda" description="cleanup module">
+        <delete dir="${pda.output.dir}"/>
+        <delete dir="${pda.testoutput.dir}"/>
+    </target>
+
+    <target name="compile.pda.jar.build" description="build jar for pda">
+        <dirname property="jar.dir" file="${basedir}/release"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/pda.jar" duplicate="preserve">
+            <manifest>
+                <attribute name="Created-By" value="IntelliJ IDEA"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+            <zipfileset dir="${pda.output.dir}" prefix=""/>
+        </jar>
+        <!--<copy file="${jar.dir}/pda.jar" tofile="${basedir}/www/WEB-INF/lib/pda.jar"/>-->
+    </target>
+</project>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<comp:SuperPanel horizontalScrollPolicy="auto"
+				 verticalScrollPolicy="off"
+				 layout="vertical" 
+				 showControls="true" 
+				 enableResize="true" 
+				 xmlns:mx="http://www.adobe.com/2006/mxml" 
+				 xmlns:comp="ascript.components.panel.*" 
+				 xmlns:fc="http://www.adobe.com/2006/fc" 
+				 xmlns="*"
+				 width="500" 
+				 height="500" xmlns:component="view.component.*">
+	
+    <mx:Metadata>
+        [Event(name="emailMessageSaved", type="ascript.events.EmailMessageSaved")]
+    </mx:Metadata>
+	<mx:Script>
+	<![CDATA[
+		import mx.rpc.http.mxml.HTTPService;
+		import ascript.request.ProtocolService;
+		import mx.effects.Move;
+		import mx.controls.Menu;
+		import mx.events.MenuEvent;
+		import ascript.utils.Emails;
+			
+		[Bindable]
+		private var _emailService:Emails;
+			
+		[Inspectable(name="emails",verbose=1,type="Object")]
+		public function set emails(_emailService:Emails):void {
+			this._emailService = _emailService;
+		}	
+		
+		[Bindable]
+		private var _folderID:String;
+		
+		[Bindable]
+		private var _messageID:String;
+		
+		private var _clientToHostCommands:HTTPService;
+		
+	   	//MenuBar
+	   	[Bindable]
+	   	public var myMenuBarData:Object = 
+	   		{	label: "top", children: 
+	   			[
+					{label: "File", children: 
+						[
+						{label: "New"},
+						{label: "Save"},
+						{label: "Print"}
+						]},
+					{label: "Edit", children: 
+						[
+						{label: "Copy"},
+						{label: "Paste"},
+						{label: "Send"}
+						]},
+					{label: "Window", children: 
+						[
+						{label: "Tile"}
+						]}
+				]
+	   		}	   		   	
+	   	
+	   	public function sendEmailMessage():void {
+			this._clientToHostCommands = 
+							_emailService.getE4XEmailRequest(this.SendEmail,
+															 this._onSendComplete,
+															 this._onSendFault);
+			this._clientToHostCommands.send();
+	   	}
+	   	
+	   	public function saveEmailMessage():void {
+	   		this._clientToHostCommands = 
+							_emailService.getE4XEmailRequest(this.SaveEmail,
+															 this._onSaveEmailComplete,
+															 this._onSaveEmailFault);
+			this._clientToHostCommands.send();	
+	   	}
+	]]>		
+	</mx:Script>
+	<!-- HANDLERS -->
+	<mx:Script source="handlers/EditEmailWindowHandlers.as"/>
+	<!-- Data -->
+	<mx:Array id="myTextFormatData"> 
+		<mx:String>HTML</mx:String>
+		<mx:String>Text</mx:String>
+	</mx:Array>
+	<!-- TODO: Now here is the text later make it possible to chooose text or htmlText -->
+	<!-- Requests -->
+	<!-- Save Email Request -->
+	<mx:Model id="SaveEmail">
+		<root>
+			<LLERequest>
+				<Command>
+					<ID>9</ID>
+				</Command>
+				<EmailFolder>
+					<ID></ID>
+					<Email>
+						<To>{this.toField.text}</To>
+						<CC>{this.ccField.text}</CC>
+						<BCC>{this.bccField.text}</BCC>
+						<Subject>{this.subjectField.text}</Subject>
+						<Body>{this.bodyText.text}</Body>
+						<Attach>
+						</Attach>
+					</Email>
+				</EmailFolder>
+			</LLERequest>
+		</root>
+	</mx:Model>
+	<!-- Send Email Request -->
+	<mx:Model id="SendEmail">
+		<root>
+			<LLERequest>
+				<Command>
+					<ID>16</ID>
+				</Command>
+				<EmailFolder>
+					<ID>Email folder ID</ID>
+					<Email>
+						<ID>Message ID</ID>
+					</Email>
+				</EmailFolder>
+			</LLERequest>
+		</root>
+	</mx:Model>
+	
+	<mx:VBox width="100%">
+		<fc:Docker >	
+			<fc:DockableToolBar id="sendToolbar" draggable="false" minWidth="1000" initialPosition="top"  width="100%">
+				<mx:MenuBar id="menubar" width="100%" dataProvider="{myMenuBarData}" showRoot="false" 
+			        	labelField="label" />
+			</fc:DockableToolBar>
+			<fc:DockableToolBar width="100%">
+			    <mx:Button  toggle="false" click="onSendClick(event)"
+							icon="@Embed('../../assets/send_yellow.jpg')" label="Send"/>
+				<mx:Button  toggle="false" click="onSaveButtonClick(event)"
+							icon="@Embed('../../assets/save.jpg')" label="Save"/>
+				<mx:Button  toggle="false" click="onPrintButtonClick(event)"
+							icon="@Embed('../../assets/print.jpg')" label="Print"/>
+				<mx:Button  toggle="false"
+							icon="@Embed('../../assets/attachments.jpg')"/>
+				<mx:ComboBox labelField="label" id="textFormat" dataProvider="{myTextFormatData}" />			        		
+				
+				<mx:Button toggle="false" icon="@Embed('../../assets/mini_adress_book.jpg')" id="addressBook"/>
+    		 </fc:DockableToolBar>       		
+			 <mx:Grid width="100%">
+				<mx:GridRow width="100%" height="22">
+					<mx:GridItem height="100%">
+						<mx:LinkButton label="To:" styleName="addressLinkButton" />
+						</mx:GridItem>
+						<mx:GridItem width="100%" height="100%">
+							<mx:TextInput id="toField" width="100%"/>
+						</mx:GridItem>
+					</mx:GridRow>
+					<mx:GridRow width="100%" height="22">
+						<mx:GridItem height="100%">
+							<mx:LinkButton label="CC:" styleName="addressLinkButton" />
+						</mx:GridItem>
+						<mx:GridItem width="100%" height="100%">
+							<mx:TextInput id="ccField" width="100%"/>
+						</mx:GridItem>
+					</mx:GridRow>
+					<mx:GridRow width="100%" height="22">
+						<mx:GridItem height="100%">
+							<mx:LinkButton label="BCC:" styleName="addressLinkButton" />
+						</mx:GridItem>
+						<mx:GridItem width="100%" height="100%">
+							<mx:TextInput id="bccField" width="100%"/>
+						</mx:GridItem>
+					</mx:GridRow>
+					<mx:GridRow width="100%" height="22">
+						<mx:GridItem height="100%">
+							<mx:Label text="Subject:" fontWeight="bold" fontSize="10"/>				
+						</mx:GridItem>
+						<mx:GridItem width="100%" height="100%">
+							<mx:TextInput id="subjectField" width="100%"/>
+						</mx:GridItem>
+					</mx:GridRow>
+				</mx:Grid>
+
+</fc:Docker>
+</mx:VBox>
+<component:FlowRichTextBox paddingTop="5" id="bodyText" width="100%" height="100%" />
+</comp:SuperPanel>

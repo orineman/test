@@ -1,0 +1,33 @@
+To update the server (make sure you are running as root):
+1. Copy the latest client*.zip and Server*.zip into /root/update
+2. updateserver
+
+Check the j.err file to make sure there weren't any reported errors.
+
+--------------------------------------------------------------------
+
+Notes:
+
+1. Two files are creates in the directory where you run updateserver:
+	+ j.err is the stderr output
+	+ j.out is the stdout output
+   Please note, this output does not come to the screen -- it just gets written
+   into these files. (If you are in /root/update when you run updateserver
+   these files will be deleted and you must look at their archived copies in /root/jodie/update-* (see #4 plus date format note below).
+2. The updateserver alias runs /root/jodie/updateserver.sh
+3. Archives are made using the current date for:
+	+ /lle/dist/tomcat/lib/cp4laplink.jar
+	+ /lle/dist/tomcat/lib/c4psecurity.jar
+	+ /lle/system/portal
+4. The zip files and j.err and j.out are archived (using the current date) to /root/jodie/update-*
+
+Date format note
+In order that multiple updates may be made in the same day, the date format is MMddyy-S (where S if the number of seconds since epoch).
+
+Example archives:
++ /root/jodie/update.060908-1213041515   -- zip files, j.out and j.err
++ /lle/system/portal.060908-1213041515   -- previous portal tree
++ /lle/dist/tomcat/lib/c4psecurity.jar.060908-1213041515
++ /lle/dist/tomcat/lib/c4plaplink.jar.060908-1213041515
+
+Also note that the c4p.jar file that is remade is found in /lle/system/portal/WEB-INF/lib/jtemp renamed in the same archive format: e.g., c4p.jar.060908-1213041515

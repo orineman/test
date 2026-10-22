@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Panel xmlns:mx="http://www.adobe.com/2006/mxml" 
+			initialize="init()" 
+			layout="vertical" 
+			horizontalAlign="center" 
+			width="428" 
+			titleStyleName="mypanelTitle" 
+			height="190" 
+			backgroundColor="#ffffff" 
+			verticalAlign="middle" 
+			cornerRadius="11">
+	<mx:Style>
+		.mypanelTitle {
+			letterSpacing: 0;
+			textAlign: center;
+			fontSize: 16;
+	  		fontWeight: bold;
+		}
+	</mx:Style>
+	
+	<mx:Script>
+		<![CDATA[
+			import ascript.utils.Emails;
+			import ascript.utils.Emails;
+			import mx.managers.PopUpManager;
+			import ascript.utils.Attachment;
+			
+			private var _attachment:Attachment;
+			
+			[Inspectable(name="attachment",verbose=1,type="Attachment")]
+			public function set attachment(attachment:Attachment):void {
+				this._attachment = attachment;
+			}			
+			
+			public function get attachment():Attachment {
+				return this._attachment;
+			}
+			
+			private var _service:Emails;
+			
+			[Inspectable(name="service",verbose=1,type="Emails")]
+			public function set service(service:Emails):void {
+				this._service = service;
+			}			
+			
+			public function get service():Emails {
+				return this._service;
+			}
+						
+			private var _url:String;				
+			
+			[Inspectable(name="url",verbose=1,type="String")]
+			public function set url(url:String):void {
+				this._url = url;
+			}
+					
+			private function _downloadOpenHandler(event:Event):void {
+				this.title = "Downloading "+this._attachment.Name +"...";	
+				this.pb.label = "Downloading %3%%";		
+				this.downloadButton.enabled = false;
+				this.cancelButton.enabled = true;
+			}
+			
+			private function _downloadProgressHandler(event:ProgressEvent):void {
+				pb.setProgress(event.bytesLoaded, event.bytesTotal);		
+			}
+			
+			private function _downloadCompleteHandler(event:Event):void {
+				this.title = "Download Complete";
+				this.pb.label = "Download Complete";
+				this.control.removeAllChildren();
+				var okButton:Button = new Button();
+				okButton.label = "OK";
+				okButton.setStyle("fontSize",14);
+				okButton.addEventListener(MouseEvent.CLICK,okClick);
+				okButton.width = 80;
+				this.control.addChild(okButton);				
+			}
+			
+			private function okClick(event:MouseEvent):void {
+           		PopUpManager.removePopUp(this);	
+			}
+			
+			private function downloadClick():void {				
+				var request:URLRequest = new URLRequest();
+	        		request.url = this._url;
+		        	request.requestHeaders = this._service.getURLRequestHeaders();
+	        		request.method = "POST";
+	        		request.data = "folderID="+this._attachment.FolderID+
+	        					   "&messageID="+this._attachment.MessageID+
+	        					   "&attachID="+this._attachment.ID;		        				        		        					           					   
+	        		fr.download(request,this._attachment.Name);	
+			}
+			
+			/**
+			 * Cancel the current file download.	
+			 */
+			public function cancelDownload():void
+			{
+			    fr.cancel();
+			    this.title = "Download Canceled";
+			}	
+			
+			private var fr:FileReference;
+			
+			public function init():void {
+				this.title = "Download file "+_attachment.Name+"?";
+				fr = new FileReference();				
+		        fr.addEventListener(Event.OPEN, _downloadOpenHandler);
+        	    fr.addEventListener(ProgressEvent.PROGRESS, _downloadProgressHandler);
+		    	fr.addEventListener(Event.COMPLETE, _downloadCompleteHandler );		
+			}		
+		]]>
+	</mx:Script>
+	
+	<mx:HBox width="100%" horizontalAlign="center">
+		<mx:Image source="@Embed(source='../../assets/loading1.jpg')"/>
+		<mx:ProgressBar label="Downloading %3%%" id="pb" labelPlacement="bottom" trackHeight="20" width="90%"/>
+	</mx:HBox>
+	<mx:ControlBar>
+	</mx:ControlBar>
+	<mx:HBox id="control" width="100%" horizontalAlign="center">
+		<mx:Button label="Download" fontSize="14" fontWeight="bold" id="downloadButton" click="downloadClick()" enabled="true"/>
+		<mx:Spacer width="80"/>
+		<mx:Button label="Cancel" click="cancelDownload()" id="cancelButton" enabled="false" fontWeight="bold" fontSize="14" width="97"/>
+	</mx:HBox>
+</mx:Panel>

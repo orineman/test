@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:LinkButton xmlns:mx="http://www.adobe.com/2006/mxml">
+	<mx:Script>
+		<![CDATA[
+			private var _objectdata:Object;
+			
+			[Inspectable(name="objectdata",verbose=1,type="Object")]
+			public function set objectdata(objectdata:Object):void {
+				this._objectdata = objectdata;
+			}
+			
+			public function get objectdata():Object {
+				return this._objectdata;
+			}
+		]]>
+	</mx:Script>			
+</mx:LinkButton>

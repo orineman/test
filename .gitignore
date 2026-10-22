@@ -1,0 +1,49 @@
+# Java build outputs
+*.class
+/target/
+/build/
+/out/
+.gradle/
+
+# Packaged applications and libraries
+*.war
+*.ear
+*.jar
+
+# Keep build-tool wrappers
+!gradle/wrapper/gradle-wrapper.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Tomcat runtime files (relative to repository root)
+/logs/
+/temp/
+/work/
+/webapps/
+
+# Local credentials and configuration
+.env
+.env.*
+!.env.example
+*.jks
+*.keystore
+*.p12
+*.pfx
+*.key
+/conf/tomcat-users.xml
+
+# Editor files
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+*~
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+

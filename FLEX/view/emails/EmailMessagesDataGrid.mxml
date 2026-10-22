@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:DataGrid xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:render="view.renderers.*" dragEnabled="true"
+            dragMoveEnabled="true" rowHeight="40" showScrollTips="true" creationComplete="initData()" enabled="true" editable="false">
+    <mx:Metadata>
+        [Event(name="dataLoaded", type="ascript.events.DataLoaded")]
+    </mx:Metadata>
+
+	<mx:Script>	
+		<![CDATA[
+			import view.renderers.ReadUnreadImageEmailRenderer;
+			import mx.events.DragEvent;
+			import mx.collections.ArrayCollection;
+			
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.mxml.HTTPService;
+			import ascript.request.ProtocolService;	
+			import ascript.utils.Emails;
+			
+			
+			[Bindable]
+			private var _emailService:Emails;
+			
+			[Inspectable(name="emails",verbose=1,type="Object")]
+			public function set emails(_emailService:Emails):void {
+				this._emailService = _emailService;
+			}	
+			
+			private var _clientToHostCommands:HTTPService;
+			
+			private var _xmlResult:XML;
+			
+			[Bindable]
+			private var _dataGridProvider:XMLListCollection;		
+			
+			[Bindable]
+			private var _operationID:String = "1";
+			
+			[Bindable]
+			private var _typeToInclude:String = "5";
+			
+			private var _initTreeFlag:Boolean = true;				
+			
+			public function initData(initTreeFlag:Boolean = true):void {
+				this._initTreeFlag = initTreeFlag;
+				this._emailService.StartingNumber=0;
+				_clientToHostCommands = _emailService.initE4XEmailRequest(GetEmailListRequest,
+													  this._getGetEmailListComplete,
+													  this._getGetEmailListFault);				
+													  
+				this.addEventListener(DragEvent.DRAG_COMPLETE,this._onDragComplete);									  
+			}		
+		]]>
+	</mx:Script>
+	<!-- HANDLERS -->
+	<mx:Script source="handlers/EmailMessagesDataGridHandlers.as"/>
+	
+	<!-- Requests -->
+	<!-- EmailFolderRequest -->
+		<mx:Model id="GetEmailListRequest">
+		<root>
+			<LLERequest>
+				<Command>
+					<ID>8</ID>
+				</Command>
+				<EmailFolder>
+					<ID>{this._emailService.FolderID}</ID>
+					<ResultsNumber>{this._emailService.ResultNumber}</ResultsNumber>
+					<StartingNumber>{this._emailService.StartingNumber}</StartingNumber>
+				</EmailFolder>
+				<Filters>
+					<Fields>
+					     <Field1>Email\ID</Field1>
+				         <Field2>Email\Read</Field2>
+				         <Field3>Email\FromName</Field3>
+				         <Field4>Email\To</Field4>
+				         <Field5>Email\Subject</Field5>
+				         <Field6>Email\ReceivingDate</Field6>
+				         <Field7>Email\Size</Field7>	
+	    			     <Field8>Email\NotSend</Field8>
+				         <Field9>Email\FromMe</Field9>
+				         <Field10>Email\AttachesPresent</Field10>
+				         <Field11>Email\Preview</Field11>
+					</Fields>
+					<Behaviour>
+						<TypeToInclude>{this._typeToInclude}</TypeToInclude>
+						<IDOperation>{this._operationID}</IDOperation>
+					</Behaviour>
+					<OrderBy>
+						<Field>
+				            <Name>Email\ReceivingDate</Name>
+				            <Direction>1</Direction>			
+						</Field>
+					</OrderBy>
+				</Filters>
+			</LLERequest>
+		</root>		
+	</mx:Model>				
+	
+	<mx:Component id="headerRenderer">
+		<mx:Image source="@Embed(source='../../assets/mail_read.png')"/>
+	</mx:Component>
+	
+	<mx:columns>
+		<mx:DataGridColumn headerRenderer="{headerRenderer}" width="22" itemRenderer="view.renderers.ReadUnreadImageEmailRenderer"/>
+		<mx:DataGridColumn dataField="FromName" headerText="From" dataTipField="Preview" showDataTips="true"/>
+		<mx:DataGridColumn dataField="Subject" dataTipField="Preview" showDataTips="true"/>
+		<mx:DataGridColumn dataField="ReceivingDate" headerText="Recieved" dataTipField="Preview" showDataTips="true" labelFunction="{this._formatDataGridRecievedColumn}"/>
+		<mx:DataGridColumn dataField="Size" dataTipField="Preview" showDataTips="true" labelFunction="{this._formateDataGridSizeColumn}"/>
+	</mx:columns>	
+</mx:DataGrid>
+

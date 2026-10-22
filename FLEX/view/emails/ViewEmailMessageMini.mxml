@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" paddingLeft="10" paddingRight="10" paddingTop="10" width="100%" height="70%" backgroundColor="#ffffff" xmlns:ns1="http://www.adobe.com/2006/fc" xmlns:component="view.component.*">
+
+	<mx:Script>
+		<![CDATA[
+			import view.component.DownloadPopUp;
+			import mx.preloaders.DownloadProgressBar;
+			import ascript.utils.DateTimeUtils;
+			import mx.controls.List;
+			import mx.rpc.http.mxml.HTTPService;
+			import ascript.request.ProtocolService;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import ascript.utils.Emails;
+			import ascript.utils.Utils;
+						
+			[Bindable]
+			private var _emailService:Emails;
+			
+			[Inspectable(name="emails",verbose=1,type="Object")]
+			public function set emails(_emailService:Emails):void {
+				this._emailService = _emailService;
+			}	
+			
+			[Bindable]
+			private var _toAddress:String;
+			
+			public function get ToAddress():String {
+				return this._toAddress;
+			}		
+			
+			public function set ToAddress(toAddress:String):void {
+				this._toAddress = _toAddress;
+			}
+			
+			[Bindable]
+			private var _ccAddress:String;
+			
+			public function get CCAddress():String {
+				return this._ccAddress;
+			}		
+			
+			public function set CCAddress(ccAddress:String):void {
+				this._ccAddress = ccAddress;
+			}
+			
+			[Bindable]
+			private var _bodyText:String;
+			
+			public function get BodyText():String {
+				return this._bodyText;
+			}		
+			
+			public function set BodyText(bodyText:String):void {
+				this._bodyText = bodyText
+			}
+			
+			[Bindable]
+			private var _subject:String;
+			
+			public function get Subject():String {
+				return this._subject;
+			}		
+			
+			public function set Subject(sub:String):void {
+				this._subject = sub;
+			}
+			
+			[Bindable]
+			private var _fromAddress:String;
+			
+			public function get FromAddress():String {
+				return this._fromAddress;
+			}		
+			
+			public function set FromAddress(from:String):void {
+				this._fromAddress = from;
+			}
+			[Bindable]
+			private var _attachments:XMLList;
+			
+			private var _clientToHostCommands:HTTPService;		
+			private var _emailResult:Object;
+			private var downloadPopUp:DownloadPopUp = new DownloadPopUp();
+			private var fr:FileReference;
+			
+			public function construct():void {
+/*				fr = new FileReference();
+		        fr.addEventListener(Event.OPEN, _downloadOpenHandler);
+        	    fr.addEventListener(ProgressEvent.PROGRESS, _downloadProgressHandler);
+		    	fr.addEventListener(Event.COMPLETE, _downloadCompleteHandler );*/
+			}
+			
+			public function initData() : void {
+				_clientToHostCommands = _emailService.initE4XEmailRequest(GetEmailRequest,
+												  this._getGetEmailComplete,
+												  this._getGetEmailFault);		
+			}
+			
+		]]>
+	</mx:Script>
+	<!-- HANDLERS -->
+	<mx:Script source="handlers/ViewEmailMessageMiniHandlers.as" />
+
+	<!-- REQUESTS -->
+	<!-- Get Email Request -->
+	<mx:Model id="GetEmailRequest">
+	<root>
+		<LLERequest>
+			<Command>
+				<ID>10</ID>
+			</Command>
+			<EmailFolder>
+				<ID>{this._emailService.FolderID}</ID>
+				<Email>
+					<ID>{this._emailService.MessageID}</ID>
+				</Email>
+			</EmailFolder>
+		</LLERequest>
+	</root>
+	</mx:Model>	
+	
+	<!-- Get Email Attachments Request -->
+	<mx:Model id="GetEmailAttachmentRequest">
+		<root>
+		<LLERequest>
+			<Command>
+				<ID>11</ID>
+			</Command>
+			<EmailFolder>
+				<ID>Email folder ID</ID>
+				<Email>
+					<ID>Message ID</ID>
+					<Attach>
+						<AttachElement>
+							<ID>Attachment ID</ID>
+						</AttachElement>
+					</Attach>
+				</Email>
+			</EmailFolder>
+		</LLERequest>
+		</root>
+	</mx:Model>		
+
+	<mx:Text fontSize="12" fontWeight="bold" id="subjectText" text="{this._subject}"/>
+	<mx:Label text="{this._fromAddress}" fontSize="11" id="fromLabel"/>
+	<mx:HBox width="100%">
+		<mx:Label text="To:" fontWeight="bold"/>
+		<mx:Text id="toAddress" text="{this._toAddress}"/>
+	</mx:HBox>
+	<mx:HBox width="100%">
+		<mx:Label text="CC:" fontWeight="bold" id="ccLabel"/>
+		<mx:Text id="ccAddress">
+			<mx:text>{this._ccAddress}</mx:text>
+		</mx:Text>
+	</mx:HBox>
+	<mx:HBox id="attachmentsFlow" width="100%" verticalAlign="middle">
+		<mx:Label text="Attachments:" fontWeight="bold"/>
+		<ns1:FlowContainer width="100%">
+			<mx:Repeater id="attach" dataProvider="{_attachments}">
+				<!-- TODO: May be add images -->
+				<component:LinkButtonWithDATA label="{attach.currentItem.FSElement.Name+' ( '+Utils.numToSizeString(attach.currentItem.FSElement.Size)+' )'}" 							   
+							   click="{this._getEmailAttachment(event)}" objectdata="{attach.currentItem}" />		
+			</mx:Repeater>	
+		</ns1:FlowContainer>
+	</mx:HBox>
+	<mx:HRule width="100%" strokeColor="#000000"/>
+	<mx:TextArea height="100%"  editable="false" enabled="true" id="body" width="100%" wordWrap="true">
+		<mx:text>{this._bodyText}</mx:text>
+	</mx:TextArea>
+</mx:VBox>

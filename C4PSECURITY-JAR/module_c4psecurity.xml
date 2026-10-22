@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="module_c4psecurity" default="compile.module.c4psecurity">
+  <dirname property="module.c4psecurity.basedir" file="${ant.file.module_c4psecurity}"/>
+  
+  <property name="module.jdk.home.c4psecurity" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.c4psecurity" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.c4psecurity" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.c4psecurity" value="${compiler.args}"/>
+  
+  <property name="c4psecurity.output.dir" value="${module.c4psecurity.basedir}/../classes/production/c4psecurity"/>
+  <property name="c4psecurity.testoutput.dir" value="${module.c4psecurity.basedir}/../classes/test/c4psecurity"/>
+  
+  <path id="c4psecurity.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="c4psecurity.module.classpath">
+    <path refid="${module.jdk.classpath.c4psecurity}"/>
+    <path refid="library.c4psecurity.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.c4psecurity">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.c4psecurity">
+    <patternset refid="excluded.from.module.c4psecurity"/>
+  </patternset>
+  
+  <path id="c4psecurity.module.sourcepath">
+    <dirset dir="${module.c4psecurity.basedir}/../">
+      <include name="c4psecurity"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.c4psecurity" depends="compile.module.c4psecurity.production,compile.module.c4psecurity.tests" description="Compile module c4psecurity"/>
+  
+  <target name="compile.module.c4psecurity.production" description="Compile module c4psecurity; production classes">
+    <mkdir dir="${c4psecurity.output.dir}"/>
+    <javac destdir="${c4psecurity.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.c4psecurity}/javac">
+      <compilerarg line="${compiler.args.c4psecurity}"/>
+      <bootclasspath refid="c4psecurity.module.bootclasspath"/>
+      <classpath refid="c4psecurity.module.classpath"/>
+      <src refid="c4psecurity.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.c4psecurity"/>
+    </javac>
+    
+    <copy todir="${c4psecurity.output.dir}">
+      <fileset dir="${module.c4psecurity.basedir}">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.c4psecurity.tests" depends="compile.module.c4psecurity.production" description="compile module c4psecurity; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.c4psecurity" description="cleanup module">
+    <delete dir="${c4psecurity.output.dir}"/>
+    <delete dir="${c4psecurity.testoutput.dir}"/>
+  </target>
+
+  <target name="compile.c4psecurity.jar.build" description="build jar for c4psecurity">
+        <dirname property="jar.dir" file="${basedir}/release"/>
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/c4psecurity.jar" duplicate="preserve">
+            <manifest>
+                <attribute name="Created-By" value="IntelliJ IDEA"/>
+                <attribute name="Manifest-Version" value="1.0"/>
+            </manifest>
+            <zipfileset dir="${c4psecurity.output.dir}" prefix=""/>
+        </jar>
+        <copy file="${jar.dir}/c4psecurity.jar" tofile="${tomcat.home}/common/lib/c4psecurity.jar"/>
+        <copy file="${jar.dir}/c4psecurity.jar" tofile="${tomcat.home}/server/lib/c4psecurity.jar"/>
+    </target>
+</project>

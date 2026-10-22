@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:view="view.*" layout="absolute" width="100%" height="100%" initialize="initPage()">
+	<mx:Style source="css/docker.css"/>
+	<mx:Style source="css/styles.css"/>
+	<!-- init page -->
+	<mx:Script>
+		<![CDATA[
+			import ascript.request.ProtocolService;
+			import mx.rpc.http.mxml.HTTPService;
+			import ascript.events.HostPanelEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;									
+			import ascript.utils.*;
+			import mx.controls.Alert;			
+									
+			public function initPage():void {
+				//URL params
+				var params:Object = mx.core.Application.application.parameters;								
+			}
+		]]>
+	</mx:Script>
+	
+	<!-- Event Handlers -->
+	<mx:Script>
+		<![CDATA[
+			[Bindable]
+			private var _host:Object;
+			
+			private var _clientToHostCommands : HTTPService;
+			
+			[Bindable]
+			private var _service : ProtocolService;
+			
+			[Bindable]
+			private var _HSID : String;
+		
+			private function hostSelected(event:HostPanelEvent):void {				
+				this._host = event.host;	
+				_service = new ProtocolService();
+				_clientToHostCommands = _service.getClientToHostCommands();
+				_clientToHostCommands.addEventListener(ResultEvent.RESULT,this._getLoginToHostComplete);					
+				_clientToHostCommands.addEventListener(FaultEvent.FAULT,this._getLoginToHostFault);
+				_service.addRequestHeader("DID",this._host.ID);
+				_clientToHostCommands.headers["XMLProcessing"] = "xmlprocessing";								
+				_clientToHostCommands.request = loginToHostRequest;
+				_clientToHostCommands.send();
+				
+			}
+			
+			private function _getLoginToHostFault(event:FaultEvent):void {
+				trace("bad request");	
+			}
+
+			private function _getLoginToHostComplete(event:ResultEvent):void {
+				this._HSID = event.result.LLEResponse.HostInfo.HSID;
+				this._service.removeRequestHeader("XMLProcessing"); 
+				this._service.addRequestHeader("HSID",this._HSID);
+				this._initServices();
+			}
+			
+			private function _initServices():void {
+				if (views.selectedIndex==0) {
+					views.selectedIndex=1;
+				}	
+			}
+		]]>
+	</mx:Script>					
+	
+	<!-- Login To Host [97] -->
+	<mx:XML id="loginToHostRequest">
+		<LLERequest>
+			<Command>
+				<ID>97</ID>
+			</Command>
+		</LLERequest>	
+	</mx:XML>
+	
+	<!-- States -->
+
+	<!-- Effects -->
+	<mx:Move duration="250" id="DockerMove"/>
+	<mx:Fade duration="250" id="DockerFade"/>
+	
+	<!-- UI -->
+	<mx:ViewStack id="views" width="100%" height="100%">		
+		<!-- ================ -->
+		<!-- Panel to choose hosts -->
+		<mx:VBox id="hosts" horizontalAlign="center" verticalAlign="middle">
+			<view:HostsPanel hostSelected="this.hostSelected(event)" width="40%" height="50%"/>
+		</mx:VBox>
+		<view:ServicePanel id="services" HSID="{this._HSID}" host="{this._host}" service="{this._service}" width="100%" height="100%"/>
+		</mx:ViewStack>
+</mx:Application>

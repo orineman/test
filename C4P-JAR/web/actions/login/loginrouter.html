@@ -1,0 +1,616 @@
+
+
+<div class="articledate">August 1, 2003</div><blockquote class="articlecopy"><b>Summary</b><br>When choosing among the different types of authentication mechanisms
+
+offered by J2EE Web containers, form-based authentication is almost always
+
+selected ahead of its alternatives: HTTP basic authentication and HTTPS
+
+client authentication.</blockquote> <div class="story_toolbar">
+
+
+
+<div class="articlecopy"><b>By <a href="http://www.sys-con.com/author/?id=2092">Thomas Beck</a> </b><br>Page 1 of 1</div>
+
+
+
+
+
+
+
+When choosing among the different types of authentication mechanisms
+
+offered by J2EE Web containers, form-based authentication is almost always
+
+selected ahead of its alternatives: HTTP basic authentication and HTTPS
+
+client authentication. However, beneath the customizable user interface,
+
+form-based authentication presents several challenges to architects looking
+
+for a robust enterprise authentication solution.
+
+</p><p>
+
+    These challenges often manifest themselves as login-page access errors
+
+that arise when applications look to extend the concept of protected
+
+resources upon which form-based authentication is predicated. This can occur
+
+when a system exhibits requirements that are considered fairly common for an
+
+enterprise application, such as:<br>
+
+</p><li>    Authentication must be possible from the default form­based login page
+
+without trying to first access a protected resource.
+
+</li><li>    Capture of authentication credentials must occur on multiple separate
+
+pages (e.g., via a login form that is a part of each nonprotected page).
+
+<p>
+
+    In both cases, form-based authentication alone will not be able to
+
+satisfy the system requirements.
+
+</p><p>
+
+<strong>Available Options</strong><br>
+
+    There are three solutions that are most frequently recommended by
+
+application architects looking to satisfy either of the aforementioned
+
+requirements. The first and most commonly suggested one is to build a
+
+custom, servlet-based authentication mechanism. This solution, although
+
+robust and well documented, fails to leverage the infrastructure provided by
+
+container-managed security and requires that the authentication mechanism be
+
+implemented programmatically. The second solution is to subclass or
+
+interface directly with the authentication APIs provided by the Web
+
+container ­ such as Tomcat's AuthenticatorBase class. Such a solution can
+
+only be recommended to seasoned Java programmers and introduces a dependency
+
+on a particular Web container's internal APIs.
+
+</p><p>
+
+    The third solution ­ and the topic of this article ­ is the extension of
+
+the existing J2EE form-based authentication mechanism to satisfy these
+
+requirements. This solution will enable an application to overcome some of
+
+the most commonly encountered form-based authentication hurdles without
+
+sacrificing the utility of the Web container's preexisting authentication
+
+capabilities or introducing Web container dependencies.
+
+</p><p>
+
+<strong>Form-Based Authentication</strong><br>
+
+    Before launching into a discussion on extending form-based
+
+authentication, it's important to first understand what form-based
+
+authentication is and is not. Please note that although a brief description
+
+of form-based authentication is provided here, more detailed descriptions
+
+and set-up instructions can be found in the references section at the end of
+
+this article.
+
+</p><p>
+
+    Form-based authentication is, at its core, a Java-specific,
+
+container-implemented authentication mechanism that allows the look and feel
+
+of the login screen to be customized. The login is performed via a form that
+
+must contain two fields for entering a username and a password, j_username
+
+and j_password, respectively, and a special container-recognized action ­j_security_check.
+
+</p><p>
+
+    Beyond the login form, the application-specific implementation of
+
+form-based authentication is dependent on two very important elements in the
+
+Web application deployment descriptor: the login-config and
+
+security-constraint elements. The login-config element is used to indicate
+
+that an application is using form-based authentication and to specify the
+
+locations of the login and error pages to be used. The security-constraint
+
+element is used to define which resources are protected and to associate
+
+role-based constraints with these protected resources.
+
+</p><p>
+
+    Although the implementation of form-based authentication is
+
+vendor-specific, the functional specifications are outlined in the Java
+
+servlet specification. When a user attempts to access a protected resource,
+
+the container checks the user's authentication. If the user is already
+
+authenticated and possesses a role that is authorized to access the resource
+
+(as defined in the security-constraint element), the requested resource is
+
+activated and a reference to it is returned. If the user is not
+
+authenticated, the following series of events occurs:<br>
+
+1.   The login form is sent to the client and the original client request
+
+is stored by the container.<br>
+
+2.   The client posts the login form back to the server, which then
+
+attempts to authenticate the client.<br>
+
+3.   If authentication is successful, the user's roles are compared to the
+
+roles necessary to access the resource. If the user's roles authorize access
+
+to the resource, the client is redirected to the resource using the original
+
+request URL path stored by the container in the first step.<br>
+
+4.   If authentication is not successful, the user is redirected to the
+
+error page defined in the login-config element.
+
+</p><p>
+
+    The good news about form-based authentication is that the container
+
+takes care of a lot of the hard work. Authentication, authorization,
+
+redirection to the login page and back to either the protected resource or
+
+the predefined error page are all handled by the container. However, this
+
+level of container control over authentication and authorization carries
+
+with it several disadvantages that directly affect the ability of an
+
+application that uses form-based authentication to satisfy advanced
+
+authentication requirements.
+
+</p><p>
+
+    The first disadvantage of container control is that the container
+
+maintains exclusive rights to the original client URL request for a
+
+protected resource. Generally, this parameter is neither accessible nor
+
+settable in a programmatic manner. The second disadvantage of container
+
+management of security is that, in most cases, it precludes the use of
+
+custom security filters. As an example, filters on the j_security_check
+
+action prove to be very unreliable across different application servers. The
+
+third and perhaps most important disadvantage is that container-controlled
+
+security does not support authentication unless the client is explicitly
+
+attempting to access a protected resource. This feature is often referred to
+
+as <em>lazy authentication</em>. That is, authentication is performed only when it is
+
+needed ­ not when your application would like it to be performed.
+
+</p><p>
+
+<strong>Active Authentication</strong><br>
+
+    Many systems that use form-based authentication also wish to perform
+
+authentication before it's absolutely required. Such is the case with the
+
+requirements outlined at the beginning of this article, including a login
+
+form on nonprotected pages or a direct login from the login screen before
+
+accessing a protected resource ­ both of which will require "preemptive"
+
+authentication. A very compelling case could be made for such functionality
+
+if an application contained very few custom pages or wanted to customize its
+
+unprotected pages for particular user roles. In such cases, the application
+
+needs to actively engage in authentication when these services are not
+
+explicitly provided by form-based authentication. Note that this is
+
+different from a custom security solution in which the application assumes
+
+all authentication responsibilities. Active authentication, in this sense,
+
+implies that the application augments the form-based authentication services
+
+already provided by the container.
+
+</p><p>
+
+    The first step in designing and implementing an active authentication
+
+system is to understand that there are a finite number of authentication
+
+entry points into a system. For each of these entry points, form-based
+
+authentication will either handle authentication for you or it will default
+
+to its lazy authentication posture and not handle authentication. For
+
+demonstration purposes, the remainder of this article will deal with a
+
+system that has three possible authentication entry points:<br>
+
+1.   Direct access to protected pages<br>
+
+2.   Active authentication from all unprotected pages via a login form
+
+included in each of the pages<br>
+
+3.   Direct login from the login page defined in the Web application
+
+deployment descriptor
+
+</p><p>
+
+    Figure 1 illustrates the active authentication flow for the model's
+
+three entry points. Please note that Figure 1 does not include post
+
+authentication activities since these activities are controlled entirely by
+
+the container.
+
+</p><p>
+
+    Of the three authentication entry points in our model, only point 1,
+
+direct access to protected pages, is handled by form-based authentication.
+
+Authentication entry points 2 and 3 will have to be handled explicitly by
+
+the application. You can easily test this assertion by entering valid
+
+credentials into a simple form with an action of j_security_check before you
+
+have tried accessing any protected resources. Doing this will result in an
+
+error such as "Invalid direct reference to form login page." In other words,
+
+the application will have to take care of referencing the form login pages
+
+to prevent this type of error from occurring.
+
+</p><p>
+
+    For authentication entry point 2, which covers all unprotected pages, a
+
+special login include needs to be created with an action that posts the
+
+user's credentials to <b style="color: black; background-color: rgb(255, 255, 102);">the Login Router Servlet</b>. <b style="color: black; background-color: rgb(255, 255, 102);">The Login Router Servlet</b>
+
+sets the appropriate login session variables, makes note of the unprotected
+
+page that requested active authentication, and redirects to the Proxy JSP.
+
+The Proxy is defined in the Web application deployment descriptor as a
+
+protected resource. Therefore, any request for the Proxy will be subject to
+
+authentication by the container. The Proxy's job is to keep track of the
+
+original page that requested authentication. The Proxy then redirects back
+
+to the original page when the container has returned control to the Proxy.
+
+</p><p>
+
+    Authentication entry point 3, direct entry from the default login page,
+
+requires that the page be smart enough to recognize the difference between a
+
+request to log in to a protected resource and an active authentication
+
+request. When active authentication requests are received, the login page
+
+should display some sort of selection mechanism that allows the user to
+
+choose a page to be routed to after authentication is complete. This option
+
+will not be required in the case of an attempt to access a protected
+
+resource.
+
+</p><p>
+
+<strong>Authentication Synthesis</strong><br>
+
+    Now it should be apparent that although form-based authentication alone
+
+does not satisfy all the requirements of an enterprise application, it does
+
+provide a solid foundation upon which to build. The remainder of this
+
+article will focus on the four software objects that are needed to support
+
+the synthesis of active and form-based authentication. These four objects
+
+will be described below. Source code for these objects can be downloaded
+
+from www.sys-con.com/java/sourcec.cfm.
+
+</p><p>
+
+<strong><em>Login Include</em></strong><br>
+
+    The login include file is used by unprotected pages to enable users to
+
+log in from any point (i.e., protected or unprotected) in the application.
+
+Without belaboring the point, the login include is very similar to the
+
+standard form-based authentication login. The essential code for this
+
+include, without additional markup and style elements, amounts to:
+
+</p><p><font color="#800000">
+
+&lt;form method="POST" action="loginRouter"&gt;<br>
+
+    &lt;input type="hidden" name="j_security_check"<br>
+
+        value="/j_security_check"<br>
+
+    &lt;input type="text" name="j_username"&gt;<br>
+
+    &lt;input type="text" name="j_password"&gt;<br>
+
+&lt;/form&gt;
+
+</font>
+
+</p><p>
+
+<strong><em>Login Router Servlet</em></strong><br>
+
+    <b style="color: black; background-color: rgb(255, 255, 102);">The Login Router Servlet</b> is one of the pillars of active authentication,
+
+yet it's very simple to understand (see Listing 1).
+
+</p><p>
+
+    The purpose of the Router Servlet is threefold. First, it sets session
+
+attributes for the values passed by the login include or by the default
+
+login page (login.jsp). Session values are set because other values, such as
+
+request attributes, do not persist across redirects. Second, the Router
+
+Servlet retrieves the originator of the request so that this page is
+
+reloaded when active authentication is complete. Note that this must be done
+
+differently for each of the possible request originators: the login include
+
+or the default login page. Finally, the Router redirects to the protected
+
+page Proxy.jsp, which will cause container-managed authentication to be
+
+invoked.
+
+</p><p>
+
+<strong><em>Login Proxy (Proxy.jsp)</em></strong><br>
+
+    The Login Proxy is likely the simplest component of active
+
+authentication. As mentioned earlier, the sole purpose of the Login Proxy is
+
+to keep track of which page originally requested authentication, and
+
+redirect back to this page when authentication and authorization are
+
+complete. The most important point to remember about the Login Proxy is that
+
+it must be identified as a protected resource using the Web application
+
+deployment descriptor. Once you've done this, the Login Proxy basically
+
+amounts to a couple of lines of essential code:
+
+</p><p><font color="#800000">
+
+String redirectURL = session.getAttribute<br>
+
+("originator").toString( );<br>
+
+response.sendRedirect(response.encodeRedirectURL<br>
+
+(redirectURL));
+
+</font>
+
+</p><p>
+
+<strong><em>Default Login (Login.jsp)</em></strong><br>
+
+    The Default Login page is probably the most complicated moving part in
+
+active authentication, handling two very important responsibilities. First,
+
+this page needs to determine whether it was requested by another page within
+
+the application or if the URL was requested directly. Based upon these
+
+conditions, the Default Login will or will not render a selection mechanism
+
+that allows the user to choose where they should be directed to after
+
+authentication. Second, the Default Login may redirect to j_security_check
+
+for authentication, where applicable.
+
+</p><p>
+
+    Before delving into the Default Login page, it's important to first
+
+understand how the page handles its different rendering states. Login.jsp is
+
+defined as both the form login and form error page in the Web application
+
+deployment descriptor, using query string values of "action=protected" and
+
+"action=error", respectively, to denote conditions requiring initial or
+
+subsequent authentication. "Action=logout" will also be set by the
+
+application when a user wishes to log out. Given these three states, the
+
+Default Login page should render a selection mechanism to allow the user to
+
+select a page to be forwarded to upon authentication if:<br>
+
+1.   The user is logged out.<br>
+
+2.   The page URL was requested directly.<br>
+
+3.   The page's action value is something other than "protected", "error",
+
+or "logout".
+
+</p><p>
+
+    This determination is represented in Listing 2 by setting the
+
+isSearchSet variable to true if a page selection mechanism needs to be
+
+rendered.
+
+</p><p>
+
+    If a page selection mechanism does need to be rendered, the j_username
+
+and j_password authentication inputs are rendered along with a mechanism
+
+that sets the value "ORIGINATOR" (see Proxy.jsp) to one of a series of page
+
+names for redirection after authentication. The action of this form should
+
+be the Login Router. A page selection mechanism should not be required for
+
+the form login or error page. In this case, a normal form-based
+
+authentication login group using the j_security_check action should be
+
+rendered.
+
+</p><p>
+
+    The default login page's second yet equally important responsibility is
+
+redirecting to form-based authentication and removing the session's login
+
+attributes when the page is first loaded. If these login attributes are not
+
+removed, the application will enter an infinite redirect loop by continually
+
+posting invalid credentials. This can be avoided using the logic provided in
+
+Listing 3.
+
+</p><p>
+
+    Despite the different approaches, the final result of active
+
+authentication is the same as the final result of form-based authentication.
+
+If the user is authenticated and authorized, he or she will be returned to
+
+the page requested. If not authenticated, the user will be returned to the
+
+Default Login page and an appropriate error message will be displayed.
+
+</p><p>
+
+<strong>Conclusion</strong><br>
+
+    When selecting an authentication mechanism for your next enterprise
+
+application, resist the urge to reinvent the wheel. With the exception of
+
+lazy authentication, form-based authentication is likely to be a suitable
+
+authentication mechanism for your application. With some patience and the
+
+active authentication components from this article, you can help form-based
+
+authentication overcome its lazy ways and meet your application's security
+
+requirements.
+
+</p><p>
+
+<strong>References</strong><br>
+
+</p></li><li>    Almaer, D. (2001). "Web FORM-Based Authentication." O'Reilly:
+
+<a href="http://www.onjava.com/pub/a/onjava/2001/08/06/webform.html" target="new">www.onjava.com/pub/a/onjava/2001/08/06/webform.html</a>
+
+</li><li>    Arumugam, P. (2002). "J2EE Form-Based Authentication." O'Reilly:
+
+<a href="http://www.onjava.com/pub/a/onjava/2002/06/12/form.html" target="new">www.onjava.com/pub/a/onjava/2002/06/12/form.html</a>
+
+</li><li>    Bergsten, H. (2002). <em>JavaServer Pages, 2nd Edition</em>. O'Reilly.
+
+</li><li>    Hall, M. (2001). <em>More Servlets and JavaServer Pages</em>. Prentice Hall.
+
+</li><li>    J2EE Platform Specification:
+
+<a href="http://java.sun.com/j2ee/1.4/download.html#platformspec" target="new">http://java.sun.com/j2ee/1.4/download.html#platformspec</a>
+
+</li><li>    Java Servlet 2.3 Specification:
+
+<a href="http://www.jcp.org/aboutJava/communityprocess/final/jsr053/" target="new">www.jcp.org/aboutJava/communityprocess/final/jsr053/</a><img src="search_files/blank.gif" width="500" height="1" alt="" border="0">
+
+<p><em>What do you think? Join the <a href="http://www.sys-con.com/story/feedback.cfm?storyid=37660">Feedback</a> to this item.</em>
+
+</p></li></td></tr></tbody></table>
+
+
+
+</p><p class="articleCopy">
+
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" horizontalAlign="center" verticalAlign="top" width="20" height="20">
+		<mx:Script>
+			<![CDATA[
+				
+				[Embed(source="../../assets/mail_read_data.png")]
+				[Bindable]
+				private var _readDataImage:Class;
+				
+				[Embed(source="../../assets/mail_unread_data.png")]
+				[Bindable]
+				private var _unreadDataImage:Class;
+			
+				[Embed(source="../../assets/mail_read.png")]
+				[Bindable]
+				private var _readImage:Class;
+							
+				[Embed(source="../../assets/mail_unread.png")]
+				[Bindable]
+				private var _unreadImage:Class;
+															
+			]]>
+		</mx:Script>	   	
+		<mx:Image id="image" >
+			<mx:source>{data.Read==1?(data.AttachesPresent==1?_readDataImage:_readImage):(data.AttachesPresent==0?_unreadDataImage:_unreadImage)}</mx:source>
+		</mx:Image>
+	</mx:VBox>

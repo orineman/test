@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:email="view.emails.*" width="100%" height="100%" initialize="_initServices()" xmlns:emails1="view.emails.*" xmlns:fc="http://www.adobe.com/2006/fc">
+	<mx:Script>
+		<![CDATA[
+			import view.emails.ViewEmailMessageMini;
+			import ascript.events.DataLoaded;
+			import ascript.utils.Emails;
+			import ascript.utils.Host;
+			import ascript.request.ProtocolService;
+			
+			import mx.events.ListEvent;
+			import mx.collections.XMLListCollection;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.http.mxml.HTTPService;			
+			import flash.xml.XMLNode;
+			
+			private var _host:Host;			
+			
+			[Inspectable(name="host",verbose=1,type="Object")]
+			public function set host(host:Object):void {
+				this._host = new Host(host);	
+			}
+			
+			private var _HSID:String;
+			
+			[Inspectable(name="HSID",verbose=1,type="String")]
+			public function set HSID(hsid:String):void {
+				this._HSID = hsid;
+			}			
+			
+			[Bindable]
+			private var _service:ProtocolService;			
+			
+			[Inspectable(name="service",verbose=1)]
+			public function set service(service:ProtocolService):void {
+				this._service = service;
+			}
+			
+			[Bindable]
+			private var _emails : Emails;
+					
+			private var xmlResult : XMLNode;
+			
+			private var xmlList : XMLList;
+			
+			private var xmlError : XMLNode;
+			
+			private var _services : XMLListCollection;
+			
+			private var clientToHostCommands : HTTPService;
+			
+			private var viewEmail : ViewEmailMessageMini;						
+			
+			private function _initServices():void {
+				
+				if (_service == null) {
+					_service = new ProtocolService();					
+				}									
+				_emails = new Emails(_service);		
+				_service.addRequestHeader("HSID",this._HSID);				
+				clientToHostCommands = _service.getXMLClientToHostCommands();				
+				clientToHostCommands.addEventListener(ResultEvent.RESULT,this._getUserServicesComplete);					
+				clientToHostCommands.addEventListener(FaultEvent.FAULT,this._getUserServicesFault);								
+				clientToHostCommands.request = getUserServiceRequest;
+				clientToHostCommands.send();
+				viewEmail = new ViewEmailMessageMini();
+				viewEmail.emails = _emails;
+				emailTree.addEventListener(Event.CHANGE,this._emailTreeFolderChange);
+				emailMesages.addEventListener(Event.CHANGE,this._emailDataGridChange);
+				emailMesages.addEventListener(DataLoaded.DATA_LOADED,this._emailMessagesDataLoaded);				
+			}		
+		]]>	
+	</mx:Script>
+	
+	<!-- File with event handlers -->
+	<mx:Script source="handler/ServicePanelHandlers.as" />		
+	
+	<!-- requests -->
+	<!-- ======== -->		
+	<!-- Get User Services -->
+	<mx:XML id="getUserServiceRequest" format="xml">
+		<LLERequest>
+			<Command>
+				<ID>2</ID>
+			</Command>
+		</LLERequest>	
+	</mx:XML>
+	<!-- UI -->
+	<mx:MenuBar width="100%"></mx:MenuBar>
+	<fc:DockableToolBar>
+		<mx:Button id="createNewEmailButton" label="New Email" click="this._openNewEmailWindow(event)"/>			
+	</fc:DockableToolBar>
+	<mx:HBox width="100%">
+		<mx:Label text="Mail Service" width="25%" fontSize="14" fontWeight="bold"/>
+		<mx:Label text="{this._emails.FolderName}" width="75%" fontSize="14" fontWeight="bold"/>
+	</mx:HBox>
+	<mx:HBox width="100%" height="100%">		
+	<email:EmailFolderTree id="emailTree"		
+		emails="{_emails}"
+		width="25%" height="100%" 
+		folderOpenIcon="@Embed('../assets/folder_page.png')" 
+		folderClosedIcon="@Embed('../assets/folder.png')" 
+		defaultLeafIcon="@Embed('../assets/folder.png')"/>	
+	<mx:VBox id="content" width="75%" height="100%">
+			<email:EmailMessagesDataGrid id="emailMesages" emails="{_emails}" width="100%" height="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10"/>
+<!--			<email:ViewEmailMessageMini id="viewEmail" emails="{_emails}" width="100%" height="60%">
+			</email:ViewEmailMessageMini> -->
+	</mx:VBox>
+	</mx:HBox>
+</mx:VBox>
