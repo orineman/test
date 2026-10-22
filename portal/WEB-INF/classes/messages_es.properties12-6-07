@@ -1,0 +1,257 @@
+# The display modes' names
+
+displayMode.pc=PC
+
+displayMode.pda=PDA
+
+displayMode.phone=PHONE
+
+
+
+#Fields
+
+field.username=Nombre de Usuario
+
+field.password=Contraseña
+
+field.user=Usuario
+
+field.pc=Ordenador
+
+field.emailAddress=Dirección Correo Electrónicos
+
+field.secretQuestion=Pregunta Secreta
+
+field.secretAnswer=Respuesta Secreta
+
+field.pcName=Nombre del Ordenador
+
+field.passwordAgain=Reingrese Contraseña
+
+field.currentPassword=Contraseña Actual
+
+field.newPassword=Nueva Contraseña
+
+field.newPasswordAgain=Reingrese Nueva Contraseña
+
+field.firstName=Nombre
+
+field.lastName=Apellido
+
+field.enabled=Habilitar
+
+field.softwareVersion=Versión
+
+field.license=Estado
+
+field.expiryDate=Fecha de Expiración
+
+field.enablePC=Habilitar el ordenador para Acceso Remoto
+
+field.languagePreference=Idioma Preferido:
+
+field.English=Inglés
+
+field.German=Alemán
+
+field.French=Frances
+
+field.Italian=Italiano
+
+field.Spanish=Español
+
+
+
+# Titles
+
+title.myPCs=Mis Ordenadores
+
+title.myAccount=Mi Cuenta
+
+title.help=Ayuda
+
+title.view=Ver
+
+
+
+# Button/actions
+
+action.logout=Desconectar
+
+action.submit=Someter
+
+action.save=Guardar
+
+action.EditAccountInformation=Cuenta
+
+action.changePassword=Cambiar Contraseña
+
+action.changeSecurityQuestion=Cambiar pregunta de Seguridad
+
+action.continue=Siguiente
+
+action.cancel=Cancelar
+
+action.editDesktop=Modificar
+
+action.unlicense=Cancelar asignación
+
+action.setLicense=Introducir n.º de serie
+
+action.remove=Borrar
+
+action.close=Cerrar
+
+action.login=Acceso
+
+
+
+# Messages
+
+msg.removelicense=Nota: Usted tiene que extraer los n&#250;meros de serie asociados con esta computadora antes de que &#233;sta pueda ser borrada de su cuenta.
+
+msg.secretAnswer= Por favor seleccione una pregunta secreta a la cual solo usted podrá responder. Si usted olvida su contraseña, utilizaremos esta pregunta para verificar su identidad.
+
+msg.welcome=Bienvenido
+
+msg.confirmationPasswordChange=Su Contraseña ha sido cambiada sin problemas.
+
+msg.confirmationSecurityQuestionChange=La Pregunta de Seguridad Cambió
+
+msg.passwordRecoverySuccess=Su Contraseña ha sido cambiada sin problemas.
+
+msg.invalidUsernameOrPassword=Nombre de usuario o contraseña no valido.
+
+msg.logoutMessage=Usted ha sido desconectado.
+msg.logoutNamedUserMessage=Usuario {0} ha sido desconectado. 
+
+msg.notSecure=Aviso: ¡ Usted no esta utilizando una conexión protegida!
+
+msg.pleaseEnterUnusedLicense=Introduzca un número de serie que no esté en uso abajo:
+
+msg.extendVsTransferLicenseQuestion=u licencia actual no ha expirado. ¿Desea soltarla y utilizar una nueva o extenderla con una nueva?
+
+msg.licenseHasNotExpiredWarning=Su licencia actual para este ordenador no ha expirado todavía. Al ingresar un nuevo código de licencia extenderá la suscripción.
+
+msg.licenseChangeConfirmationQuestion=¿Está seguro de querer utilizar esta licencia?
+
+msg.licenseChangeSuccess=Sus cambios han sido aceptados.
+
+msg.unlicenseConfirmationQuestion=¿Está seguro de querer desautorizar este ordenador?
+
+msg.daysToDesktopExpiryDate=[Expira en {0} días]
+
+msg.desktopHasExpired=[Expirado]
+
+msg.noDesktopsAvail=Ningún ordenador ha sido configurado
+
+msg.yes=Si
+msg.no=No
+msg.unsubscribed=Prueba
+msg.subscribed=Autorizado
+msg.settings=Parámetros
+msg.yourPCs=Sus Ordenadores
+msg.pcLicenses=N.º de serie de PC
+msg.notAvailableAbbreviation=N/A
+msg.removeDesktopConfirmationQuestion=¿Desea borrar este ordenador permanentemente?
+msg.phone.loggedOut=Esta es la página principal
+msg.phone.pageNotFound=La página no pudo ser hallada.
+msg.phone.generalError=General Error
+msg.marketing=<table cellpadding=3 cellspacing=0 border=0><tr><td>&nbsp;</td><td><font face=arial color=#29416E size=+1><b>Bienvenido a Laplink Internet</b></font><br><b style='font-family:Verdana; color: #29416e; font-size:11px;'>El servicio de Laplink Internet le permite conectar ordenadores corriendo Laplink Gold 12 sobre el Internet sin ninguna configuración especial.</td></tr><tr><td colspan="2" align="center"><font face="arial" size="-2"><a href='http://www.laplink.com/products/llgold/overview.asp'>Para saber más...</a></font></td></tr><tr><td height=8 colspan=2></td></tr></table>
+msg.secure=Protegido
+msg.standard=Estándar
+msg.note=Nota:
+msg.modifynote=Para habilitar, renombrar o remover uno de sus ordenadores seleccione el botón Modificar bajo la columna Parámetros. 
+
+# Message for html links
+
+msg.link.signupNewAccount=Inscríbase para una cuenta
+
+msg.link.clickHere=Pulse aquí
+
+msg.link.forgotYourPassword=¿ Ha olvidado su contraseña?
+
+msg.link.noHttpsSupport= ¿Ningún soporte HTTPS?
+
+msg.link.downloadSoftware=Download Laplink Internet software
+
+msg.link.createaccount=Pulse aquí para crear una nueva cuenta de Laplink Internet
+
+msg.link.assignaccount=Pulse aquí para asignar este ordenador a su Cuenta
+
+
+# Titles
+
+title.createAccount=Crear una nueva cuenta
+
+title.addDesktopToAccount=Asignar este ordenador a un usuario existente
+
+title.changeSecurityQuestion=Administración \\ Cambiar pregunta de Seguridad
+
+title.changePassword=Administración \\ Cambiar Contraseña
+
+title.changeAccountInfo=Administración \\ Cambiar Cuenta
+
+title.manageProfile=Administre su Perfil
+
+title.passwordRecovery.username=Ingrese su nombre de usuario abajo:
+
+title.passwordRecovery.securityQuestion=Por favor responda a la pregunta secreta abajo:
+
+title.passwordRecovery.enterPassword=Por favor proporcione una nueva contraseña para {0}:
+
+#
+
+#  Errors
+
+#  Important: the names of these properties must correspond to error codes as
+
+# devine in the util.ErrorCode class.
+
+error.DATA_ENTRY_LICENSE_CODE_FORMAT= Por favor ingrese un código de licencia válido
+
+error.USERNAME_ALREADY_EXISTS= El nombre de usuario ya está definido.
+
+error.PC_NAME_ALREADY_EXISTS_CODE= El nombre del ordenador ya está definido.
+
+error.DATA_ENTRY_USERNAME_MISSING= Debe ingresar un nombre de usuario 
+
+error.DATA_ENTRY_PASSWORD_MISSING= Debe ingresar una contraseña
+
+error.DATA_ENTRY_PASSWORD_CONF_MISSING= Debe ingresar una contraseña de confirmación
+
+error.DATA_ENTRY_EMAIL_MISSING= Debe ingresar una dirección de correo electronico 
+
+error.DATA_ENTRY_SEC_ANSWER_MISSING= Debe ingresar una respuesta de seguridad
+
+error.DATA_ENTRY_PC_NAME_MISSING= Debe ingresar un Nombre de Ordenador
+
+error.DATA_ENTRY_EMAIL_FORMAT= Dirección de Correo Electrónico no valida
+
+error.DATA_ENTRY_USERNAME_FORMAT= El nombre de usuario tiene que ser por lo menos de 4 caracteres de largo
+
+error.DATA_ENTRY_PASSWORD_FORMAT= La contraseña tiene que ser por lo menos de 4 caracteres de largo
+
+error.DATA_ENTRY_PASSWORDS_DONT_MATCH= La contraseña de confirmación no corresponde con la contraseña
+
+error.DID_ALREADY_DEFINED= DID ya está definido: {0}
+
+error.INVALID_PASSWORD= Contraseña no válida
+
+error.PC_NAME_ALREADY_EXISTS= Ya posee un ordenador con este nombre
+
+error.INVALID_USER_NAME= El nombre de usuario no existe
+
+error.SYSTEM_ERROR= La última operación no pudo ser completada
+
+error.INVALID_SECURITY_ANSWER= La respuesta a la pregunta de seguridad no corresponde con la respuesta en nuestra base de datos.
+
+error.INVALID_LICENSE_NUMBER= Código de Licencia no valido
+
+error.INVALID_LICENSE_NUMBER= Código de Licencia no valido
+
+error.INVALID_PARAMETERS= Su pedido no pudo ser completado
+
+error.TOO_MANY_LICENSES_CODE= Usted tiene demasiadas licencias para este ordenador.
+
+error.FORM_ALREADY_SUBMITTED= Esta página ya fue sometida

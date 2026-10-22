@@ -1,0 +1,493 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/27/2004 8:12:52 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   Desktop.java
+
+package com.infowave.c4p.model;
+
+import com.infowave.c4p.commons.DisplayMode;
+import java.io.*;
+import java.net.Socket;
+import java.util.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+// Referenced classes of package com.infowave.c4p.model:
+//            License, Account
+
+public class Desktop
+{
+
+    public Desktop()
+    {
+        host = "ll.ll2go.com";
+        checkedLLG = false;
+        isLLGAvailable = false;
+        id = null;
+        did = null;
+        name = null;
+        owner = null;
+        expiryDate = null;
+        visible = true;
+        account = null;
+        registrationCode = null;
+        license = null;
+        m_appListUrls = new HashMap();
+        icmURL = null;
+        appUrlRegexp = null;
+        m_pastLicenseCodes = null;
+    }
+
+    public Set getForeignAccounts()
+    {
+        return foreignAccounts;
+    }
+
+    public void setForeignAccounts(Set set)
+    {
+        foreignAccounts = set;
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String s)
+    {
+        id = s;
+    }
+
+    public String getDid()
+    {
+        return did;
+    }
+
+    public void setDid(String s)
+    {
+        did = s;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    public void setName(String s)
+    {
+        name = s;
+    }
+
+    public String getOwner()
+    {
+        return owner;
+    }
+
+    public void setOwner(String s)
+    {
+        owner = s;
+    }
+
+    public String getLicenseSerialNumber()
+    {
+        return licenseSerialNumber;
+    }
+
+    public void setLicenseSerialNumber(String s)
+    {
+        licenseSerialNumber = s;
+    }
+
+    public Date getExpiryDate()
+    {
+        return expiryDate;
+    }
+
+    public void setExpiryDate(Date date)
+    {
+        expiryDate = date;
+    }
+
+    public Date getCreationDate()
+    {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date date)
+    {
+        creationDate = date;
+    }
+
+    public Account getAccount()
+    {
+        return account;
+    }
+
+    public void setAccount(Account account1)
+    {
+        account = account1;
+    }
+
+    public String getRegistrationCode()
+    {
+        return registrationCode;
+    }
+
+    public void setRegistrationCode(String s)
+    {
+        registrationCode = s;
+    }
+
+    public License getLicense()
+    {
+        return license;
+    }
+
+    public void setLicense(License license1)
+    {
+        license = license1;
+    }
+
+    public String getStatusURL()
+    {
+        return statusURL;
+    }
+
+    public void setStatusURL(String s)
+    {
+        statusURL = s;
+    }
+
+    public Map getAppListUrls()
+    {
+        return m_appListUrls;
+    }
+
+    public String getAppUrlRegexp()
+    {
+        return appUrlRegexp;
+    }
+
+    public void setAppUrlRegexp(String s)
+    {
+        appUrlRegexp = s;
+    }
+
+    public boolean isVisible()
+    {
+        return visible;
+    }
+
+    public void setVisible(boolean flag)
+    {
+        visible = flag;
+    }
+
+    public String getLicenseHistory()
+    {
+        return licenseHistory;
+    }
+
+    public void setLicenseHistory(String s)
+    {
+        licenseHistory = s;
+        m_pastLicenseCodes = null;
+    }
+
+    public String getLogoutURL()
+    {
+        return logoutURL;
+    }
+
+    public void setLogoutURL(String s)
+    {
+        logoutURL = s;
+    }
+
+    public String getSoftwareVersion()
+    {
+        return softwareVersion;
+    }
+
+    public void setSoftwareVersion(String s)
+    {
+        softwareVersion = s;
+    }
+
+    public String[] getLicenseCodesInHistory()
+    {
+        if(m_pastLicenseCodes == null)
+            parseLicenseHistory();
+        String as[] = new String[m_pastLicenseCodes.size()];
+        for(int i = 0; i < m_pastLicenseCodes.size(); i++)
+            as[i] = (String)m_pastLicenseCodes.get(i);
+
+        return as;
+    }
+
+    public void removeAllForeignAccess()
+    {
+        if(foreignAccounts != null)
+            foreignAccounts.clear();
+    }
+
+    public void addForeignAccess(Account account1)
+    {
+        foreignAccounts.add(account1);
+    }
+
+    public void addAppListUrl(DisplayMode displaymode, String s)
+    {
+        m_appListUrls.put(displaymode, s);
+    }
+
+    public String getAppListUrl(DisplayMode displaymode)
+    {
+        return (String)m_appListUrls.get(displaymode);
+    }
+
+    public String getIcmURL()
+    {
+        return icmURL;
+    }
+
+    public void setIcmURL(String s)
+    {
+        icmURL = s;
+    }
+
+    public String toString()
+    {
+        StringBuffer stringbuffer = new StringBuffer();
+        stringbuffer.append("Desktop: ").append("did: ").append(did).append(" ");
+        stringbuffer.append("owner: ").append(owner);
+        stringbuffer.append(" name: ").append(name);
+        return stringbuffer.toString();
+    }
+
+    public boolean hasUsedLicenseCode(String s)
+    {
+        boolean flag = false;
+        if(m_pastLicenseCodes == null)
+            parseLicenseHistory();
+        for(int i = 0; i < m_pastLicenseCodes.size(); i++)
+        {
+            String s1 = (String)m_pastLicenseCodes.get(i);
+            if(!s1.equals(s))
+                continue;
+            flag = true;
+            break;
+        }
+
+        return flag;
+    }
+
+    /**
+     * @deprecated Method unlicense is deprecated
+     */
+
+    public void unlicense()
+    {
+        if(license != null)
+        {
+            removeLicenseFromHistory(license);
+            setLicense(null);
+            setLicenseSerialNumber(null);
+            setExpiryDate(null);
+        }
+    }
+
+    public boolean addLicenseToHistory(License license1)
+    {
+        if(m_pastLicenseCodes == null)
+            parseLicenseHistory();
+        if(licenseHistoryIsFull())
+            return false;
+        if(m_pastLicenseCodes.size() >= 10)
+            m_pastLicenseCodes.remove(0);
+        m_pastLicenseCodes.add(license1.getCode());
+        StringBuffer stringbuffer = new StringBuffer();
+        boolean flag = true;
+        for(int i = 0; i < m_pastLicenseCodes.size(); i++)
+        {
+            if(flag)
+                flag = false;
+            else
+                stringbuffer.append(",");
+            stringbuffer.append(m_pastLicenseCodes.get(i));
+        }
+
+        licenseHistory = stringbuffer.toString();
+        return true;
+    }
+
+    public boolean licenseHistoryIsFull()
+    {
+        if(m_pastLicenseCodes == null)
+            parseLicenseHistory();
+        return m_pastLicenseCodes.size() >= 10;
+    }
+
+    public void removeLicenseFromHistory(License license1)
+    {
+        if(m_pastLicenseCodes == null)
+            parseLicenseHistory();
+        for(Iterator iterator = m_pastLicenseCodes.iterator(); iterator.hasNext();)
+        {
+            String s = (String)iterator.next();
+            if(s.equals(license1.getCode()))
+                iterator.remove();
+        }
+
+        StringBuffer stringbuffer = new StringBuffer();
+        boolean flag = true;
+        for(int i = 0; i < m_pastLicenseCodes.size(); i++)
+        {
+            if(flag)
+                flag = false;
+            else
+                stringbuffer.append(",");
+            stringbuffer.append(m_pastLicenseCodes.get(i));
+        }
+
+        licenseHistory = stringbuffer.toString();
+    }
+
+    private void parseLicenseHistory()
+    {
+        m_pastLicenseCodes = new ArrayList(10);
+        if(licenseHistory != null)
+        {
+            for(StringTokenizer stringtokenizer = new StringTokenizer(licenseHistory, ","); stringtokenizer.hasMoreTokens(); m_pastLicenseCodes.add(stringtokenizer.nextElement()));
+        }
+    }
+
+    public boolean isDemo()
+    {
+        return getLicenseSerialNumber() == null && getExpiryDate() != null;
+    }
+
+    public boolean hasExpired()
+    {
+        return getDaysToExpiry() < 0;
+    }
+
+    public int getDaysToExpiry()
+    {
+        int i;
+        if(expiryDate == null)
+        {
+            if(getLicenseSerialNumber() == null)
+                i = -1;
+            else
+                i = 0;
+        } else
+        {
+            long l = (new Date()).getTime();
+            long l1 = expiryDate.getTime();
+            i = (int)((l1 - l) / 0x5265c00L);
+            if(i == 0)
+            {
+                if(l < l1)
+                    i = 1;
+                else
+                    i = -1;
+            } else
+            {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    public boolean isLLGEnabled(String s)
+    {
+        if(s != null && s != "")
+            host = s;
+        return isLLGEnabled();
+    }
+
+    public boolean isLLGEnabled()
+    {
+        boolean flag = false;
+        if(!checkedLLG)
+        {
+            int i = 404;
+            try
+            {
+                String s = "http://" + host + "/?LLListServers&did=" + did;
+                Socket socket = new Socket(host, 80);
+                BufferedOutputStream bufferedoutputstream = new BufferedOutputStream(socket.getOutputStream());
+                bufferedoutputstream.write("GET ".getBytes());
+                bufferedoutputstream.write(s.getBytes());
+                bufferedoutputstream.write(" HTTP/1.1\r\n".getBytes());
+                bufferedoutputstream.write("Authorization: Basic aWNaYlRlay4haa1scfllaeVaZss==\r\n".getBytes());
+                bufferedoutputstream.write("host: www.ll2go.com\r\n\r\n".getBytes());
+                bufferedoutputstream.flush();
+                BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String s1 = bufferedreader.readLine();
+                if(s1 != null)
+                {
+                    int j = s1.indexOf(' ', 9);
+                    if(j != -1)
+                        i = Integer.parseInt(s1.substring(9, j));
+                }
+                for(; s1 != null; s1 = bufferedreader.readLine());
+            }
+            catch(IOException ioexception) { }
+            if(i == 200)
+                flag = true;
+            isLLGAvailable = flag;
+        } else
+        {
+            flag = isLLGAvailable;
+        }
+        return flag;
+    }
+
+    static Class _mthclass$(String s)
+    {
+        try
+        {
+            return Class.forName(s);
+        }
+        catch(ClassNotFoundException classnotfoundexception)
+        {
+            throw new NoClassDefFoundError(classnotfoundexception.getMessage());
+        }
+    }
+
+    private static Log m_log;
+    private static final int MAX_NB_LICENSES_IN_HISTORY = 10;
+    private String id;
+    private String did;
+    private String name;
+    private String owner;
+    private String licenseSerialNumber;
+    private Date expiryDate;
+    private boolean visible;
+    private Date creationDate;
+    private Account account;
+    private String registrationCode;
+    private License license;
+    private String statusURL;
+    private Map m_appListUrls;
+    private String icmURL;
+    private String appUrlRegexp;
+    private String logoutURL;
+    private Set foreignAccounts;
+    private String licenseHistory;
+    private String softwareVersion;
+    private List m_pastLicenseCodes;
+    private static final String protocol = "http";
+    private static final int port = 80;
+    private static final String relUrl = "/?LLListServers&did=";
+    private String host;
+    private boolean checkedLLG;
+    private boolean isLLGAvailable;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.model.Desktop.class);
+    }
+}

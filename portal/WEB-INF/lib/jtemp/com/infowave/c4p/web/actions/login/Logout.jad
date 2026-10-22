@@ -1,0 +1,56 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/27/2004 5:19:33 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   Logout.java
+
+package com.infowave.c4p.web.actions.login;
+
+import com.infowave.c4p.web.util.*;
+import java.util.List;
+import javax.servlet.http.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.*;
+
+public class Logout extends BaseAction
+{
+
+    public Logout()
+    {
+    }
+
+    public ActionForward executeLogic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        ActionForward actionForward = null;
+        HttpSession session = request.getSession();
+        SessionState state = WebUtil.getSessionState(request);
+        java.util.Locale locale = state.getLocale();
+        actionForward = mapping.findForward("login");
+        session.invalidate();
+        WebUtil.setNoCacheHeaders(response);
+        response.sendRedirect(actionForward.getPath() + "?" + "action" + "=" + "logout" + "&" + "locale" + "=" + locale);
+        response.flushBuffer();
+        return mapping.findForward("dummy");
+    }
+
+    protected boolean isAuthorized(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse httpservletresponse, ActionErrors actionerrors)
+    {
+        return true;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.actions.login.Logout.class);
+    }
+}

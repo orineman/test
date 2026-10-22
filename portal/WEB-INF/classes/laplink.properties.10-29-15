@@ -1,0 +1,31 @@
+message.copyright= Copyright Laplink Software Inc.
+message.pda_copyright= Copyright Laplink Software Inc.
+message.pda_login=Laplink Login
+message.login=Laplink Internet Login
+
+title.subscripion=Laplink Subscription
+title.pcConfiguration=Laplink PC Configuration
+title.mainWindowTitle=Laplink Internet
+title.passwordRecovery=Laplink Password Recovery
+
+securityQuestion.1=What are the last 6 digits of your SSN (or other National ID)?
+securityQuestion.2=What are the last 6 digits of your credit card #?
+securityQuestion.3=What is your mother's maiden name?
+securityQuestion.4=What is your father's middle name?
+
+
+msg.helpForGettingAlicenseCode=For help finding and entering serial #'s click <a href="http://www.laplink.com/support/faq/faq.asp?pid=5&q1=serial&c1=%24contents" target="_blank">here</a>
+msg.toPurchaseALicenseCode=To purchase a serial number, click <a href={0} target="_blank">here</a>.
+msg.passwordRecoveryHint=Note: If you have forgotten your username, open the Laplink Internet console on your PC, select "Configure->Users and Sharing" and look at the "Me" entry.
+
+mail.newAccountSubject=[Laplink Internet] Thank you for signing up!
+mail.newAccountFrom=support@laplink.com
+mail.newAccountBody=Thank you again for signing up for Laplink Internet.\n\nFor your convenience, here are some tips on how to access\nyour PC's.\n\n-Install Laplink Gold on each PC you wish to access.\n\n-Run Laplink Gold on those PCs and when prompted to register\n   select Yes and perform the registration steps provided\n\n\nIf you require further assistance, please contact Laplink technical support at http://www.laplink.com/support/laplink.asp.\n\nRegards,\nLaplink Internet Support\nsupport@laplink.com\n
+
+mail.newLicensesSubject=Laplink Internet: new production licenses created
+mail.newLicensesFrom=support@laplink.com
+mail.newLicensesBody=Please see the attached file for the list of new lli production licenses.\n\n---------------------------------------------------\n\n
+mail.newLicensesCC=randy.clark@laplink.com
+mail.newLicensesTo=willie.bodger@laplink.com
+
+

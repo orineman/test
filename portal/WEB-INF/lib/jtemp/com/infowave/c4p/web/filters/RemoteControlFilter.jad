@@ -1,0 +1,212 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 3/21/2005 3:41:57 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   RemoteControlFilter.java
+
+package com.infowave.c4p.web.filters;
+
+import com.infowave.c4p.util.ApplicationParameters;
+import com.infowave.c4p.web.util.*;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.httpclient.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class RemoteControlFilter
+    implements Filter
+{
+
+    public RemoteControlFilter()
+    {
+        config = null;
+    }
+
+    public void init(FilterConfig filterConfig)
+        throws ServletException
+    {
+        config = filterConfig;
+    }
+
+    public void destroy()
+    {
+    }
+
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+        throws IOException, ServletException
+    {
+        boolean stopFilterChain;
+        HttpServletRequest request;
+        HttpServletResponse response;
+        HttpMethod method;
+        InputStream is;
+        OutputStream os;
+        stopFilterChain = false;
+        if(!(servletRequest instanceof HttpServletRequest))
+            break MISSING_BLOCK_LABEL_657;
+        request = (HttpServletRequest)servletRequest;
+        response = (HttpServletResponse)servletResponse;
+        if(!isRemoteControlRequest(request))
+            break MISSING_BLOCK_LABEL_657;
+        stopFilterChain = true;
+        method = null;
+        is = null;
+        os = null;
+        StringBuffer downloadUrl = new StringBuffer();
+        downloadUrl.append(ApplicationParameters.instance().getRemoteControlUrl());
+        downloadUrl.append(getRemoteControlUri(request));
+        java.util.Map headers = null;
+        SessionState state = WebUtil.getSessionState(request);
+        if(state.getUserDTO() != null)
+            headers = DesktopUtils.getApplicationRequestHeader(request, null);
+        RequestRedirector redirector = new RequestRedirector(request, downloadUrl.toString(), headers);
+        method = redirector.getMethod();
+        m_log.debug("method: " + method.getClass() + " - " + method.getURI() + " - prefix: " + getPrefix());
+        HttpClient client = new HttpClient();
+        int statusCode = client.executeMethod(method);
+        m_log.debug("status code: " + statusCode + " - prefix: " + getPrefix());
+        Header responseHeaders[] = method.getResponseHeaders();
+        if(responseHeaders != null)
+        {
+            for(int i = 0; i < responseHeaders.length; i++)
+                response.setHeader(responseHeaders[i].getName(), responseHeaders[i].getValue());
+
+        }
+        is = method.getResponseBodyAsStream();
+        byte buff[] = new byte[1024];
+        os = response.getOutputStream();
+        int j;
+        while((j = is.read(buff)) != -1) 
+            os.write(buff, 0, j);
+        os.close();
+        os = null;
+        is.close();
+        is = null;
+        response.flushBuffer();
+        Exception e;
+        if(method != null)
+            method.releaseConnection();
+        if(os != null)
+            try
+            {
+                os.close();
+            }
+            // Misplaced declaration of an exception variable
+            catch(Exception e) { }
+        if(is != null)
+            try
+            {
+                is.close();
+            }
+            // Misplaced declaration of an exception variable
+            catch(Exception e) { }
+        break MISSING_BLOCK_LABEL_657;
+        e;
+        m_log.debug("A recoverable exception occurred. " + e.getMessage() + " - prefix: " + getPrefix());
+        Exception e;
+        if(method != null)
+            method.releaseConnection();
+        if(os != null)
+            try
+            {
+                os.close();
+            }
+            // Misplaced declaration of an exception variable
+            catch(Exception e) { }
+        if(is != null)
+            try
+            {
+                is.close();
+            }
+            // Misplaced declaration of an exception variable
+            catch(Exception e) { }
+        break MISSING_BLOCK_LABEL_657;
+        e;
+        m_log.debug("Failed to fetch url. - prefix: " + getPrefix(), e);
+        if(method != null)
+            method.releaseConnection();
+        if(os != null)
+            try
+            {
+                os.close();
+            }
+            catch(Exception e) { }
+        if(is != null)
+            try
+            {
+                is.close();
+            }
+            catch(Exception e) { }
+        break MISSING_BLOCK_LABEL_657;
+        Exception exception;
+        exception;
+        if(method != null)
+            method.releaseConnection();
+        if(os != null)
+            try
+            {
+                os.close();
+            }
+            catch(Exception e) { }
+        if(is != null)
+            try
+            {
+                is.close();
+            }
+            catch(Exception e) { }
+        throw exception;
+        if(!stopFilterChain)
+            filterChain.doFilter(servletRequest, servletResponse);
+        return;
+    }
+
+    protected String getPrefix()
+    {
+        return "x-rcicm";
+    }
+
+    public boolean isRemoteControlRequest(HttpServletRequest request)
+    {
+        boolean isRemoteControlRequest = false;
+        String uri = request.getRequestURI();
+        if(uri.indexOf(getPrefix()) != -1)
+            isRemoteControlRequest = true;
+        return isRemoteControlRequest;
+    }
+
+    private String getRemoteControlUri(HttpServletRequest request)
+        throws Exception
+    {
+        URI uri = new URI(request.getRequestURI());
+        String escapedURI = uri.getEscapedURI();
+        try
+        {
+            escapedURI = escapedURI.substring(escapedURI.indexOf(getPrefix()) + getPrefix().length());
+        }
+        catch(Exception e)
+        {
+            throw new IllegalArgumentException("Not a rc  request uri: " + uri);
+        }
+        return escapedURI;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+    private ServletContext ctx;
+    private FilterConfig config;
+    private static final String RC_PREFIX = "x-rcicm";
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.filters.RemoteControlFilter.class);
+    }
+}

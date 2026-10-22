@@ -1,0 +1,331 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/28/2004 9:03:26 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   LicenseTerminator.java
+
+package com.infowave.c4p.admin;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.datasource.dao.*;
+import com.infowave.c4p.model.*;
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.delegate.DelegateFactory;
+import com.infowave.c4p.service.delegate.LicenseManager;
+import com.infowave.c4p.service.dto.LicenseDTO;
+import java.io.PrintStream;
+import java.util.*;
+import org.apache.commons.cli.*;
+
+public class LicenseTerminator
+{
+
+    public LicenseTerminator()
+    {
+    }
+
+    private boolean revokeLicense()
+        throws DataException, ServiceException
+    {
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        List licenses = licenseDAO.getByCode(m_code, m_reseller.getId());
+        if(licenses == null || licenses.size() == 0)
+        {
+            System.out.println("Unknown license (or already revoked) code: " + m_code);
+            return false;
+        }
+        if(licenses.size() > 1)
+        {
+            System.out.println("Error: more than one license with code: " + m_code);
+            return false;
+        }
+        License license = (License)licenses.get(0);
+        if(license.isRegCode())
+        {
+            System.out.println("License: " + m_code + " is a registration code");
+            return false;
+        }
+        if(license.isRevoked())
+        {
+            System.out.println("License: " + m_code + " is already revoked");
+            return true;
+        }
+        if(license.hasExpired())
+        {
+            license.setRevoked(true);
+            licenseDAO.update(license);
+            System.out.println("Revoked the expired license: " + m_code);
+            return true;
+        }
+        if(license.getAccount() == null)
+        {
+            license.setRevoked(true);
+            licenseDAO.update(license);
+            System.out.println("Revoked the unused license: " + m_code);
+            return true;
+        }
+        if(license.getAccount().getDesktops() == null)
+        {
+            license.setRevoked(true);
+            licenseDAO.update(license);
+            System.out.println("Revoked the unused license: " + m_code);
+            return true;
+        } else
+        {
+            removeLicenseFromDesktops(license.getAccount());
+            license.setRevoked(true);
+            licenseDAO.update(license);
+            System.out.println("Revoked the license: " + m_code);
+            return true;
+        }
+    }
+
+    private boolean removeLicenseFromDesktops(Account account)
+        throws DataException, ServiceException
+    {
+        LicenseManager licenseMgr = DelegateFactory.getLicenseManager();
+        for(Iterator it = account.getDesktops().iterator(); it.hasNext();)
+        {
+            Desktop desktop = (Desktop)it.next();
+            if(desktop.hasUsedLicenseCode(m_code))
+            {
+                List removedLicenses = licenseMgr.unlicense(desktop.getId());
+                System.out.println("unlicensed desktop: " + desktop.getDid() + " user: " + account.getUsername());
+                if(removedLicenses != null && removedLicenses.size() > 1)
+                {
+                    boolean first = true;
+                    for(Iterator jt = removedLicenses.iterator(); jt.hasNext();)
+                    {
+                        LicenseDTO removed = (LicenseDTO)jt.next();
+                        if(!removed.getCode().equals(m_code))
+                        {
+                            licenseMgr.setLicenseCode(account.getId(), desktop.getId(), removed.getCode(), !first);
+                            first = false;
+                            System.out.println("Added back license: " + removed.getCode() + " to desktop: " + desktop.getDid() + " user: " + account.getUsername());
+                        }
+                    }
+
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private boolean revokeRegCode()
+        throws DataException, ServiceException
+    {
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        List regCodes;
+        if(m_revokeAllRegCodes)
+            regCodes = licenseDAO.getByCode(m_code, m_reseller.getId());
+        else
+            regCodes = licenseDAO.getByCodeAndUserId(m_code, m_reseller.getId(), m_account.getId());
+        if(regCodes == null || regCodes.size() == 0)
+        {
+            System.out.println("Unknown (or already revoked) reg code: " + m_code);
+            return false;
+        }
+        for(Iterator it = regCodes.iterator(); it.hasNext(); System.out.println("revoked registration code: " + m_code))
+        {
+            License regCode = (License)it.next();
+            if(!regCode.isRegCode())
+            {
+                System.out.println("License: " + m_code + " is not a registration code");
+                return false;
+            }
+            if(!regCode.hasExpired() && regCode.getAccount() != null && regCode.getAccount().getDesktops() != null)
+                removeLicenseFromDesktops(regCode.getAccount());
+            regCode.setRevoked(true);
+            licenseDAO.update(regCode);
+        }
+
+        return true;
+    }
+
+    private int getLicenseCodeSize()
+    {
+        if(m_licenseCodeSize == 0)
+        {
+            for(StringTokenizer tokenizer = new StringTokenizer(m_reseller.getLicenseCodeFormat(), ","); tokenizer.hasMoreTokens();)
+            {
+                String val = tokenizer.nextToken();
+                int intVal = Integer.parseInt(val);
+                m_licenseCodeSize += intVal;
+            }
+
+        }
+        return m_licenseCodeSize;
+    }
+
+    private static Options createOptions()
+    {
+        Options options = new Options();
+        options.addOption(new Option("license", false, "license"));
+        options.addOption(new Option("regcode", false, "registration code"));
+        options.addOption("reseller", true, "reseller's name");
+        options.addOption("code", true, "registration code");
+        options.addOption("all", false, "remove all regcodes");
+        options.addOption("username", true, "remove teh regcodes for this user only");
+        options.addOption("help", false, "display a help message");
+        return options;
+    }
+
+    private static void printUsage(String msg)
+    {
+        if(msg != null)
+            System.out.println(msg);
+        System.out.println("Usage:");
+        System.out.println("To display this message:");
+        System.out.println((com.infowave.c4p.admin.LicenseGenerator.class).getName() + " -" + "help");
+        System.out.println("To revoke a license:");
+        System.out.println((com.infowave.c4p.admin.LicenseGenerator.class).getName() + " -" + "license" + " -" + "reseller" + " <reseller's name>" + " -" + "code" + " <license code>");
+        System.out.println("To revoke a registration code:");
+        System.out.println((com.infowave.c4p.admin.LicenseGenerator.class).getName() + " -" + "regcode" + " -" + "reseller" + " <reseller's name>" + " -" + "code" + " <license code>" + " [ -" + "username" + " <username>" + " | -" + "all" + "]");
+    }
+
+    private boolean parseCommandLineParameters(String args[])
+        throws NumberFormatException
+    {
+        CommandLine line;
+        ResellerDAO resellerDAO;
+        CommandLineParser parser = new BasicParser();
+        line = null;
+        try
+        {
+            line = parser.parse(createOptions(), args);
+        }
+        catch(ParseException e)
+        {
+            printUsage(e.getMessage());
+            return false;
+        }
+        if(line.hasOption("help"))
+        {
+            printUsage(null);
+            return false;
+        }
+        resellerDAO = DAOFactory.getResellerDAO();
+        if(!line.hasOption("reseller"))
+        {
+            printUsage("The reseller parameter is required");
+            return false;
+        }
+        m_reseller = resellerDAO.getByCode(line.getOptionValue("reseller"));
+        if(m_reseller != null)
+            break MISSING_BLOCK_LABEL_140;
+        printUsage("Invalid reseller: " + line.getOptionValue("reseller"));
+        return false;
+        DataException e;
+        e;
+        printUsage(e.getMessage());
+        return false;
+        AccountDAO accountDAO;
+        if(!line.hasOption("code"))
+        {
+            printUsage("code parameter required to revoke a license");
+            return false;
+        }
+        m_code = line.getOptionValue("code");
+        if(m_code.length() != getLicenseCodeSize())
+        {
+            printUsage("The license code must have " + getLicenseCodeSize() + " characters");
+            return false;
+        }
+        if(line.hasOption("license"))
+        {
+            m_licenseType = 1;
+            if(line.hasOption("username") || line.hasOption("all"))
+            {
+                printUsage(null);
+                return false;
+            }
+            break MISSING_BLOCK_LABEL_446;
+        }
+        if(!line.hasOption("regcode"))
+            break MISSING_BLOCK_LABEL_440;
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        m_licenseType = 0;
+        if(!line.hasOption("username") && !line.hasOption("all"))
+        {
+            printUsage(null);
+            return false;
+        }
+        if(!line.hasOption("username"))
+            break MISSING_BLOCK_LABEL_399;
+        if(line.hasOption("all"))
+        {
+            printUsage(null);
+            return false;
+        }
+        m_username = line.getOptionValue("username");
+        accountDAO = DAOFactory.getAccountDAO();
+        m_account = accountDAO.getByUsername(m_username);
+        if(m_account != null)
+            break MISSING_BLOCK_LABEL_446;
+        printUsage("Invalid username: " + m_username);
+        return false;
+        Exception e;
+        e;
+        printUsage(e.getMessage());
+        return false;
+        if(line.hasOption("all"))
+        {
+            if(line.hasOption("username"))
+            {
+                printUsage(null);
+                return false;
+            }
+            m_revokeAllRegCodes = true;
+        } else
+        {
+            printUsage(null);
+            return false;
+        }
+        break MISSING_BLOCK_LABEL_446;
+        printUsage(null);
+        return false;
+        return true;
+    }
+
+    private static void doit(String args[])
+    {
+        LicenseTerminator lt;
+        lt = new LicenseTerminator();
+        if(!lt.parseCommandLineParameters(args))
+            return;
+        try
+        {
+            if(lt.m_licenseType == 0)
+                lt.revokeRegCode();
+            else
+                lt.revokeLicense();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        return;
+    }
+
+    public static void main(String args[])
+    {
+        doit(args);
+    }
+
+    private static final String RESELLER_OPT = "reseller";
+    private static final String REG_CODE_OPT = "regcode";
+    private static final String LICENSE_OPT = "license";
+    private static final String HELP_OPT = "help";
+    private static final String CODE_OPT = "code";
+    private static final String USERNAME_OPT = "username";
+    private static final String ALL_OPT = "all";
+    private static final int REGCODE = 0;
+    private static final int LICENSE = 1;
+    private String m_code;
+    private int m_licenseType;
+    private Reseller m_reseller;
+    private int m_licenseCodeSize;
+    private String m_username;
+    private boolean m_revokeAllRegCodes;
+    private Account m_account;
+}

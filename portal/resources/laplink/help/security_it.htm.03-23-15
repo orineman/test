@@ -1,0 +1,134 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="body_bar" valign="top">
+			<!-- this table	defines the toolbar -->
+			<table class="body_bar" cellspacing="0" cellpadding="2" width="100%" border="0">
+				<tr>
+					<td colspan="2" class="toolbar_heading">Assistenza</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=main.htm">FAQ 
+							generali</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%">FAQ Sicurezza</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" target="_blank" href="http://www.laplink.com/support/laplink.asp">Assistenza 
+							Tecnica</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Generali</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="showPasswordRecoverypage.do">Recupero 
+							Password</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Guide</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Info</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=privacy.htm">Politica della
+							privacy</a></td>
+				</tr>
+			</table>
+		</td>
+		<TD align="center" valign="top" width="100%">
+			<!-- end left tool strip -->
+			<!-- content area -->
+			<TABLE class="content_text" WIDTH="95%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+				<TR>
+					<TD>
+						<P CLASS="content_heading1">
+							Assistenza Sicurezza Laplink Internet
+							<hr noshade size="1">
+						<p class="content_heading2">Domande frequenti</p>
+						<UL>
+							<LI>
+								<A HREF="#a">Quando accedo al mio PC utilizzando Laplink Internet, che cosa impedisce a terzi 
+									di vedere i miei dati mentre viaggiano nell'Internet?</A>
+							<LI>
+								<A HREF="#b">Che cosa impedisce l'hacking di terzi sui vostri server per accedere alle mie
+									informazioni?</A>
+							<LI>
+								<A HREF="#c">Che cosa impedisca a terzi di bipassare i vostri server sicuri e 
+									accedere direttamente al mio PC?</A>
+						</UL>
+						<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="a"></a><B>Quando accedo al mio PC utilizzando Laplink Internet, che cosa impedisce a
+							terzi di vedere i miei dati mentre viaggiano nell'Internet?</B>
+						<BR>
+						Il servizio Laplink Internet supporta la codifica end-to-end a 128 bit.
+						Sfruttiamo la connessione HTTPS per trasmettere i vostri dati in modo sicuro nell'Internet, utilizzando la codifica
+						Secure Socket Layer (SSL).<br>
+						<br>
+						Questa è la stessa tecnologia utilizzata dai principali siti di e-commerce per trasmettere in modo sicuro i
+						dati delle carte di credito nell'Internet. Potete verificare se avete la codifica
+						end-to-end, verificando la presenza nel vostro browser di un piccolo lucchetto 
+						giallo nell'area destra inferiore.
+						<P></P>
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="b"></a><B>Che cosa impedisce l'hacking di terzi sui vostri server per accedere ai miei
+							dati?</B>
+						<BR>
+						Non archiviamo MAI i vostri dati sui nostri
+						server; invece, i nostri server richiedono semplicemente e formattano i dati
+						direttamente dal vostro PC ogni volta che lo
+						richiedete.
+						<P></P>
+						<p>Archiviamo la vostra password Laplink Internet sui nostri server e abbiamo messo in atto
+							livelli multipli di sicurezza per proteggere la vostra password...</p>
+						<p>
+							1) Le password sono archiviate utilizzando la codifica MD5 non reversibile (persino il nostro
+							personale interno non può accedere alle password)<br>
+							<br>
+							2) I nostri server sono ubicati in un centro dati ad alta sicurezza con accesso
+							fisico limitato basato sugli scanner manuali biometrici<br>
+							<br>
+							3) Server ad alta sicurezza con accesso interno limitato basato sulla politica di
+							sicurezza
+							<br>
+							<br>
+							4) I collegamenti non riusciti hanno un lungo ritardo che rende difficile per chiunque provare molte
+							password rapidamente</p>
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="c"></a><B>Che cosa impedisce a terzi di bipassare i vostri server sicuri e di
+							accedere direttamente al mio PC?</B>
+						<BR>
+						Laplink Internet non accetta mai richieste di socket; invece Laplink Internet 
+						crea una connessione con i nostri server e riceve soltanto le richieste di informazione
+						dai nostri server mediante questa connessione.
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+			</TABLE>
+			<!-- End Content Area -->
+		</TD>
+	</tr>
+</table>

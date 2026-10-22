@@ -1,0 +1,138 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="body_bar" valign="top">
+			<!-- this table	defines the toolbar -->
+			<table class="body_bar" cellspacing="0" cellpadding="2" width="100%" border="0">
+				<tr>
+					<td colspan="2" class="toolbar_heading">Support</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=main.htm">Allgemeine 
+							FAQ</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%">Sicherheits FAQ</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" target="_blank" href="http://www.laplink.com/support/laplink.asp">Technische 
+							Unterst&uuml;tzung</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Allgemein</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="showPasswordRecoverypage.do">Kennwort  
+							vergessen?</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Anleitungen</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Info</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=privacy.htm">Datenschutzrichtlinie</a></td>
+				</tr>
+			</table>
+		</td>
+		<TD align="center" valign="top" width="100%">
+			<!-- end left tool strip -->
+			<!-- content area -->
+			<TABLE class="content_text" WIDTH="95%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+				<TR>
+					<TD>
+						<P CLASS="content_heading1">
+							Hilfestellung zur Sicherheit von&nbsp;Laplink Internet
+							<hr noshade size="1">
+						<p class="content_heading2">H&auml;ufig gestellte Fragen</p>
+						<UL>
+							<LI>
+								<A HREF="#a">Wenn ich &uuml;ber Laplink 
+								 Internet auf meinem PC zugreife, was hindert einen Dritten daran, dass er meine 
+								 Informationen sehen kann, da sie &uuml;ber das Internet gehen?</A>
+							<LI>
+								<A HREF="#b">Was h&auml;lt einen Dritten 
+ 								davon ab, unsere Server anzugreifen, um an meine Informationen zu kommen?</A>
+							<LI>
+								<A HREF="#c">Was h&auml;lt einen Dritten 
+								davon ab, unsere sicheren Server zu umgehen und direkt auf meinen PC 
+								zuzugreifen?</A>
+						</UL>
+						<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="a"></a><B>Wenn ich &uuml;ber Laplink Internet auf meinem PC zugreife, was 
+							   hindert einen Dritten daran, dass er meine Informationen sehen kann, da sie 
+							   &uuml;ber das Internet gehen?&nbsp;</B>
+						<BR>
+						Der Laplink Internet Dienst unterst&uuml;tzt&nbsp;128 bit&nbsp;Verschl&uuml;sselung 
+						beider Enden. Wir setzen HTTPS wirksam ein, um Ihre Informationen sicher, durch 
+						den Einsatz&nbsp;von Secure Socket Layer (SSL)&nbsp;Verschl&uuml;sselung, &uuml;ber das 
+						Internet zu &uuml;bertragen.<br>
+						<br>
+						Dies ist die gleiche Technologie, die von den gro&szlig;en E-Commerce Webseiten 
+						benutzt wird, um Kreditkarteninformationen sicher &uuml;ber das Internet zu 
+						&uuml;bertragen.&nbsp;Sie können &uuml;berpr&uuml;fen, ob beide Enden verschl&uuml;sselt arbeiten, 
+						indem Sie best&auml;tigen, dass Ihre Web-Browser ein kleines gelbes 
+						Sicherheitsschlo&szlig; im unteren rechten Bereich anzeigt.
+						<P></P>
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="b"></a><B>Was h&auml;lt einen Dritten davon ab, unsere Server anzugreifen, um an meine 
+																			Informationen zu kommen?</B>
+						<BR>
+						Wir speichern alle Ihre Daten NIE auf unseren Servern; anstelle dessen werden 
+						die Information direkt von Ihrem PC von unseren Servern jedes Mal angefordert 
+						und formatiert, wenn Sie etwas abrufen.
+						<P></P>
+						<p>Wir speichern&nbsp;Ihr Laplink Internet Kennwort auf unserem Server und haben 
+							mehrfache Sicherheitsstufen implementiert, die Ihr Kennwort sch&uuml;tzen...</p>
+						<p>
+							1) Kennw&ouml;rter werden durch nichtumkehrbare MD5 Verschl&uuml;sselung abgespeichert 
+								(selbst unsere internen Mitarbeiter k&ouml;nnen nicht auf die Kennw&ouml;rter zugreifen)<br>
+							<br>
+							2) Unsere Server befinden sich in einem Hochsicherheits-Datenzentrum mit 
+								eingeschr&auml;nktem physischen Zugang, der auf&nbsp;biometrischen Handscannern 
+								basiert.<br>
+							<br>
+							3) Hochsicherheits-Server mit eingeschr&auml;nktem internen Zugang, der auf 
+							   	Sicherheitsrichtlinien basiert
+							<br>
+							<br>
+							4) Fehlgeschlagene Anmeldungen haben eine lange Verz&ouml;gerung, was es f&uuml;r 
+								jemanden schwer macht eine Menge Kennw&ouml;rter schnell auszuprobieren.</p>
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="c"></a><B>Was h&auml;lt einen Dritten davon ab, unsere sicheren Server zu umgehen und direkt 
+							 auf meinen PC zuzugreifen?</B>
+						<BR>
+						Laplink Internet nimmt niemals Socketanfragen an; anstelle dessen, erzeugt 
+						Laplink Internet eine Verbindung mit unseren Servern und erh&auml;lt, &uuml;ber diese 
+						Verbindung, nur Informationsanfragen von unseren Servern.
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+			</TABLE>
+			<!-- End Content Area -->
+		</TD>
+	</tr>
+</table>

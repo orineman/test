@@ -1,0 +1,255 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 2/15/2005 4:59:44 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   ResourceManager.java
+
+package com.infowave.c4p.web.util;
+
+import com.infowave.c4p.service.dto.ResellerDTO;
+import java.io.*;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+// Referenced classes of package com.infowave.c4p.web.util:
+//            WebUtil, SessionState, ReqUtils
+
+public class ResourceManager
+{
+
+    public ResourceManager()
+    {
+    }
+
+    private static String getResourceUri(HttpServletRequest httpservletrequest, String s, boolean flag, boolean flag1)
+    {
+        StringBuffer stringbuffer = new StringBuffer();
+        SessionState sessionstate = WebUtil.getSessionState(httpservletrequest);
+        stringbuffer.append("/resources/");
+        if(flag && sessionstate != null)
+            stringbuffer.append(sessionstate.getReseller().getName()).append("/");
+        if(flag1 && sessionstate != null)
+        {
+            int i = s.lastIndexOf(".");
+            if(i != -1)
+            {
+                String s1 = s.substring(0, i);
+                String s2 = s.substring(i, s.length());
+                stringbuffer.append(s1).append("_").append(sessionstate.getLocale()).append(s2);
+            } else
+            {
+                stringbuffer.append(s).append("_").append(sessionstate.getLocale());
+            }
+        } else
+        {
+            stringbuffer.append(s);
+        }
+        return stringbuffer.toString();
+    }
+
+    private static String getRequestedStaticResourceUri(HttpServletRequest httpservletrequest)
+    {
+        String s = httpservletrequest.getRequestURI();
+        try
+        {
+            s = s.substring(s.indexOf("x-res/") + "x-res/".length());
+        }
+        catch(Exception exception)
+        {
+            throw new IllegalArgumentException("Not a static resource uri: " + s);
+        }
+        return s;
+    }
+
+    public static InputStream getStaticResourceAsStream(HttpServletRequest httpservletrequest, boolean flag)
+    {
+        Object obj = null;
+        String s = getRequestedStaticResourceUri(httpservletrequest);
+        return getResourceAsStream(httpservletrequest, s, flag);
+    }
+
+    public static InputStream getResourceAsStream(HttpServletRequest httpservletrequest, String s, boolean flag)
+    {
+        FileInputStream fileinputstream = null;
+        ServletContext servletcontext = httpservletrequest.getSession().getServletContext();
+        String s1 = getResourceUri(httpservletrequest, s, true, flag);
+        s1 = servletcontext.getRealPath(s1);
+        try
+        {
+            fileinputstream = new FileInputStream(s1);
+        }
+        catch(FileNotFoundException filenotfoundexception) { }
+        if(fileinputstream == null)
+        {
+            String s2 = getResourceUri(httpservletrequest, s, true, false);
+            s2 = servletcontext.getRealPath(s2);
+            try
+            {
+                fileinputstream = new FileInputStream(s2);
+            }
+            catch(FileNotFoundException filenotfoundexception1) { }
+        }
+        if(fileinputstream == null)
+        {
+            String s3 = getResourceUri(httpservletrequest, s, false, flag);
+            s3 = servletcontext.getRealPath(s3);
+            try
+            {
+                fileinputstream = new FileInputStream(s3);
+            }
+            catch(FileNotFoundException filenotfoundexception2) { }
+            s3 = getResourceUri(httpservletrequest, s, false, false);
+            s3 = servletcontext.getRealPath(s3);
+            try
+            {
+                fileinputstream = new FileInputStream(s3);
+            }
+            catch(FileNotFoundException filenotfoundexception3) { }
+        }
+        return fileinputstream;
+    }
+
+    public static byte[] getResourceAsByteArray(HttpServletRequest httpservletrequest, String s, boolean flag)
+    {
+        byte abyte0[] = null;
+        InputStream inputstream = null;
+        try
+        {
+            inputstream = getResourceAsStream(httpservletrequest, s, flag);
+            abyte0 = getStreamAsByteArray(inputstream);
+        }
+        catch(IOException ioexception)
+        {
+            m_log.warn("Cannot retrieve resource: " + s, ioexception);
+        }
+        finally
+        {
+            if(inputstream != null)
+                try
+                {
+                    inputstream.close();
+                }
+                catch(Exception exception1) { }
+        }
+        return abyte0;
+    }
+
+    public static boolean isResourceRequest(HttpServletRequest httpservletrequest)
+    {
+        boolean flag = false;
+        String s = httpservletrequest.getRequestURI();
+        if(s.indexOf("x-res/") != -1)
+            flag = true;
+        return flag;
+    }
+
+    public static boolean isDeviceIconRequest(HttpServletRequest httpservletrequest)
+    {
+        boolean flag = false;
+        String s = httpservletrequest.getRequestURI();
+        if(s.indexOf("x-devicon") != -1)
+            flag = true;
+        return flag;
+    }
+
+    public static InputStream getDesktopIconAsStream(HttpServletRequest httpservletrequest, boolean flag, boolean flag1)
+    {
+        String s;
+        if(flag)
+            s = "CONNECTED.GIF";
+        else
+        if(flag1)
+            s = "RDPONLY.GIF";
+        else
+            s = "DISCONNECTED.GIF";
+        boolean flag2 = false;
+        return getResourceAsStream(httpservletrequest, s, flag2);
+    }
+
+    public static byte[] getDesktopIconAsByteArray(HttpServletRequest httpservletrequest, boolean flag, boolean flag1)
+    {
+        byte abyte0[] = null;
+        InputStream inputstream = null;
+        inputstream = getDesktopIconAsStream(httpservletrequest, flag, flag1);
+        try
+        {
+            abyte0 = getStreamAsByteArray(inputstream);
+        }
+        catch(IOException ioexception)
+        {
+            m_log.warn("cannot get icon for desktop - connected == " + flag);
+        }
+        return abyte0;
+    }
+
+    public static byte[] getStreamAsByteArray(InputStream inputstream)
+        throws IOException
+    {
+        byte abyte0[] = null;
+        ByteArrayOutputStream bytearrayoutputstream = null;
+        try
+        {
+            if(inputstream != null)
+            {
+                bytearrayoutputstream = new ByteArrayOutputStream();
+                byte abyte1[] = new byte[256];
+                int i;
+                while((i = inputstream.read(abyte1)) != -1) 
+                    bytearrayoutputstream.write(abyte1, 0, i);
+                abyte0 = bytearrayoutputstream.toByteArray();
+            }
+        }
+        catch(IOException ioexception)
+        {
+            abyte0 = null;
+            throw ioexception;
+        }
+        finally
+        {
+            if(inputstream != null)
+                try
+                {
+                    inputstream.close();
+                }
+                catch(Exception exception1) { }
+            if(bytearrayoutputstream != null)
+                try
+                {
+                    bytearrayoutputstream.close();
+                }
+                catch(Exception exception2) { }
+        }
+        return abyte0;
+    }
+
+    public static String getDeviceIconURI(HttpServletRequest httpservletrequest)
+    {
+        String s = "/protected/getDesktopIcon.do";
+        String s1 = ReqUtils.getURIWithParameters(httpservletrequest);
+        s = s + s1.substring(s1.indexOf("x-devicon") + "x-devicon".length());
+        return s;
+    }
+
+    static Class _mthclass$(String s)
+    {
+        return Class.forName(s);
+        ClassNotFoundException classnotfoundexception;
+        classnotfoundexception;
+        throw new NoClassDefFoundError(classnotfoundexception.getMessage());
+    }
+
+    private static Log m_log;
+    public static final String RESOURCES_PREFIX = "x-res/";
+    public static final String DEVICON_PREFIX = "x-devicon";
+    public static final String RESOURCES_ROOT = "/resources/";
+    public static final String DESKTOP_ICON_CONNECTED = "CONNECTED.GIF";
+    public static final String DESKTOP_ICON_DISCONNECTED = "DISCONNECTED.GIF";
+    public static final String DESKTOP_ICON_RDP_ONLY = "RDPONLY.GIF";
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.util.ResourceManager.class);
+    }
+}

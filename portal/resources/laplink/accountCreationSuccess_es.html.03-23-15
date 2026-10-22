@@ -1,0 +1,43 @@
+<br>
+<table cellpadding="5" width="100%">
+	<tr>
+		<td class="content_heading1">
+			<B>¡¡FELICITACIONES!!</B><br>
+			Su cuenta de Laplink Internet ha sido creada. Tome nota de su Nombre de Usuario 
+			y contrase&ntilde;a. Guarde esta informaci&oacute;n en un lugar seguro y 
+			protegido.
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="content_text">
+			<B>Finalizar la instalaci&oacute;n de Laplink Internet: </B>
+			<OL>
+				<LI>
+					Tiene que registrar cada ordenador con su cuenta de Laplink Internet, par que 
+					estos puedan ser accedidos por medio del servicio.
+					<BR>
+					Si su ordenador no esta aún configurado para utilizar el servicio de Laplink 
+					Internet, tendr&aacute; la opci&oacute;n de registrar el ordenador en la 
+					siguiente pantalla:<br>
+					<br>
+					<img src="x-res/REGSCREEN.JPG"><br>
+					<br>
+				<LI>
+					Haga un clic sobre el bot&oacute;n de Aceptar y ser&aacute; dirigido al sitio 
+					de Laplink Internet.<br>
+				<LI>
+					Haga un clic en el lazo “Pulse aqu&iacute; para asignar este ordenador a su 
+					cuenta”
+					<br>
+				<LI>
+					Ingrese el nombre de usuario y contrase&ntilde;a para su cuenta de Laplink 
+					Internet, y un nombre descriptivo para su ordenador.<br>
+			</OL>
+		</td>
+	</tr>
+</table>
+<br>

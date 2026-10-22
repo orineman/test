@@ -1,0 +1,146 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/27/2004 5:14:18 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   TestAction.java
+
+package com.infowave.c4p.web.actions.test;
+
+import com.infowave.c4p.web.util.BaseAction;
+import com.infowave.c4p.web.util.RequestRedirector;
+import java.io.*;
+import java.util.*;
+import javax.servlet.http.*;
+import org.apache.commons.fileupload.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.*;
+
+public class TestAction extends BaseAction
+{
+
+    public TestAction()
+    {
+    }
+
+    public ActionForward executeLogic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        RequestRedirector redirector = new RequestRedirector(request, "fff", null);
+        redirector.getMethod();
+        out.println("here: " + request.getHeader("Content-type"));
+        out.println("</body></html>");
+        response.flushBuffer();
+        return null;
+    }
+
+    protected boolean isAuthorized(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse httpservletresponse, ActionErrors actionerrors)
+    {
+        return true;
+    }
+
+    private void printMultiPartRequestParameters(HttpServletRequest request, PrintWriter out)
+    {
+        try
+        {
+            if(FileUpload.isMultipartContent(request))
+                out.println("multipart");
+            else
+                out.println("not a mp");
+            String dir = "/home/vincent/dev/portal/tmp";
+            DiskFileUpload upload = new DiskFileUpload();
+            upload.setRepositoryPath(dir);
+            List items = upload.parseRequest(request);
+            List params = new ArrayList(12);
+            Iterator iter = items.iterator();
+            int counter = 0;
+            while(iter.hasNext()) 
+            {
+                FileItem item = (FileItem)iter.next();
+                if(item.isFormField())
+                {
+                    out.println("Param: " + item.getFieldName() + "=" + item.getString());
+                } else
+                {
+                    String sessionId = request.getSession().getId();
+                    String fieldName = item.getFieldName();
+                    String fileName = item.getName();
+                    String contentType = item.getContentType();
+                    boolean isInMemory = item.isInMemory();
+                    long sizeInBytes = item.getSize();
+                    File uploadedFile = new File(dir + "/" + sessionId + "_" + counter++);
+                    out.println("fieldName: " + fieldName + " - fileName: " + fileName);
+                }
+            }
+        }
+        catch(Exception e)
+        {
+            m_log.error("Cannot process multipart request", e);
+        }
+    }
+
+    private void dumpMp(HttpServletRequest request)
+    {
+        String boundary;
+        String BOUNDARY_FIELD = "boundary=";
+        boundary = null;
+        String contentType = request.getHeader("Content-type");
+        if(contentType != null)
+        {
+            int idxBoundary = contentType.indexOf(BOUNDARY_FIELD);
+            if(idxBoundary != -1)
+            {
+                boundary = contentType.substring(idxBoundary + BOUNDARY_FIELD.length(), contentType.length());
+                m_log.debug("CT: " + contentType + " B: " + boundary);
+            } else
+            {
+                m_log.warn("The content-type for this multipart reqyest does not contains the boundary: " + contentType);
+            }
+        } else
+        {
+            m_log.warn("this multipart request does not contain a Content-type header");
+        }
+        if(boundary == null)
+            return;
+        try
+        {
+            java.io.InputStream is = request.getInputStream();
+            java.io.OutputStream os = new FileOutputStream("/poub/tmp.poub");
+            try
+            {
+                MultipartStream multipartStream = new MultipartStream(is, boundary.getBytes(), 512);
+                for(boolean nextPart = multipartStream.skipPreamble(); nextPart; nextPart = multipartStream.readBoundary())
+                {
+                    m_log.debug("got a part");
+                    String headers = multipartStream.readHeaders();
+                    m_log.debug("headers: " + headers);
+                    multipartStream.readBodyData(os);
+                }
+
+            }
+            catch(org.apache.commons.fileupload.MultipartStream.MalformedStreamException e) { }
+            catch(IOException e) { }
+        }
+        catch(Exception e)
+        {
+            m_log.debug("Exception in dump", e);
+        }
+        return;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.actions.test.TestAction.class);
+    }
+}

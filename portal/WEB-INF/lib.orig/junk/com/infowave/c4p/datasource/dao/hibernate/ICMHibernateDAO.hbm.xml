@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.infowave.c4p.model.ICM" table="icm">
+
+       <id name="id" type="string" unsaved-value="null" >
+            <column name="id" length="32" not-null="true"/>
+            <generator class="uuid.hex"/>
+        </id>
+
+      <property name="name" unique="true">
+        <column name="name" sql-type="varchar(32)" not-null="true"/>
+      </property>
+      <property name="protocol">
+        <column name="protocol" sql-type="varchar(5)" not-null="true"/>
+      </property>
+      <property name="hostname">
+       <column name="hostname" sql-type="varchar(80)" not-null="true"/>
+      </property>
+      <property name="port"/>
+      <property name="statusURL">
+        <column name="statusURL" sql-type="varchar(80)" not-null="true"/>
+      </property>
+      <property name="appListURL">
+        <column name="appListURL" sql-type="varchar(80)" not-null="true"/>
+      </property>
+      <property name="logoutURL">
+        <column name="logoutURL" sql-type="varchar(80)" not-null="true"/>
+      </property>
+      <property name="appPattern">
+        <column name="appPattern" sql-type="varchar(80)" not-null="true"/>
+      </property>
+      <property name="username">
+        <column name="username" sql-type="varchar(16)" not-null="true"/>
+      </property>
+      <property name="password">
+         <column name="password" sql-type="varchar(32)" not-null="true"/>
+      </property>
+
+
+    </class>
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="ICM.all">
+    <![CDATA[
+     from ICM
+     ]]>
+     </query>
+
+  <query name="ICM.by.name">
+    <![CDATA[
+     from ICM as icm where icm.name= :name
+     ]]>
+     </query>
+
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 2:30:00 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   AccountDAO.java
+
+package com.infowave.c4p.datasource.dao;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.model.*;
+import java.util.List;
+
+public interface AccountDAO
+{
+
+    public abstract Account getByUsername(String s)
+        throws DataException;
+
+    public abstract Account getById(String s)
+        throws DataException;
+
+    public abstract void deleteByUsername(String s)
+        throws DataException;
+
+    public abstract void update(Account account)
+        throws DataException;
+
+    public abstract void createAcount(Account account, Authentication authentication, Desktop desktop)
+        throws DataException;
+
+    public abstract void addDesktopToAcount(Account account, Desktop desktop)
+        throws DataException;
+
+    public abstract void update(List list)
+        throws DataException;
+}

@@ -1,0 +1,112 @@
+<%@ taglib uri="/WEB-INF/tlds/struts-tiles.tld" prefix="tiles" %>
+
+<%@ taglib prefix="fmt" uri="/WEB-INF/tlds/fmt.tld" %>
+
+
+
+<HTML>
+
+  <HEAD>
+
+    <title><fmt:message  bundle="${c4p_resellerBundle}" key="title.mainWindowTitle"/></title>
+
+	<LINK REL=StyleSheet HREF="x-res/style.css" TYPE="text/css">
+
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="max-age" CONTENT="0">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<%
+response.setHeader("Cache-Control","no-cache"); //HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
+%>
+  </HEAD>
+
+<script language="javascript">
+<%-- this method can be overloaded by the desktop-generated pages --%>
+function OnLoadBasic(){
+}
+</script>
+
+<body  class="basicpage" onload="return OnLoadBasic();">
+
+  <table class="basicpage" id="basicpageID" width="100%" cellspacing="0" cellpadding="0">
+
+    <tr>
+
+      <td colspan="2">
+
+      <!-- header start -->
+
+        <tiles:insert attribute="header" />
+
+      <!-- header stop -->
+
+      </td>
+
+    </tr>
+
+    <tr>
+
+      <td class="basic_section" width="100%" valign="top" align="left">
+
+        <table width="100%" cellspacing="0" cellpadding="0">
+
+          <tr>
+
+            <td class="basic_section">
+
+					  <!-- because this is used for help pages as well, this section results in white line about help bar -->
+
+				    <!-- pageErrors start -->
+
+        	    <tiles:insert attribute="pageErrors" />
+
+				    <!-- pageErrors stop -->
+
+            </td>
+
+          </tr>
+          <tr>
+
+            <td>
+
+			      <!-- body start -->
+
+              <tiles:insert attribute='body' />
+
+            <!-- body stop -->
+
+            </td>
+
+          </tr>
+
+        </table>
+
+      </td>
+
+    </tr>
+
+    <tr class="footer_bar" >
+
+	    <td colspan="3" width="100%">
+
+		  <!-- footer start -->
+
+		    <tiles:insert attribute="footer" />
+
+		  <!-- footer stop -->
+
+	    </td>
+
+    </tr>
+
+  </table>
+
+</body>
+
+</html>
+
+
+

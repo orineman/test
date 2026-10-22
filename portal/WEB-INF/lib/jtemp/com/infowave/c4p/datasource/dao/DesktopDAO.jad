@@ -1,0 +1,35 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/27/2004 8:05:13 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   DesktopDAO.java
+
+package com.infowave.c4p.datasource.dao;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.model.Desktop;
+import java.util.List;
+
+public interface DesktopDAO
+{
+
+    public abstract Desktop getByDid(String s)
+        throws DataException;
+
+    public abstract Desktop getById(String s)
+        throws DataException;
+
+    public abstract Desktop getByIdWithLicense(String s)
+        throws DataException;
+
+    public abstract void update(Desktop desktop)
+        throws DataException;
+
+    public abstract void resetForeignAccess(Desktop desktop, List list)
+        throws DataException;
+
+    public abstract Desktop getByDidWithForeignAccounts(String s)
+        throws DataException;
+
+    public abstract void delete(String s)
+        throws DataException;
+}

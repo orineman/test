@@ -1,0 +1,23 @@
+message.copyright= Copyright Infowave Software, Inc.
+message.pda_copyright= ** Copyright Infowave Software, Inc. **
+message.login=Symmetry Live Login
+message.pda_login=Symmetry Live Login
+
+title.subscripion=Symmetry Live Subscription
+title.pcConfiguration=Symmetry Live PC Configuration
+title.mainWindowTitle=Symmetry Live
+title.passwordRecovery=Symmetry Live Password Recovery
+
+securityQuestion.1=What were you born?
+securityQuestion.2=What is the name of your favorite pet?
+securityQuestion.3=What is your mother's maiden name?
+securityQuestion.4=What is your father's middle name?
+
+msg.helpForGettingAlicenseCode=For help finding and entering serial #'s click <a href="../help/licensecodes/" target="_blank">here</a>
+msg.toPurchaseALicenseCode=To purchase a license code, click <a href={0} target="_blank">here</a>.
+msg.passwordRecoveryHint=Note: If you have forgotten your username, open the Symmetry Live console on your PC, select "Configure->Users and Sharing" and look at the "Me" entry.
+
+mail.newAccountSubject=Welcome to Laplink
+mail.newAccountBody=This a welcome message
+mail.newAccountFrom=foo@bar.com
+

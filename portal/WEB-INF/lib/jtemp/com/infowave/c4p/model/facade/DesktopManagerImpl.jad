@@ -1,0 +1,380 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 3:50:48 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   DesktopManagerImpl.java
+
+package com.infowave.c4p.model.facade;
+
+import com.infowave.c4p.commons.DisplayMode;
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.datasource.dao.*;
+import com.infowave.c4p.model.*;
+import com.infowave.c4p.model.assembler.DesktopAssembler;
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.delegate.DesktopManager;
+import com.infowave.c4p.service.dto.DesktopDTO;
+import com.infowave.c4p.util.*;
+import java.io.PrintStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class DesktopManagerImpl
+    implements DesktopManager
+{
+
+    public DesktopManagerImpl()
+    {
+    }
+
+    public List getDesktops(String username)
+        throws ServiceException
+    {
+        List desktops = new ArrayList();
+        List desktopDTOs = new ArrayList();
+        Account account = null;
+        AccountDAO accountDAO = DAOFactory.getAccountDAO();
+        try
+        {
+            account = accountDAO.getByUsername(username);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        if(account == null)
+        {
+            PortalError error = new PortalError(ErrorCode.INVALID_USERNAME, username);
+            throw new ServiceException(error);
+        }
+        if(account.getSortedDesktops() != null)
+        {
+            List l = account.getSortedDesktops();
+            for(int i = 0; i < l.size(); i++)
+                desktops.add(l.get(i));
+
+        }
+        if(account.getSortedForeignDesktops() != null)
+        {
+            List l = account.getSortedForeignDesktops();
+            for(int i = 0; i < l.size(); i++)
+                desktops.add(l.get(i));
+
+        }
+        Desktop desktop;
+        for(Iterator it = desktops.iterator(); it.hasNext(); setICMUrls(desktop))
+            desktop = (Desktop)it.next();
+
+        DesktopDTO dto;
+        for(Iterator it = desktops.iterator(); it.hasNext(); desktopDTOs.add(dto))
+        {
+            Desktop desktop = (Desktop)it.next();
+            dto = DesktopAssembler.createDesktopDTO(desktop);
+        }
+
+        return desktopDTOs;
+    }
+
+    public DesktopDTO getByDid(String did)
+        throws ServiceException
+    {
+        DesktopDTO dto = null;
+        Desktop desktop = null;
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        try
+        {
+            desktop = desktopDAO.getByDid(did);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        if(desktop != null)
+            dto = DesktopAssembler.createDesktopDTO(desktop);
+        return dto;
+    }
+
+    public DesktopDTO getDesktop(String did)
+        throws ServiceException
+    {
+        DesktopDTO dto = null;
+        DesktopDAO dao = DAOFactory.getDesktopDAO();
+        try
+        {
+            Desktop desktop = null;
+            desktop = dao.getByDid(did);
+            setICMUrls(desktop);
+            dto = DesktopAssembler.createDesktopDTO(desktop);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return dto;
+    }
+
+    public void resetForeignAccounts(String did, String ownerUsername, List users)
+        throws ServiceException
+    {
+        try
+        {
+            AccountDAO accountDAO = DAOFactory.getAccountDAO();
+            Account ownerAccount = accountDAO.getByUsername(ownerUsername);
+            if(ownerAccount == null)
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+                throw new ServiceException(error);
+            }
+            DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+            Desktop ownerDesktop = desktopDAO.getByDidWithForeignAccounts(did);
+            if(ownerDesktop == null)
+            {
+                PortalError error = new PortalError(ErrorCode.UNKNOWN_DID_DEFINED, did);
+                throw new ServiceException(error);
+            }
+            boolean ownsIt = false;
+            for(Iterator it = ownerAccount.getDesktops().iterator(); it.hasNext();)
+            {
+                Desktop desktop = (Desktop)it.next();
+                if(desktop.getDid().equals(did))
+                {
+                    ownsIt = true;
+                    break;
+                }
+            }
+
+            if(!ownsIt)
+            {
+                PortalError error = new PortalError(ErrorCode.NOT_OWNER_OF_DESKTOP, ownerUsername, did);
+                throw new ServiceException(error);
+            }
+            ownerDesktop.removeAllForeignAccess();
+            Account account;
+            for(Iterator it = users.iterator(); it.hasNext(); ownerDesktop.addForeignAccess(account))
+            {
+                String username = (String)it.next();
+                if(username.equals(ownerUsername))
+                {
+                    String usernames = "";
+                    for(Iterator i = users.iterator(); i.hasNext();)
+                        usernames = usernames + i.next() + ",";
+
+                    PortalError error = new PortalError(ErrorCode.INVALID_PARAMETERS, "resetForeignAccounts", ownerUsername, did, usernames);
+                    throw new ServiceException(error);
+                }
+                account = accountDAO.getByUsername(username);
+                if(account == null)
+                {
+                    String usernames = "";
+                    for(Iterator i = users.iterator(); i.hasNext();)
+                        usernames = usernames + i.next() + ",";
+
+                    PortalError error = new PortalError(ErrorCode.INVALID_USERNAME, "resetForeignAccounts", ownerUsername, did, usernames);
+                    throw new ServiceException(error);
+                }
+            }
+
+            desktopDAO.update(ownerDesktop);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    private void setICMUrls(Desktop desktop)
+    {
+        boolean validICM = false;
+        ICM icm = null;
+        DisplayMode modes[] = DisplayMode.getAll();
+        icm = ICM.findICM(desktop.getDid());
+        if(icm != null)
+        {
+            m_log.debug("found icm: " + icm.getName() + " for " + desktop.getDid());
+            try
+            {
+                for(int i = 0; i < modes.length; i++)
+                {
+                    URL url = icm.getDesktopAppListURL(modes[i], desktop);
+                    desktop.addAppListUrl(modes[i], url.toExternalForm());
+                }
+
+                URL statusURL = icm.getDesktopStatusURL(desktop.getDid());
+                desktop.setStatusURL(statusURL.toExternalForm());
+                desktop.setAppUrlRegexp(icm.getAppPattern());
+                desktop.setIcmURL(icm.getTopURL().toExternalForm());
+                URL logoutURL = icm.getDesktopLogoutURL(desktop.getDid());
+                desktop.setLogoutURL(logoutURL.toExternalForm());
+                validICM = true;
+            }
+            catch(MalformedURLException e)
+            {
+                m_log.error("Invalid status url for icm:" + icm);
+            }
+        } else
+        {
+            m_log.debug("Could not find an ICM for " + desktop.getDid());
+        }
+        if(!validICM)
+        {
+            for(int i = 0; i < modes.length; i++)
+                desktop.addAppListUrl(modes[i], null);
+
+            desktop.setStatusURL(null);
+        }
+    }
+
+    public DesktopDTO update(String did, DesktopDTO desktopDTO)
+        throws ServiceException
+    {
+        DesktopDTO dto = null;
+        DesktopDAO dao = DAOFactory.getDesktopDAO();
+        try
+        {
+            Desktop desktop = null;
+            desktop = dao.getByDid(did);
+            boolean mustSave = false;
+            if(desktopDTO.getName() != null && !desktopDTO.getName().equals(desktop.getName()))
+            {
+                desktop.setName(desktopDTO.getName());
+                mustSave = true;
+            }
+            if(!(new Boolean(desktopDTO.isVisible())).equals(new Boolean(desktop.isVisible())))
+            {
+                desktop.setVisible(desktopDTO.isVisible());
+                mustSave = true;
+            }
+            if(mustSave)
+                dao.update(desktop);
+            setICMUrls(desktop);
+            dto = DesktopAssembler.createDesktopDTO(desktop);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return dto;
+    }
+
+    public String generateUniqueDid(int size)
+        throws ServiceException
+    {
+        boolean found = false;
+        String did = null;
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        int nbTries = 0;
+        while(!found) 
+        {
+            did = IdGenerator.getId();
+            nbTries++;
+            for(; did.length() < size; did = did + IdGenerator.getId());
+            did = did.substring(0, size);
+            try
+            {
+                if(desktopDAO.getByDid(did) == null)
+                    found = true;
+            }
+            catch(DataException e)
+            {
+                PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+                throw new ServiceException(error, e);
+            }
+        }
+        m_log.debug("Number of tried to find a unique did: " + nbTries);
+        return did;
+    }
+
+    public void setSoftwareVersion(String did, String version)
+        throws ServiceException
+    {
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        try
+        {
+            Desktop desktop = desktopDAO.getByDid(did);
+            if(desktop == null)
+            {
+                PortalError error = new PortalError(ErrorCode.UNKNOWN_DID_DEFINED);
+                throw new ServiceException(error);
+            }
+            desktop.setSoftwareVersion(version);
+            desktopDAO.update(desktop);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    public void removeDesktop(String did)
+        throws ServiceException
+    {
+        try
+        {
+            DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+            desktopDAO.delete(did);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    private static void testResetForeignAccess()
+        throws Exception
+    {
+        String did = "123";
+        String owner = "titi";
+        String usernames[] = {
+            "vtang"
+        };
+        List userList = new ArrayList();
+        for(int i = 0; i < usernames.length; i++)
+            userList.add(usernames[i]);
+
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        System.out.println("Foreign access before resetting:");
+        Desktop desktop = desktopDAO.getByDidWithForeignAccounts(did);
+        for(Iterator it = desktop.getForeignAccounts().iterator(); it.hasNext(); System.out.println(it.next()));
+        DesktopManagerImpl mgr = new DesktopManagerImpl();
+        mgr.resetForeignAccounts(did, owner, userList);
+        System.out.println("Foreign access after resetting:");
+        desktop = desktopDAO.getByDidWithForeignAccounts(did);
+        for(Iterator it = desktop.getForeignAccounts().iterator(); it.hasNext(); System.out.println(it.next()));
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            testResetForeignAccess();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.model.facade.DesktopManagerImpl.class);
+    }
+}

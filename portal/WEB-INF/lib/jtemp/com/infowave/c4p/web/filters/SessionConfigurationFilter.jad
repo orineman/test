@@ -1,0 +1,117 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/28/2004 11:42:17 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   SessionConfigurationFilter.java
+
+package com.infowave.c4p.web.filters;
+
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.dto.ResellerDTO;
+import com.infowave.c4p.service.dto.UserDTO;
+import com.infowave.c4p.web.util.SessionState;
+import com.infowave.c4p.web.util.WebUtil;
+import java.io.IOException;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.jstl.core.Config;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class SessionConfigurationFilter
+    implements Filter
+{
+
+    public SessionConfigurationFilter()
+    {
+        config = null;
+    }
+
+    public void init(FilterConfig filterConfig)
+        throws ServletException
+    {
+        config = filterConfig;
+    }
+
+    public void destroy()
+    {
+    }
+
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
+        throws IOException, ServletException
+    {
+        if(servletRequest instanceof HttpServletRequest)
+        {
+            HttpServletRequest request = (HttpServletRequest)servletRequest;
+            HttpServletResponse response = (HttpServletResponse)servletResponse;
+            HttpSession session = request.getSession();
+            response.setHeader("sessionId", session.getId());
+            m_log.debug("requested id: " + request.getRequestedSessionId() + " - session id: " + (request.getSession() != null ? request.getSession().getId() : "null") + " - Authorization header: " + request.getHeader("Authorization") + " - User Principal: " + request.getUserPrincipal() + " - Cookie: " + request.getHeader("Cookie"));
+            if(session != null && session.isNew())
+                m_log.debug("New  session: " + session.getId());
+            SessionState state = WebUtil.getSessionState(request);
+            if(request.getSession() != null)
+                m_log.debug(request.getSession().getId() + " " + request.getRequestURL() + " " + Config.get(request.getSession(), "javax.servlet.jsp.jstl.fmt.locale") + " " + request.getHeader("user-agent"));
+            if(state == null)
+            {
+                m_log.debug("creating the state " + request.getSession().getId() + " " + request.getRequestURL());
+                state = new SessionState(request);
+                WebUtil.setSessionState(request, state);
+            }
+            if(state.getReseller() == null)
+            {
+                if(!state.setReseller(request))
+                {
+                    m_log.error("Cannot set the reseller");
+                    throw new ServletException("Cannot find a reseller for " + request.getRequestURL());
+                }
+                request.getSession().setAttribute("c4p_passwordEncoder", state.getReseller().getPasswordEncoder());
+                m_log.debug("setting reseller: " + state.getReseller().getName());
+            }
+            if(request.getUserPrincipal() != null && state.getUserDTO() == null)
+                try
+                {
+                    state.refresh(request);
+                }
+                catch(ServiceException e)
+                {
+                    m_log.error("Couldn't get the session's state", e);
+                    throw new ServletException("Couldn't get the session's state", e);
+                }
+            if(state.getUserDTO() != null)
+            {
+                String userReseller = state.getUserDTO().getResellerName();
+                String resellerName = state.getReseller().getName();
+                if(!userReseller.equals(resellerName))
+                {
+                    m_log.debug("Wrong reseller (" + userReseller + ") - should be: " + resellerName + " logging out");
+                    session.invalidate();
+                    response.sendRedirect("/showLoginPage.do?action=error&locale=" + state.getLocale());
+                    response.flushBuffer();
+                    return;
+                }
+            }
+            if(state.getClientCapabilities() == null)
+                state.setClientCapabilities(request);
+            if(state.getLocale() == null)
+                state.setTemporaryLocale(request);
+        }
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private ServletContext ctx;
+    private FilterConfig config;
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.filters.SessionConfigurationFilter.class);
+    }
+}

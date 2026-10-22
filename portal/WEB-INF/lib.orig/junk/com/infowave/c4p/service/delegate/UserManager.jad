@@ -1,0 +1,41 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 11:28:30 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   UserManager.java
+
+package com.infowave.c4p.service.delegate;
+
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.dto.UserDTO;
+import com.infowave.c4p.service.dto.UserRegistrationDTO;
+
+public interface UserManager
+{
+
+    public abstract UserDTO getUserDTO(String s)
+        throws ServiceException;
+
+    public abstract UserDTO RegisterUser(UserRegistrationDTO userregistrationdto)
+        throws ServiceException;
+
+    public abstract void addDesktopToAccount(String s, String s1, String s2, String s3)
+        throws ServiceException;
+
+    public abstract UserDTO changeIdentity(String s, String s1, String s2, String s3)
+        throws ServiceException;
+
+    public abstract void changePassword(String s, String s1, String s2)
+        throws ServiceException;
+
+    public abstract void changeSecurityQuestion(String s, String s1, int i, String s2)
+        throws ServiceException;
+
+    public abstract int getSecurityQuestion(String s)
+        throws ServiceException;
+
+    public abstract boolean validateSecurityAnswer(String s, String s1)
+        throws ServiceException;
+
+    public abstract void resetPassword(String s, String s1)
+        throws ServiceException;
+}

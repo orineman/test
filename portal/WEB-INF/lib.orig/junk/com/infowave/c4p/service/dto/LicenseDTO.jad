@@ -1,0 +1,62 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 5:03:02 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   LicenseDTO.java
+
+package com.infowave.c4p.service.dto;
+
+import java.io.Serializable;
+
+public class LicenseDTO
+    implements Serializable
+{
+
+    public LicenseDTO()
+    {
+    }
+
+    public String getCode()
+    {
+        return code;
+    }
+
+    public void setCode(String code)
+    {
+        this.code = code;
+    }
+
+    public int getRemainingDays()
+    {
+        return remainingDays;
+    }
+
+    public void setRemainingDays(int remainingDays)
+    {
+        this.remainingDays = remainingDays;
+    }
+
+    public boolean isFixedTerm()
+    {
+        return fixedTerm;
+    }
+
+    public void setFixedTerm(boolean fixedTerm)
+    {
+        this.fixedTerm = fixedTerm;
+    }
+
+    public int getNumAvailableUses()
+    {
+        return numAvailableUses;
+    }
+
+    public void setNumAvailableUses(int numAvailableUses)
+    {
+        this.numAvailableUses = numAvailableUses;
+    }
+
+    private String code;
+    private int numAvailableUses;
+    private int remainingDays;
+    private boolean fixedTerm;
+}

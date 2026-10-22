@@ -1,0 +1,57 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/27/2004 4:25:46 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   ShowMainPage.java
+
+package com.infowave.c4p.web.actions;
+
+import com.infowave.c4p.service.delegate.DelegateFactory;
+import com.infowave.c4p.web.util.SessionState;
+import com.infowave.c4p.web.util.WebUtil;
+import java.util.List;
+import javax.servlet.http.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.*;
+
+// Referenced classes of package com.infowave.c4p.web.actions:
+//            UserAction
+
+public class ShowMainPage extends UserAction
+{
+
+    public ShowMainPage()
+    {
+    }
+
+    public ActionForward executeLogic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        org.apache.struts.util.MessageResources messages = getResources(request);
+        HttpSession session = request.getSession();
+        com.infowave.c4p.service.delegate.DesktopManager desktopManager = DelegateFactory.getDesktopManager();
+        SessionState state = WebUtil.getSessionState(request);
+        if(session.getAttribute("c4.firstTimeInMainPage") == null)
+            session.setAttribute("c4.firstTimeInMainPage", "whatever");
+        else
+            state.refresh(request);
+        state.enterDesktopSection();
+        java.util.Locale locale = state.getLocale();
+        return null;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.actions.ShowMainPage.class);
+    }
+}

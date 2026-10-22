@@ -1,0 +1,17 @@
+
+<%@ taglib uri="/WEB-INF/tlds/struts-bean.tld" prefix="bean" %>
+<%@ page import="com.infowave.c4p.web.actions.RDPForm" %>
+
+
+<LINK REL=StyleSheet HREF="x-res/style.css" TYPE="text/css">
+<td align="center" bgcolor="#COCOCO" text="#000000">
+<font size="+2"><b><bean:write name="desktopinfo" property="name" scope="request" /></b></font>
+<td>
+<td>
+LapLink Internet is not currently running on your machine. Click 
+on the button below
+if you would like to attempt a remote control session into your machine, <bean:write name="desktopinfo" property="name" scope="request" />.
+<br><br>
+        <input type="button" value="Start RDP"
+           onClick="devEdit = window.open('/protected/rdpServicePage.do?did=<bean:write name="desktopinfo" property="did" scope="request" />','RemoteDesktop','scrollbars=no,resizable=no,width=850,height=820');if (devEdit.opener == null) devEdit.opener = self;return false">
+

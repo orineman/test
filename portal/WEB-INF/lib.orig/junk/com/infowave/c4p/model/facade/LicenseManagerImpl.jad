@@ -1,0 +1,428 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 3:04:16 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   LicenseManagerImpl.java
+
+package com.infowave.c4p.model.facade;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.datasource.dao.*;
+import com.infowave.c4p.model.*;
+import com.infowave.c4p.model.assembler.LicenseAssembler;
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.delegate.LicenseManager;
+import com.infowave.c4p.util.ErrorCode;
+import com.infowave.c4p.util.PortalError;
+import java.io.PrintStream;
+import java.util.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class LicenseManagerImpl
+    implements LicenseManager
+{
+
+    public LicenseManagerImpl()
+    {
+    }
+
+    public boolean isFixedTerm(String licenseCode, String resellerId)
+        throws ServiceException
+    {
+        boolean isFixedTerm = false;
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        try
+        {
+            List licenses = licenseDAO.getByCode(licenseCode, resellerId);
+            if(!licenses.isEmpty())
+                isFixedTerm = ((License)licenses.get(0)).isFixedTerm();
+        }
+        catch(Exception e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return isFixedTerm;
+    }
+
+    public List setLicenseCode(String userId, String desktopId, String licenseCode, boolean extend)
+        throws ServiceException
+    {
+        DesktopDAO desktopDAO;
+        AccountDAO accountDAO;
+        List expiredLicenses;
+        List licensesMadeAvailable;
+        boolean mustSaveAccount;
+        StringBuffer logMsg;
+        desktopDAO = DAOFactory.getDesktopDAO();
+        accountDAO = DAOFactory.getAccountDAO();
+        expiredLicenses = null;
+        licensesMadeAvailable = null;
+        mustSaveAccount = false;
+        logMsg = new StringBuffer();
+        List freedUp;
+        Account account = accountDAO.getById(userId);
+        Desktop desktop = desktopDAO.getByIdWithLicense(desktopId);
+        if(account == null)
+        {
+            m_log.warn("setLicenseCode - no account for userId: " + userId);
+            PortalError error = new PortalError(ErrorCode.INVALID_ID);
+            throw new ServiceException(error, userId);
+        }
+        if(desktop == null)
+        {
+            m_log.warn("setLicenseCode - no dektop for id: " + desktopId);
+            PortalError error = new PortalError(ErrorCode.INVALID_ID);
+            throw new ServiceException(error, desktopId);
+        }
+        if(!desktop.getAccount().getId().equals(userId))
+        {
+            m_log.warn("setLicenseCode - the userId (" + userId + ") is not the" + " owner of this desktop (" + desktopId + ")");
+            PortalError error = new PortalError(ErrorCode.INVALID_PARAMETERS, userId, desktopId);
+            throw new ServiceException(error);
+        }
+        Reseller reseller = account.getReseller();
+        License lastLicense = desktop.getLicense();
+        License license = null;
+        license = findLicense(licenseCode, desktop, account, reseller);
+        if(license == null)
+        {
+            PortalError error = new PortalError(ErrorCode.INVALID_LICENSE_NUMBER, licenseCode);
+            throw new ServiceException(error);
+        }
+        m_log.debug("Found license: " + license);
+        if(extend && (lastLicense == null || !lastLicense.isFixedTerm() || !license.isFixedTerm()))
+        {
+            m_log.error("can only extend when switching from fixed term to fixed term");
+            PortalError error = new PortalError(ErrorCode.INVALID_PARAMETERS, licenseCode);
+            throw new ServiceException(error);
+        }
+        if(license.isRegCode())
+        {
+            if(account.getRegCode() != null && !license.getCode().equals(account.getRegCode()))
+            {
+                m_log.debug("setLicense: the license: " + license.getCode() + " is a regcode and the user has already used a regcode:" + account.getRegCode());
+                PortalError error = new PortalError(ErrorCode.INVALID_LICENSE_NUMBER, licenseCode);
+                throw new ServiceException(error);
+            }
+            if(desktop.getRegistrationCode() != null)
+            {
+                m_log.debug("setLicense: the license: " + license.getCode() + " is a regcode and the user has already used the regcode:" + desktop.getRegistrationCode() + " for desktop: " + desktop.getDid());
+                PortalError error = new PortalError(ErrorCode.INVALID_LICENSE_NUMBER, licenseCode);
+                throw new ServiceException(error);
+            }
+        }
+        logMsg.append("User: ").append(account.getUsername()).append(" [");
+        logMsg.append(reseller.getName()).append("] desktop: ");
+        logMsg.append(desktop.getDid());
+        if(extend)
+        {
+            if(desktop.licenseHistoryIsFull())
+                expiredLicenses = purgeExpiredLicenseFromHistory(desktop, account);
+            if(desktop.licenseHistoryIsFull())
+            {
+                m_log.error("The license history for desktop " + desktop.getDid() + " is full -  we cannot extend it with license: " + license.getCode());
+                PortalError error = new PortalError(ErrorCode.TOO_MANY_LICENSES);
+                throw new ServiceException(error);
+            }
+            Date oldDesktopExpiryDate = desktop.getExpiryDate();
+            license.setFirstUseDate(oldDesktopExpiryDate);
+            long extension = (long)license.getRemainingDays() * 0x5265c00L;
+            long expiryTime = oldDesktopExpiryDate.getTime() + extension;
+            desktop.setExpiryDate(new Date(expiryTime));
+            logMsg.append(" - Extending desktop with license " + license.getCode() + " remaining days on the new license: " + license.getRemainingDays() + " the old desktop expiry date was: " + oldDesktopExpiryDate + " - the new expiry date is: " + desktop.getExpiryDate());
+        } else
+        {
+            licensesMadeAvailable = removeAllLicenses(desktop, lastLicense, account, reseller);
+            if(license.isFixedTerm())
+            {
+                if(desktop.hasExpired())
+                {
+                    Date now = new Date();
+                    license.setFirstUseDate(now);
+                } else
+                {
+                    license.setFirstUseDate(desktop.getExpiryDate());
+                }
+                desktop.setExpiryDate(license.getExpiryDate());
+                logMsg.append(" - Transfered fixed license: " + license.getCode() + " to desktop: " + desktop.getDid() + " desktop's expiry date: " + desktop.getExpiryDate());
+            } else
+            {
+                desktop.setExpiryDate(null);
+                license.setFirstUseDate(new Date());
+                logMsg.append(" - Transfreed subscription: " + license.getCode() + " to desktop: " + desktop.getDid() + " desktop's expiry date: " + desktop.getExpiryDate());
+            }
+        }
+        license.incrementNumUse();
+        desktop.setLicenseSerialNumber(license.getCode());
+        if(license.getAccount() == null)
+            license.setAccount(account);
+        desktop.setLicense(license);
+        desktop.setLicenseSerialNumber(license.getCode());
+        desktop.addLicenseToHistory(license);
+        if(license.isRegCode())
+        {
+            account.setRegCode(license.getCode());
+            desktop.setRegistrationCode(license.getCode());
+            mustSaveAccount = true;
+        }
+        if(licensesMadeAvailable != null && !licensesMadeAvailable.isEmpty())
+        {
+            logMsg.append(" - the following licenses were freed up:");
+            for(Iterator it = licensesMadeAvailable.iterator(); it.hasNext(); logMsg.append("),"))
+            {
+                License l = (License)it.next();
+                logMsg.append(l.getCode()).append("(numUses=").append(l.getNumUses());
+            }
+
+        } else
+        {
+            logMsg.append(" - no licenses were freed up");
+        }
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        Account accountToSave = mustSaveAccount ? account : null;
+        licenseDAO.licenseDesktop(license, desktop, licensesMadeAvailable, expiredLicenses, accountToSave);
+        m_log.info(logMsg.toString());
+        freedUp = new ArrayList(3);
+        if(licensesMadeAvailable != null)
+        {
+            com.infowave.c4p.service.dto.LicenseDTO dto;
+            for(Iterator it = licensesMadeAvailable.iterator(); it.hasNext(); freedUp.add(dto))
+            {
+                License l = (License)it.next();
+                dto = LicenseAssembler.createLicenseDTO(l);
+            }
+
+        }
+        return freedUp;
+        DataException e;
+        e;
+        PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+        throw new ServiceException(error, e);
+    }
+
+    public List unlicense(String desktopId)
+        throws ServiceException
+    {
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        List removedLicenses = null;
+        try
+        {
+            Desktop desktop = desktopDAO.getByIdWithLicense(desktopId);
+            if(desktop == null)
+            {
+                m_log.warn("unlicense - no dektop with id: " + desktopId);
+                PortalError error = new PortalError(ErrorCode.INVALID_ID);
+                throw new ServiceException(error, desktopId);
+            }
+            removedLicenses = removeAllLicenses(desktop, desktop.getLicense(), desktop.getAccount(), desktop.getAccount().getReseller());
+            licenseDAO.unlicenseDesktop(removedLicenses, desktop);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        List freedUp = new ArrayList(3);
+        if(removedLicenses != null)
+        {
+            com.infowave.c4p.service.dto.LicenseDTO dto;
+            for(Iterator it = removedLicenses.iterator(); it.hasNext(); freedUp.add(dto))
+            {
+                License l = (License)it.next();
+                dto = LicenseAssembler.createLicenseDTO(l);
+            }
+
+        }
+        return freedUp;
+    }
+
+    public List purgeExpiredLicenseFromHistory(Desktop desktop, Account account)
+        throws DataException
+    {
+        List removed = new ArrayList(2);
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        String history[] = desktop.getLicenseCodesInHistory();
+        for(int i = 0; i < history.length; i++)
+        {
+            List licenses = licenseDAO.getByCodeAndUserId(history[i], account.getReseller().getId(), account.getId());
+            if(licenses.size() == 0)
+            {
+                String msg = "purgeExpiredLicenseFromHistory - data inconsistency: a license is present in  the history but we can't find a license with that code for that user desktop: " + desktop.getDid() + " code: " + history[i] + " user: " + account.getUsername() + " (" + account.getId() + ") reseller: " + account.getReseller().getId();
+                m_log.error(msg);
+                throw new DataException(msg);
+            }
+            if(licenses.size() > 1)
+            {
+                String msg = "purgeExpiredLicenseFromHistory - data inconsistency: a license is present in  the history and we have " + licenses.size() + " licenses with " + " that code for that user" + " desktop: " + desktop.getDid() + " code: " + history[i] + " user: " + account.getUsername() + " (" + account.getId() + ") reseller: " + account.getReseller().getId();
+                m_log.error(msg);
+                throw new DataException(msg);
+            }
+            License license = (License)licenses.get(0);
+            if(license.hasExpired())
+            {
+                m_log.debug("purgeExpiredLicenseFromHistory - purging: " + license);
+                desktop.removeLicenseFromHistory(license);
+                removed.add(license);
+            }
+        }
+
+        return removed;
+    }
+
+    private List removeAllLicenses(Desktop desktop, License lastLicense, Account account, Reseller reseller)
+        throws DataException
+    {
+        List removed = new ArrayList(2);
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        String history[] = desktop.getLicenseCodesInHistory();
+        for(int i = 0; i < history.length; i++)
+        {
+            License license;
+            if(lastLicense != null && lastLicense.getCode().equalsIgnoreCase(history[i]))
+            {
+                license = lastLicense;
+            } else
+            {
+                List licenses = licenseDAO.getByCodeAndUserId(history[i], account.getReseller().getId(), account.getId());
+                if(licenses.size() == 0)
+                {
+                    String msg = "removeAllLicenses - data inconsistency: a license is present in  the history but we can't find a license with that code for that user desktop: " + desktop.getDid() + " code: " + history[i] + " user: " + account.getUsername() + " (" + account.getId() + ") reseller: " + account.getReseller().getId();
+                    m_log.error(msg);
+                    throw new DataException(msg);
+                }
+                if(licenses.size() > 1)
+                {
+                    String msg = "removeAllLicenses - data inconsistency: a license is present in  the history and we have " + licenses.size() + " licenses with " + " that code for that user" + " desktop: " + desktop.getDid() + " code: " + history[i] + " user: " + account.getUsername() + " (" + account.getId() + ") reseller: " + account.getReseller().getId();
+                    m_log.error(msg);
+                    throw new DataException(msg);
+                }
+                license = (License)licenses.get(0);
+            }
+            m_log.debug("removeAllLicenses - found license " + license);
+            if(!license.hasExpired())
+            {
+                removed.add(license);
+                license.decrementNumUse();
+                m_log.debug("removeAllLicenses - decreasing numUses for license: " + license.getCode());
+                if(license.getNumUses() == 0 && license.isFixedTerm())
+                {
+                    int remainingDays = license.getRemainingDays();
+                    m_log.debug("removeAllLicenses - resetting the duration for license: " + license.getCode() + " remaining days: " + remainingDays);
+                    license.setDuration(remainingDays);
+                    license.setFirstUseDate(null);
+                }
+            }
+        }
+
+        desktop.setLicenseHistory(null);
+        desktop.setLicense(null);
+        desktop.setLicenseSerialNumber(null);
+        desktop.setExpiryDate(null);
+        Date creationDate = desktop.getCreationDate();
+        desktop.setExpiryDate(reseller.getDemoExpiryDate(creationDate));
+        m_log.debug("removeAllLicenses - After removing all licenses,  the expiry date for desktop " + desktop.getDid() + " is now: " + desktop.getExpiryDate());
+        return removed;
+    }
+
+    public License findLicense(String code, Desktop desktop, Account account, Reseller reseller)
+        throws ServiceException
+    {
+        License license;
+        LicenseDAO licenseDAO;
+        license = null;
+        licenseDAO = DAOFactory.getLicenseDAO();
+        if(!desktop.hasUsedLicenseCode(code))
+            break MISSING_BLOCK_LABEL_57;
+        m_log.debug("Cannot use - license " + code + " has already been used by desktop " + desktop.getDid());
+        return null;
+        List usedLicenses = licenseDAO.getByCodeAndUserId(code, reseller.getId(), account.getId());
+        for(Iterator it = usedLicenses.iterator(); it.hasNext();)
+        {
+            License l = (License)it.next();
+            if(l.getNumUses() < l.getMaxUses() && !desktop.hasUsedLicenseCode(code) && !l.hasExpired())
+            {
+                license = l;
+                break;
+            }
+            if(l.getNumUses() >= l.getMaxUses())
+                m_log.debug("Cannot use - license " + l.getCode() + "[" + l.getId() + "] has exceeded the nb of uses (" + l.getNumUses() + " uses - max = " + l.getMaxUses() + ")");
+            else
+            if(desktop.hasUsedLicenseCode(code))
+                m_log.debug("Cannot use - license " + l.getCode() + "[" + l.getId() + "] has already been used by desktop " + desktop.getDid());
+            else
+            if(l.hasExpired())
+                m_log.debug("Cannot use - license " + l.getCode() + "[" + l.getId() + "] has expired " + l);
+        }
+
+        if(license != null)
+            m_log.debug("Found a previoulsy used license with " + code + " code " + " for user " + account.getUsername());
+        else
+            m_log.debug("Found no previoulsy used license with " + code + " code " + " for user " + account.getUsername());
+        if(license == null)
+        {
+            List unusedLicenses = licenseDAO.getUnusedByCode(code, reseller.getId());
+            if(!unusedLicenses.isEmpty())
+                license = (License)unusedLicenses.get(0);
+            if(license != null)
+                m_log.debug("Found an unused license with " + code + " code " + " for user " + account.getUsername());
+            else
+                m_log.debug("Found no unused license with " + code + " code " + " for user " + account.getUsername());
+        }
+        if(license != null && license.isFixedTerm() && !license.isRegCode() && license.getMaxUses() != 1)
+        {
+            m_log.error("findLicense - The license we found is a fixed term, yet  its maxuses is > 1: " + license);
+            license = null;
+        }
+        return license;
+        DataException e;
+        e;
+        PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+        throw new ServiceException(error, e);
+    }
+
+    private static void testFindLicense()
+        throws Exception
+    {
+        LicenseDAO licenseDAO = DAOFactory.getLicenseDAO();
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        ResellerDAO resellerDAO = DAOFactory.getResellerDAO();
+        Reseller reseller = resellerDAO.getByCode("laplink");
+        String did = "LTqceHV2";
+        String code = "f2";
+        Desktop desktop = desktopDAO.getByDid(did);
+        Account account = desktop.getAccount();
+        LicenseManagerImpl lmgr = new LicenseManagerImpl();
+        License license = lmgr.findLicense(code, desktop, account, reseller);
+        System.out.println(license);
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            testFindLicense();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static final long NB_MILLISECONDS_IN_A_DAY = 0x5265c00L;
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.model.facade.LicenseManagerImpl.class);
+    }
+}

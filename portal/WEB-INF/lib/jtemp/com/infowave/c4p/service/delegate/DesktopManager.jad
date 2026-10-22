@@ -1,0 +1,38 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/30/2004 9:05:00 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   DesktopManager.java
+
+package com.infowave.c4p.service.delegate;
+
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.dto.DesktopDTO;
+import java.util.List;
+
+public interface DesktopManager
+{
+
+    public abstract List getDesktops(String s)
+        throws ServiceException;
+
+    public abstract DesktopDTO getByDid(String s)
+        throws ServiceException;
+
+    public abstract DesktopDTO getDesktop(String s)
+        throws ServiceException;
+
+    public abstract DesktopDTO update(String s, DesktopDTO desktopdto)
+        throws ServiceException;
+
+    public abstract void resetForeignAccounts(String s, String s1, List list)
+        throws ServiceException;
+
+    public abstract String generateUniqueDid(int i)
+        throws ServiceException;
+
+    public abstract void setSoftwareVersion(String s, String s1)
+        throws ServiceException;
+
+    public abstract void removeDesktop(String s)
+        throws ServiceException;
+}

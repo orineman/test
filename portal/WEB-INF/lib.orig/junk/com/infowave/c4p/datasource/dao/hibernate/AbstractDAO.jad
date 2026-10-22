@@ -1,0 +1,307 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 2:27:35 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   AbstractDAO.java
+
+package com.infowave.c4p.datasource.dao.hibernate;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.datasource.InconsistentDataException;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
+import net.sf.hibernate.*;
+import org.apache.commons.beanutils.PropertyUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+// Referenced classes of package com.infowave.c4p.datasource.dao.hibernate:
+//            HibernateSession
+
+public class AbstractDAO
+{
+
+    public AbstractDAO()
+    {
+    }
+
+    Object getSingleInstance(String query, String paramName, String paramValue)
+        throws DataException
+    {
+        Object object = null;
+        try
+        {
+            List objects = null;
+            Session session = HibernateSession.currentSession();
+            Query q = session.getNamedQuery(query);
+            q.setString(paramName, paramValue);
+            objects = q.list();
+            if(objects.isEmpty())
+            {
+                object = null;
+            } else
+            {
+                if(objects.size() > 1)
+                    throw new InconsistentDataException("getSingleInstance - More than one object identified by : " + paramValue + " = " + paramValue);
+                object = objects.get(0);
+            }
+        }
+        catch(HibernateException e)
+        {
+            throw new DataException("ErrorCode while executing " + query + " with param " + paramName + " = " + paramValue, e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+        return object;
+    }
+
+    public Object getSingleInstance(String query, String paramName, String paramValue, List collectionsorProxiesToInitialize)
+        throws DataException
+    {
+        Object object = null;
+        Map parameters = new HashMap();
+        parameters.put(paramName, paramValue);
+        List objects = null;
+        objects = execute(query, parameters, collectionsorProxiesToInitialize);
+        if(objects.isEmpty())
+        {
+            object = null;
+        } else
+        {
+            if(objects.size() > 1)
+                throw new InconsistentDataException("getSingleInstance - More than one object identified by : " + paramValue + " = " + paramValue);
+            object = objects.get(0);
+        }
+        return object;
+    }
+
+    protected List execute(String query)
+        throws DataException
+    {
+        List objects = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            Query q = session.getNamedQuery(query);
+            objects = q.list();
+        }
+        catch(HibernateException e)
+        {
+            throw new DataException("ErrorCode while executing " + query, e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+        return objects;
+    }
+
+    protected List execute(String queryName, Map parameters, List collectionsOrProxiesToInitialize)
+        throws DataException
+    {
+        List objects = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            Query q = session.getNamedQuery(queryName);
+            String paramName;
+            for(Iterator it = parameters.keySet().iterator(); it.hasNext(); q.setParameter(paramName, parameters.get(paramName)))
+                paramName = (String)it.next();
+
+            objects = q.list();
+            if(objects != null)
+            {
+                for(Iterator it = objects.iterator(); it.hasNext();)
+                {
+                    Object bean = it.next();
+                    if(collectionsOrProxiesToInitialize != null)
+                    {
+                        for(Iterator jt = collectionsOrProxiesToInitialize.iterator(); jt.hasNext();)
+                        {
+                            String propertyName = (String)jt.next();
+                            try
+                            {
+                                Hibernate.initialize(PropertyUtils.getSimpleProperty(bean, propertyName));
+                            }
+                            catch(IllegalAccessException e)
+                            {
+                                throw new DataException(e);
+                            }
+                            catch(InvocationTargetException e)
+                            {
+                                throw new DataException(e);
+                            }
+                            catch(NoSuchMethodException e)
+                            {
+                                throw new DataException(e);
+                            }
+                        }
+
+                    }
+                }
+
+            }
+        }
+        catch(HibernateException e)
+        {
+            throw new DataException("ErrorCode while executing " + queryName, e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+        return objects;
+    }
+
+    void deleteSingleInstance(String query, String paramName, String paramValue)
+        throws DataException
+    {
+        Object object = null;
+        Transaction tx = null;
+        object = getSingleInstance(query, paramName, paramValue);
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            tx = session.beginTransaction();
+            session.delete(object);
+            tx.commit();
+        }
+        catch(HibernateException e)
+        {
+            if(tx != null)
+                try
+                {
+                    tx.rollback();
+                }
+                catch(Exception ex) { }
+            throw new DataException("deleteSingleInstance - query: " + query + " " + paramName + "=" + paramValue, e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+    }
+
+    public void save(Object object)
+        throws DataException
+    {
+        Transaction tx = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            tx = session.beginTransaction();
+            session.saveOrUpdate(object);
+            tx.commit();
+        }
+        catch(HibernateException e)
+        {
+            if(tx != null)
+                try
+                {
+                    tx.rollback();
+                }
+                catch(Exception ex) { }
+            throw new DataException("Cannot save object:", e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+    }
+
+    public void save(List objects)
+        throws DataException
+    {
+        Transaction tx = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            tx = session.beginTransaction();
+            for(Iterator it = objects.iterator(); it.hasNext(); session.saveOrUpdate(it.next()));
+            tx.commit();
+        }
+        catch(HibernateException e)
+        {
+            if(tx != null)
+                try
+                {
+                    tx.rollback();
+                }
+                catch(Exception ex) { }
+            throw new DataException("Cannot save objects:", e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+    }
+
+    protected int countObjects(String queryName, Map parameters)
+        throws DataException
+    {
+        int count = 0;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            Query q = session.getNamedQuery(queryName);
+            String paramName;
+            for(Iterator it = parameters.keySet().iterator(); it.hasNext(); q.setParameter(paramName, parameters.get(paramName)))
+                paramName = (String)it.next();
+
+            count = ((Integer)q.iterate().next()).intValue();
+        }
+        catch(HibernateException e)
+        {
+            throw new DataException("ErrorCode while executing " + queryName, e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+        return count;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.datasource.dao.hibernate.AbstractDAO.class);
+    }
+}

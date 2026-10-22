@@ -1,0 +1,142 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="body_bar" valign="top">
+			<!-- this table	defines the toolbar -->
+			<table class="body_bar" cellspacing="0" cellpadding="2" width="100%" border="0">
+				<tr>
+					<td colspan="2" class="toolbar_heading">Support</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=main.htm"> FAQ 
+							G&eacute;n&eacute;rale</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%">
+						FAQ de S&eacute;curit&eacute;</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" target="_blank" href="http://www.laplink.com/support/laplink.asp">
+							Support Technique</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						G&eacute;n&eacute;ral</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="showPasswordRecoverypage.do">
+							R&eacute;cup&eacute;ration de mot de passe</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Guides</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Info</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=privacy.htm">D&eacute;claration 
+							de confidentialit&eacute;</a></td>
+				</tr>
+			</table>
+		</td>
+		<TD align="center" valign="top" width="100%">
+			<!-- end left tool strip -->
+			<!-- content area -->
+			<TABLE class="content_text" WIDTH="95%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+				<TR>
+					<TD>
+						<P CLASS="content_heading1">
+							Support de la S&eacute;curit&eacute; de Laplink Internet
+							<hr noshade size="1">
+						<p class="content_heading2">Foire Aux Questions</p>
+						<UL>
+							<LI>
+								<A HREF="#a">Quand j&rsquo;acc&egrave;de mon ordinateur en employant Laplink Internet, qu&rsquo;est-ce 
+									qu&rsquo;emp&ecirc;che &agrave; quelqu'un de regarder mon information quand cella se trouve sur 
+									l&rsquo;Internet&nbsp;?</A>
+							<LI>
+								<A HREF="#b">Qu&rsquo;est-ce qu&rsquo;emp&ecirc;che &agrave; quelqu&rsquo;un de pirater vos serveurs et d&rsquo;acc&eacute;der 
+									&agrave; mes donn&eacute;es&nbsp;?</A>
+							<LI>
+								<A HREF="#c">Qu&rsquo;est-ce qu&rsquo;emp&ecirc;che &agrave; quelqu&rsquo;un de contourner vos serveurs de 
+									s&eacute;curit&eacute; et d&rsquo;acc&eacute;der &agrave; mon ordinateur directement&nbsp;?</A>
+						</UL>
+						<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="a"></a><B>Quand j&rsquo;acc&egrave;de mon ordinateur en employant Laplink Internet, 
+							qu&rsquo;est-ce qu&rsquo;emp&ecirc;che &agrave; quelqu'un de regarder mon information quand cella se 
+							trouve sur l&rsquo;Internet&nbsp;?</B>
+						<BR>
+						Le service de Laplink Internet support un cryptage de 128 bits de bout en bout. 
+						Nous utilisons efficacement le protocole HTTPS pour transmettre d&rsquo;une fa&ccedil;on 
+						s&eacute;curis&eacute;e votre information sur l&rsquo;Internet en employant un cryptage SSL (Secure 
+						Socket Layer)<br>
+						<br>
+						Cela est la m&ecirc;me technologie utilis&eacute;e par la plus part des sites commerciaux 
+						d&rsquo;Internet pour transmettre d&rsquo;une fa&ccedil;on s&ucirc;re les informations des cartes des 
+						cr&eacute;dits sur l&rsquo;Internet. Vous pouvez v&eacute;rifier si votre connexion est s&eacute;curis&eacute;e 
+						par un cryptage de bout en bout en contr&ocirc;lant que votre navigateur Internet 
+						affiche dans la r&eacute;gion inf&eacute;rieure droite un petit cadenas de couleur jaune.
+						<P></P>
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="b"></a><B>Qu&rsquo;est qu&rsquo;emp&ecirc;che &agrave; quelqu&rsquo;un de pirater vos serveurs et 
+							d&rsquo;acc&eacute;der &agrave; mes donn&eacute;es&nbsp;?</B> Nous ne gardons JAMAIS vos donn&eacute;es 
+						priv&eacute;es sur nos serveurs&nbsp;; nos serveurs tout simplement ex&eacute;cutent une 
+						requ&ecirc;te et donnent un format &agrave; l&rsquo;information directement &agrave; partir de votre 
+						ordinateur chaque fois que vous demandez quelque chose.
+						<br>
+						<br>
+						Nous gardons votre mot de passe pour Laplink Internet sur nos serveurs et nous 
+						avons impl&eacute;ment&eacute; des multiples niveaux de s&eacute;curit&eacute; pour prot&eacute;ger votre mot de 
+						passe&nbsp;:</p>
+						<p>
+							1) Les mots de passe sont conserv&eacute;s en employant un cryptage MD5 non r&eacute;versible 
+							(m&ecirc;me notre &eacute;quipe technique n&rsquo;a pas l&rsquo;acc&egrave;s aux mots de passe)<br>
+							<br>
+							2) Nos serveurs se trouvent dans un centre de calcul de haute s&eacute;curit&eacute; avec un 
+							acc&egrave;s physique restreint employant la technologie biom&eacute;trique du balayage de la 
+							g&eacute;om&eacute;trie des mains.
+							<br>
+							<br>
+							3) Des serveurs de haute s&eacute;curit&eacute; avec de l&rsquo;acc&egrave;s interne bas&eacute; sur des 
+							politiques d&rsquo;acc&egrave;s de s&eacute;curit&eacute;.
+							<br>
+							<br>
+							4) Les connexions infructueuses ont un long d&eacute;lai qui fait tr&egrave;s difficile la 
+							t&acirc;che &agrave; quelqu&rsquo;un d&rsquo;essayer plusieurs mots de passe en m&ecirc;me temps.</p>
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<a name="c"></a><B>Qu&rsquo;est-ce qu&rsquo;emp&ecirc;che &agrave; quelqu&rsquo;un de contourner vos serveurs de 
+							s&eacute;curit&eacute; et d&rsquo;acc&eacute;der &agrave; mon ordinateur directement ?</B>
+						<BR>
+						Laplink Internet n&rsquo;accepte jamais des requ&ecirc;tes des connexions par des 
+						sockets&nbsp;; &agrave; la place, Laplink Internet cr&eacute;e une connexion avec nos 
+						serveurs et uniquement re&ccedil;oit les informations concernant les requ&ecirc;tes de nos 
+						serveurs &agrave; travers cette connexion.
+						<P CLASS="BOTTOMNAV"><A HREF="#top"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+							<hr noshade size="1">
+					</TD>
+				</TR>
+			</TABLE>
+			<!-- End Content Area -->
+		</TD>
+	</tr>
+</table>

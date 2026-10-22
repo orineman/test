@@ -1,0 +1,214 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 3:00:22 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   AccountHibernateDAO.java
+
+package com.infowave.c4p.datasource.dao.hibernate;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.datasource.dao.*;
+import com.infowave.c4p.model.*;
+import java.io.PrintStream;
+import java.util.*;
+import net.sf.hibernate.*;
+
+// Referenced classes of package com.infowave.c4p.datasource.dao.hibernate:
+//            AbstractDAO, HibernateSession
+
+public class AccountHibernateDAO extends AbstractDAO
+    implements AccountDAO
+{
+
+    public AccountHibernateDAO()
+    {
+    }
+
+    public Account getByUsername(String username)
+        throws DataException
+    {
+        Account account = null;
+        account = (Account)super.getSingleInstance("Account.by.username", "username", username);
+        return account;
+    }
+
+    public Account getById(String id)
+        throws DataException
+    {
+        Account account = null;
+        account = (Account)super.getSingleInstance("Account.by.id", "id", id);
+        return account;
+    }
+
+    public void deleteByUsername(String username)
+        throws DataException
+    {
+        super.deleteSingleInstance("Account.by.username", "username", username);
+    }
+
+    public void update(Account account)
+        throws DataException
+    {
+        super.save(account);
+    }
+
+    public void createAcount(Account account, Authentication authentication, Desktop desktop)
+        throws DataException
+    {
+        Transaction tx = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            tx = session.beginTransaction();
+            session.save(account);
+            session.save(authentication);
+            if(desktop != null)
+                session.save(desktop);
+            tx.commit();
+        }
+        catch(HibernateException e)
+        {
+            if(tx != null)
+                try
+                {
+                    tx.rollback();
+                }
+                catch(Exception ex) { }
+            throw new DataException("Cannot create account", e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+    }
+
+    public void addDesktopToAcount(Account account, Desktop desktop)
+        throws DataException
+    {
+        Transaction tx = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            tx = session.beginTransaction();
+            session.save(desktop);
+            tx.commit();
+        }
+        catch(HibernateException e)
+        {
+            if(tx != null)
+                try
+                {
+                    tx.rollback();
+                }
+                catch(Exception ex) { }
+            throw new DataException("Cannot attach the desktop", e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+    }
+
+    public void update(List accounts)
+        throws DataException
+    {
+        Transaction tx = null;
+        try
+        {
+            Session session = HibernateSession.currentSession();
+            tx = session.beginTransaction();
+            Account account;
+            for(Iterator it = accounts.iterator(); it.hasNext(); session.update(account))
+                account = (Account)it.next();
+
+            tx.commit();
+        }
+        catch(HibernateException e)
+        {
+            if(tx != null)
+                try
+                {
+                    tx.rollback();
+                }
+                catch(Exception ex) { }
+            throw new DataException("Cannot save accounts", e);
+        }
+        finally
+        {
+            try
+            {
+                HibernateSession.closeSession();
+            }
+            catch(Exception e) { }
+        }
+    }
+
+    public static void testGetByUsername()
+        throws Exception
+    {
+        AccountDAO dao = DAOFactory.getAccountDAO();
+        Account account = dao.getByUsername("c4test");
+        System.out.println(account);
+    }
+
+    public static void testDeleteByUsername()
+        throws Exception
+    {
+        String username = "acc_0";
+        AccountDAO dao = DAOFactory.getAccountDAO();
+        dao.deleteByUsername(username);
+    }
+
+    public static void testCreate()
+        throws Exception
+    {
+        String resellerCode = "res_0";
+        ResellerDAO resellerDAO = DAOFactory.getResellerDAO();
+        com.infowave.c4p.model.Reseller reseller = resellerDAO.getByCode(resellerCode);
+        if(reseller == null)
+        {
+            System.out.println("Cannot find reseller: " + resellerCode);
+            return;
+        } else
+        {
+            AccountDAO dao = DAOFactory.getAccountDAO();
+            Account account = new Account();
+            account.setUsername("acc_10");
+            account.setBillingId("1");
+            account.setCreationDate(new Date());
+            account.setEmail("acc1@jkjkj.com");
+            account.setFirstName("acc1_fn10");
+            account.setLastName("acc1_ln10");
+            account.setLocale(new Locale("en"));
+            account.setSecurityAnswer("foo");
+            account.setSecurityQuestion(0);
+            account.setReseller(reseller);
+            dao.update(account);
+            return;
+        }
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            testGetByUsername();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private static final String GET_BY_USERNAME_QUERY = "Account.by.username";
+    private static final String GET_BY_ID_QUERY = "Account.by.id";
+    private static final String USERNAME_ATTRIBUTE = "username";
+    private static final String ID_ATTRIBUTE = "id";
+}

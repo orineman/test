@@ -1,0 +1,238 @@
+# The display modes' names
+
+displayMode.pc=PC
+
+displayMode.pda=PDA
+
+displayMode.phone=PHONE
+
+
+
+#Fields
+
+field.username=Benutzername
+
+field.password=Kennwort
+
+field.user=Benutzer
+
+field.pc=PC
+
+field.emailAddress=E-Mail Adresse
+
+field.secretQuestion=Sicherheitsfrage
+
+field.secretAnswer=Antwort zur Sicherheitsfrage
+
+field.pcName=PC Name
+
+field.passwordAgain=Kennwort bestätigen
+
+field.currentPassword=Derzeitiges Kennwort
+
+field.newPassword=Neues Kennwort
+
+field.newPasswordAgain=Wiederholen Sie Ihr Kennwort
+
+field.firstName=Vorname
+
+field.lastName=Nachname
+
+field.enabled=Freigegeben
+
+field.softwareVersion=Version
+
+field.license=Lizenz
+
+field.expiryDate=Ablaufdatum
+
+field.enablePC=PC für Fernsteuerung freischalten
+
+
+
+
+
+# Titles
+
+title.myPCs=Ihre PCs
+
+title.myAccount=Ihr Konto
+
+title.help=Hilfe
+
+title.view=Ansicht
+
+
+
+# Button/actions
+
+action.logout=Abmelden
+
+action.submit=Abschicken
+
+action.save=Speichern
+
+action.EditAccountInformation=Konto
+
+action.changePassword=Kennwort ändern
+
+action.changeSecurityQuestion=Sicherheitsfrage ändern
+
+action.continue=Weiter
+
+action.cancel=Unterbrechen
+
+action.editDesktop=Ändern
+
+action.unlicense=Delizensieren
+
+action.setLicense=Lizenz eingeben
+
+action.remove=Entfernen
+
+action.close=Schließen
+
+
+
+# Messages
+
+msg.secretAnswer=Bitte wählen Sie eine Sicherheitsfrage, zu der nur Sie die Antwort wissen. Wenn Sie das Kennwort vergessen, werden wir diese Frage benutzen, um Ihre Identität zu prüfen.
+
+msg.welcome=Willkommen
+
+msg.confirmationPasswordChange=Kennwort wurde erfolgreich geändert..
+
+msg.confirmationSecurityQuestionChange=Sicherheitsfrage wurde geändert.
+
+msg.passwordRecoverySuccess=Kennwort wurde erfolgreich geändert.
+
+msg.invalidUsernameOrPassword=Ungültiger Benutzername oder Kennwort.
+
+msg.logoutMessage=Abgemeldung erfolgt.
+msg.logoutNamedUserMessage=Benutzer {0} hat sich abgemeldet. 
+
+msg.notSecure=Achtung: Sie benutzen keine sichere Verbindung!
+
+msg.pleaseEnterUnusedLicense=Bitte geben Sie einen unbenutzten Lizenzkode ein:
+
+msg.extendVsTransferLicenseQuestion=Ihre derzeitige Lizenz ist noch gültig. Möchten Sie diese auslösen und eine neue Lizenz verwenden oder möchten Sie die Lizenz durch eine weitere Lizenz verlängern?
+
+msg.licenseHasNotExpiredWarning=Ihre derzeitige Lizenz für diesen PC ist noch gültig. Die Eingabe einer neuen Lizenz verlängert Ihr Abonnement.
+
+msg.licenseChangeConfirmationQuestion=Sind Sie sicher, dass Sie diese Lizenz verwenden wollen?
+
+msg.licenseChangeSuccess=Ihre Änderungen wurden angenommen.
+
+msg.unlicenseConfirmationQuestion=Sind Sie sicher, dass Sie diesen PC delizenzieren wollen?
+
+msg.daysToDesktopExpiryDate=[Ablauf in {0} Tagen]
+
+msg.desktopHasExpired=[Abgelaufen]
+
+msg.noDesktopsAvail=Keine Computer Konfiguriert
+
+msg.yes=Ja
+msg.no=Nein
+msg.unsubscribed=nicht abonniert
+msg.subscribed=abonniert
+msg.settings=Einstellungen
+msg.yourPCs=Ihre PCs
+msg.pcLicenses=PC Lizenzen
+msg.notAvailableAbbreviation=k.A.
+msg.removeDesktopConfirmationQuestion=Möchten Sie diesen PC unwiderruflich löschen?
+msg.phone.loggedOut=Dies ist die Startseite
+msg.phone.pageNotFound=Seite nicht gefunden
+msg.phone.generalError=Allgemeiner Fehler
+msg.marketing=<table cellpadding=3 cellspacing=0 border=0><tr><td>&nbsp;</td><td><font face=arial color=#29416E size=+1><b>Willkommen zu Laplink Internet</b></font><br><b style='font-family:Verdana; color: #29416e; font-size:11px;'>Dieser Service&nbsp;ermöglicht Ihnen Computer, auf denen Laplink Gold 12 läuft, über das Internet ohne eine besondere Konfiguration miteinander zu verbinden.</td></tr><tr><td colspan="2" align="center"><font face="arial" size="-2"><a href='http://www.laplink.com/products/llgold/overview.asp'>Erfahren Sie mehr...</a></font></td></tr><tr><td height=8 colspan=2></td></tr></table>
+msg.secure=Gesichert
+msg.standard=Standard
+
+# Message for html links
+
+msg.link.signupNewAccount=Ein neues Konto anlegen
+
+msg.link.clickHere=Klicken Sie
+
+msg.link.forgotYourPassword=Sie Ihr Kennwort vergessen?
+
+msg.link.noHttpsSupport= Keine HTTPS Unterstützung?
+
+msg.link.downloadSoftware=Download Laplink Internet software
+
+
+
+# Titles
+
+title.createAccount=Neues Konto anlegen
+
+title.addDesktopToAccount=Diesen PC einem existierenden Benutzer zuweisen
+
+title.changeSecurityQuestion=Administration \\ Änderung der Sicherheitsfrage
+
+title.changePassword=Administration \\ Kennwortänderung
+
+title.changeAccountInfo=Administration \\ Konto
+
+title.manageProfile=Profil verwalten
+
+title.passwordRecovery.username=Geben Sie Ihren Benutzernamen ein:
+
+title.passwordRecovery.securityQuestion=Bitte beantworten Sie unten Ihre Sicherheitsfrage:
+
+title.passwordRecovery.enterPassword=Bitte geben Sie ein neues Passwort für {0} ein:
+
+#
+
+#  Errors
+
+#  Important: the names of these properties must correspond to error codes as
+
+# devine in the util.ErrorCode class.
+
+error.DATA_ENTRY_LICENSE_CODE_FORMAT=Bitte geben Sie einen gültigen Lizenzkode ein:
+
+error.USERNAME_ALREADY_EXISTS=Dieser Benutzername existiert bereits.
+
+error.PC_NAME_ALREADY_EXISTS_CODE=Dieser PC Name existiert bereits
+
+error.DATA_ENTRY_USERNAME_MISSING=Sie müssen einen Benutzernamen eingeben 
+
+error.DATA_ENTRY_PASSWORD_MISSING=Sie müssen ein Kennwort eingeben 
+
+error.DATA_ENTRY_PASSWORD_CONF_MISSING=Sie müssen ein Kennwort zur Bestätigung eingeben 
+
+error.DATA_ENTRY_EMAIL_MISSING=Sie müssen eine E-Mail Adresse eingeben 
+
+error.DATA_ENTRY_SEC_ANSWER_MISSING=Sie müssen eine Sicherheitsfrage eingeben 
+
+error.DATA_ENTRY_PC_NAME_MISSING=Bitte geben Sie einen PC Name ein
+
+error.DATA_ENTRY_EMAIL_FORMAT=Ungültige E-Mailadresse
+
+error.DATA_ENTRY_USERNAME_FORMAT=Der Benutzername muss mindestens 4 Zeichen lang sein
+
+error.DATA_ENTRY_PASSWORD_FORMAT=Das Kennwort muss mindestens 4 Zeichen lang sein
+
+error.DATA_ENTRY_PASSWORDS_DONT_MATCH=Das Bestätigungskennwort stimmt nicht mit dem Kennwort überein
+
+error.DID_ALREADY_DEFINED=Die PC Kennung (did) existiert bereits: {0}
+
+error.INVALID_PASSWORD=Ungültiges Kennwort
+
+error.PC_NAME_ALREADY_EXISTS=Sie haben bereits einen PC mit diesem Namen angelegt
+
+error.INVALID_USER_NAME=Dieser Benutzername existiert nicht
+
+error.SYSTEM_ERROR=Der letzte Befehl konnte nicht vollendet werden
+
+error.INVALID_SECURITY_ANSWER=Ihre Antwort auf die Sicherheitsabfrage stimmt nicht mit der abgespeicherten Antwort überein.
+
+error.INVALID_LICENSE_NUMBER=Ungültiger Lizenzkode
+
+error.INVALID_LICENSE_NUMBER=Ungültiger Lizenzkode
+
+error.INVALID_PARAMETERS=Ihre Anfrage konnte nicht vollendet werden
+
+error.TOO_MANY_LICENSES_CODE=Sie haben zu viele Lizenzen für diesen Computer.
+
+error.FORM_ALREADY_SUBMITTED=Diese Seite wurde bereits übertragen

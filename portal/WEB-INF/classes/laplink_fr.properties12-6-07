@@ -1,0 +1,23 @@
+message.copyright= Copyright Laplink Software Inc.
+message.pda_copyright= Copyright Laplink Software Inc.
+message.pda_login=Laplink Login
+message.login=Connexion à Laplink Internet
+
+title.subscripion=Laplink Subscription
+title.pcConfiguration=Laplink PC Configuration
+title.mainWindowTitle=Laplink Internet
+title.passwordRecovery=Récupération de mot de passe Laplink 
+
+securityQuestion.1=Quels sont les derniers numéros de votre carte d'identité ?
+securityQuestion.2=Quels sont les derniers numéros de votre carte de crédit ?
+securityQuestion.3=Quel est le nom de jeune fille de votre mère ?
+securityQuestion.4=Quel est le deuxième nom de votre père ?
+
+
+msg.helpForGettingAlicenseCode=Cliquez <a href="http://www.laplink.com/support/faq/faq.asp?pid=5&q1=serial&c1=%24contents" target="_blank">ici</a>  pour l’aide à comment trouver et entrer des numéros de séries.
+msg.toPurchaseALicenseCode=Cliquez sur <a href={0} target="_blank">here</a> pour acheter un numéro de série.
+msg.passwordRecoveryHint=Note: If you have forgotten your username, open the Laplink Internet console on your PC, select "Configure->Users and Sharing" and look at the "Me" entry.
+
+mail.newAccountSubject=[Laplink Internet] Merci pour votre inscription!
+mail.newAccountFrom=support@laplink.com
+mail.newAccountBody=Nous vous remercions pour votre inscription à Laplink Internet. \n\nPour votre commodité, voici quelques conseilles pour connecter à\nvos ordinateurs.\n\n-Installez Laplink Gold 12 sur chaque ordinateur auxquels vous aimeriez vous connecter.\n\n-Exécutez Laplink Gold 12 sur chaque ordinateur et au moment vous avez le message pour enregistrer l’ordinateur avec le service Laplink Internet\n cliquez sur Oui et suivez les instructions.\n\n\nSi vous avez besoin de l’assistance supplémentaire, s’il vous plait contactez l’assistance technique de Laplink au http://www.laplink.com/support/laplink.asp.\n\nCordialement,\nL’équipe Laplink Internet\nsupport@laplink.com\n

@@ -1,0 +1,564 @@
+WARN  2021-02-20 05:19:52,971  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-20 05:19:52,972  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-21 00:20:58,259  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-21 00:20:58,259  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-21 11:37:23,189  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-21 11:37:23,189  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-22 03:05:07,059  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/logo.gif 
+ERROR 2021-02-22 03:05:07,060  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-02-22 05:36:46,762  org.apache.struts.action.RequestProcessor -- Invalid path /showloginpage was requested 
+WARN  2021-02-23 03:06:47,875  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 03:06:47,875  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 03:06:51,862  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 03:06:51,863  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 03:06:54,013  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 03:06:54,013  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 03:06:54,500  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 03:06:54,500  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 03:06:55,984  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 03:06:55,984  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 09:20:22,663  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 09:20:22,663  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 13:37:00,823  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 13:37:00,823  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 14:13:15,395  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 14:13:15,395  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-23 15:08:57,040  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-23 15:08:57,041  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-24 02:37:32,045  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-24 02:37:32,045  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-24 08:49:19,708  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-24 08:49:19,708  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-24 22:40:13,409  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-24 22:40:13,409  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-25 08:42:57,682  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/logo.gif 
+ERROR 2021-02-25 08:42:57,682  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-25 18:49:02,528  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-25 18:49:02,528  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-25 23:50:10,622  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-25 23:50:10,623  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-26 14:55:54,733  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-26 14:55:54,733  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-27 04:30:38,315  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-27 04:30:38,315  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-27 13:44:37,317  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-27 13:44:37,317  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-28 01:15:50,704  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-28 01:15:50,704  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-28 11:36:10,495  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-02-28 11:36:10,496  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-02-28 15:01:49,116  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/logo.gif 
+ERROR 2021-02-28 15:01:49,116  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-01 17:01:14,191  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-01 17:01:14,191  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-02 05:16:08,138  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-02 05:16:08,138  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-02 11:19:20,910  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-02 11:19:20,910  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-02 11:19:21,877  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-02 11:19:21,877  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-02 11:19:22,280  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-02 11:19:22,280  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-03 00:19:29,042  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-03 00:19:29,043  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-05 05:50:39,700  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-05 05:50:39,700  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-05 06:26:28,657  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-05 06:26:28,657  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-05 13:30:50,862  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-05 13:30:50,862  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-03-05 14:51:51,654  com.infowave.c4p.web.util.BaseAction -- java.lang.NullPointerException 
+ERROR 2021-03-05 14:51:51,656  com.infowave.c4p.web.util.BaseAction -- Cannot perform action com.infowave.c4p.web.actions.ShowMainPage 
+java.lang.NullPointerException
+	at com.infowave.c4p.web.util.SessionState.refreshUser(SessionState.java:356)
+	at com.infowave.c4p.web.util.SessionState.refresh(SessionState.java:143)
+	at com.infowave.c4p.web.actions.ShowMainPage.executeLogic(ShowMainPage.java:55)
+	at com.infowave.c4p.web.util.BaseAction.execute(BaseAction.java:116)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doGet(ActionServlet.java:507)
+	at javax.servlet.http.HttpServlet.doHead(HttpServlet.java:313)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:757)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.RemoteControlFilter.doFilter(RemoteControlFilter.java:133)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ApplicationFilter.doFilter(ApplicationFilter.java:143)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.SessionConfigurationFilter.doFilter(SessionConfigurationFilter.java:152)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ResourceFilter.doFilter(ResourceFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.DeviceIconFilter.doFilter(DeviceIconFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at com.infowave.c4p.web.security.C4PFormAuthenticator.invoke(C4PFormAuthenticator.java:67)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at com.infowave.c4p.web.security.C4PBasicAuthenticator.invoke(C4PBasicAuthenticator.java:78)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.ajp.tomcat4.Ajp13Processor.process(Ajp13Processor.java:457)
+	at org.apache.ajp.tomcat4.Ajp13Processor.run(Ajp13Processor.java:576)
+	at java.lang.Thread.run(Thread.java:534)
+WARN  2021-03-05 14:51:51,658  org.apache.struts.action.RequestProcessor -- Unhandled Exception thrown: class java.lang.IllegalStateException 
+WARN  2021-03-05 15:22:33,062  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-05 15:22:33,065  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-05 15:39:18,038  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-05 15:39:18,038  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-06 04:16:13,284  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-06 04:16:13,285  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-06 15:35:45,406  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-06 15:35:45,406  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-08 22:28:05,885  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tabdiv_uu.gif 
+ERROR 2021-03-08 22:28:05,885  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-09 02:26:15,451  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-09 02:26:15,452  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-09 02:26:15,848  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-09 02:26:15,848  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-09 02:26:16,231  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-09 02:26:16,231  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-03-09 06:55:09,778  com.infowave.c4p.web.util.BaseAction -- No nominal forward for mapping: DummyForm 
+ERROR 2021-03-09 06:55:09,778  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.login.ShowLoginPage 
+WARN  2021-03-12 07:29:07,695  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-12 07:29:07,695  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-12 13:30:16,563  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-12 13:30:16,563  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-13 01:20:36,935  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-13 01:20:36,935  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-13 03:12:31,431  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-13 03:12:31,432  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-13 08:24:44,833  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-13 08:24:44,834  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-03-13 17:55:30,779  com.infowave.c4p.web.actions.AttachDesktopToAccount -- Could not add desktop =  username = Chick Newman did = 878a371a 
+com.infowave.c4p.service.ServiceException: DID_ALREADY_DEFINED: 878a371a
+	at com.infowave.c4p.model.facade.UserManagerImpl.addDesktopToAccount(UserManagerImpl.java:207)
+	at com.infowave.c4p.web.actions.AttachDesktopToAccount.executeLogic(AttachDesktopToAccount.java:78)
+	at com.infowave.c4p.web.util.BaseAction.execute(BaseAction.java:116)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:525)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:760)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.RemoteControlFilter.doFilter(RemoteControlFilter.java:133)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ApplicationFilter.doFilter(ApplicationFilter.java:143)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.SessionConfigurationFilter.doFilter(SessionConfigurationFilter.java:152)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ResourceFilter.doFilter(ResourceFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.DeviceIconFilter.doFilter(DeviceIconFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at com.infowave.c4p.web.security.C4PFormAuthenticator.invoke(C4PFormAuthenticator.java:67)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at com.infowave.c4p.web.security.C4PBasicAuthenticator.invoke(C4PBasicAuthenticator.java:78)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.ajp.tomcat4.Ajp13Processor.process(Ajp13Processor.java:457)
+	at org.apache.ajp.tomcat4.Ajp13Processor.run(Ajp13Processor.java:576)
+	at java.lang.Thread.run(Thread.java:534)
+WARN  2021-03-13 18:38:49,798  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-13 18:38:49,799  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-13 23:39:28,410  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-13 23:39:28,410  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-14 11:28:19,165  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-14 11:28:19,165  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-14 13:18:03,791  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/logo.gif 
+ERROR 2021-03-14 13:18:03,791  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-14 21:49:41,461  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-14 21:49:41,461  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-15 02:53:03,459  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-15 02:53:03,459  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-16 02:37:53,203  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-16 02:37:53,204  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-16 02:37:53,602  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-16 02:37:53,602  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-16 02:37:54,000  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-16 02:37:54,000  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-16 07:44:53,000  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-16 07:44:53,000  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-17 10:37:24,693  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-17 10:37:24,693  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-19 12:46:44,909  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-19 12:46:44,909  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,681  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-20 19:51:13,681  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,705  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tabright_u.gif 
+ERROR 2021-03-20 19:51:13,705  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,741  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tabdiv_uu.gif 
+ERROR 2021-03-20 19:51:13,741  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,747  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tableft_u.gif 
+ERROR 2021-03-20 19:51:13,747  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,752  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/watermark.gif 
+ERROR 2021-03-20 19:51:13,752  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,759  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/logo.gif 
+ERROR 2021-03-20 19:51:13,759  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:13,935  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-20 19:51:13,935  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:14,032  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/watermark.gif 
+ERROR 2021-03-20 19:51:14,032  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:14,037  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tabdiv_uu.gif 
+ERROR 2021-03-20 19:51:14,039  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:14,047  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/logo.gif 
+ERROR 2021-03-20 19:51:14,047  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:14,053  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tabright_u.gif 
+ERROR 2021-03-20 19:51:14,053  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-20 19:51:14,059  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/tableft_u.gif 
+ERROR 2021-03-20 19:51:14,059  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-21 02:53:17,280  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-21 02:53:17,280  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-22 06:51:02,653  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-22 06:51:02,653  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-23 01:11:19,903  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-23 01:11:19,903  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-23 02:03:41,328  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-23 02:03:41,328  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-23 02:03:41,703  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-23 02:03:41,703  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-23 02:03:42,105  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-23 02:03:42,105  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-23 23:35:07,390  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-23 23:35:07,390  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-24 06:36:53,970  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-24 06:36:53,970  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-03-24 17:58:32,819  com.infowave.c4p.web.actions.AttachDesktopToAccount -- Could not add desktop =  username = SEMPLIGEST did = 9d9aa5b1 
+com.infowave.c4p.service.ServiceException: DID_ALREADY_DEFINED: 9d9aa5b1
+	at com.infowave.c4p.model.facade.UserManagerImpl.addDesktopToAccount(UserManagerImpl.java:207)
+	at com.infowave.c4p.web.actions.AttachDesktopToAccount.executeLogic(AttachDesktopToAccount.java:78)
+	at com.infowave.c4p.web.util.BaseAction.execute(BaseAction.java:116)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:525)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:760)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.RemoteControlFilter.doFilter(RemoteControlFilter.java:133)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ApplicationFilter.doFilter(ApplicationFilter.java:143)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.SessionConfigurationFilter.doFilter(SessionConfigurationFilter.java:152)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ResourceFilter.doFilter(ResourceFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.DeviceIconFilter.doFilter(DeviceIconFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at com.infowave.c4p.web.security.C4PFormAuthenticator.invoke(C4PFormAuthenticator.java:67)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at com.infowave.c4p.web.security.C4PBasicAuthenticator.invoke(C4PBasicAuthenticator.java:78)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.ajp.tomcat4.Ajp13Processor.process(Ajp13Processor.java:457)
+	at org.apache.ajp.tomcat4.Ajp13Processor.run(Ajp13Processor.java:576)
+	at java.lang.Thread.run(Thread.java:534)
+ERROR 2021-03-24 17:59:37,808  com.infowave.c4p.web.actions.AttachDesktopToAccount -- Could not add desktop =  username = SEMPLIGEST did = 9d9aa5b1 
+com.infowave.c4p.service.ServiceException: DID_ALREADY_DEFINED: 9d9aa5b1
+	at com.infowave.c4p.model.facade.UserManagerImpl.addDesktopToAccount(UserManagerImpl.java:207)
+	at com.infowave.c4p.web.actions.AttachDesktopToAccount.executeLogic(AttachDesktopToAccount.java:78)
+	at com.infowave.c4p.web.util.BaseAction.execute(BaseAction.java:116)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:525)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:760)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.RemoteControlFilter.doFilter(RemoteControlFilter.java:133)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ApplicationFilter.doFilter(ApplicationFilter.java:143)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.SessionConfigurationFilter.doFilter(SessionConfigurationFilter.java:152)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ResourceFilter.doFilter(ResourceFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.DeviceIconFilter.doFilter(DeviceIconFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at com.infowave.c4p.web.security.C4PFormAuthenticator.invoke(C4PFormAuthenticator.java:67)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at com.infowave.c4p.web.security.C4PBasicAuthenticator.invoke(C4PBasicAuthenticator.java:78)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.ajp.tomcat4.Ajp13Processor.process(Ajp13Processor.java:457)
+	at org.apache.ajp.tomcat4.Ajp13Processor.run(Ajp13Processor.java:576)
+	at java.lang.Thread.run(Thread.java:534)
+ERROR 2021-03-24 17:59:49,823  com.infowave.c4p.web.actions.AttachDesktopToAccount -- Could not add desktop =  username = SEMPLIGEST did = 9d9aa5b1 
+com.infowave.c4p.service.ServiceException: DID_ALREADY_DEFINED: 9d9aa5b1
+	at com.infowave.c4p.model.facade.UserManagerImpl.addDesktopToAccount(UserManagerImpl.java:207)
+	at com.infowave.c4p.web.actions.AttachDesktopToAccount.executeLogic(AttachDesktopToAccount.java:78)
+	at com.infowave.c4p.web.util.BaseAction.execute(BaseAction.java:116)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:525)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:760)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.RemoteControlFilter.doFilter(RemoteControlFilter.java:133)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ApplicationFilter.doFilter(ApplicationFilter.java:143)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.SessionConfigurationFilter.doFilter(SessionConfigurationFilter.java:152)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ResourceFilter.doFilter(ResourceFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.DeviceIconFilter.doFilter(DeviceIconFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at com.infowave.c4p.web.security.C4PFormAuthenticator.invoke(C4PFormAuthenticator.java:67)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at com.infowave.c4p.web.security.C4PBasicAuthenticator.invoke(C4PBasicAuthenticator.java:78)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.ajp.tomcat4.Ajp13Processor.process(Ajp13Processor.java:457)
+	at org.apache.ajp.tomcat4.Ajp13Processor.run(Ajp13Processor.java:576)
+	at java.lang.Thread.run(Thread.java:534)
+ERROR 2021-03-24 18:00:03,742  com.infowave.c4p.web.actions.AttachDesktopToAccount -- Could not add desktop =  username = SEMPLIGEST did = 9d9aa5b1 
+com.infowave.c4p.service.ServiceException: DID_ALREADY_DEFINED: 9d9aa5b1
+	at com.infowave.c4p.model.facade.UserManagerImpl.addDesktopToAccount(UserManagerImpl.java:207)
+	at com.infowave.c4p.web.actions.AttachDesktopToAccount.executeLogic(AttachDesktopToAccount.java:78)
+	at com.infowave.c4p.web.util.BaseAction.execute(BaseAction.java:116)
+	at org.apache.struts.action.RequestProcessor.processActionPerform(RequestProcessor.java:484)
+	at org.apache.struts.action.RequestProcessor.process(RequestProcessor.java:274)
+	at org.apache.struts.action.ActionServlet.process(ActionServlet.java:1482)
+	at org.apache.struts.action.ActionServlet.doPost(ActionServlet.java:525)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:760)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.RemoteControlFilter.doFilter(RemoteControlFilter.java:133)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ApplicationFilter.doFilter(ApplicationFilter.java:143)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.SessionConfigurationFilter.doFilter(SessionConfigurationFilter.java:152)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.PassThruFilter.doFilter(PassThruFilter.java:173)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.ResourceFilter.doFilter(ResourceFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at com.infowave.c4p.web.filters.DeviceIconFilter.doFilter(DeviceIconFilter.java:56)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:213)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:256)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
+	at com.infowave.c4p.web.security.C4PFormAuthenticator.invoke(C4PFormAuthenticator.java:67)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at com.infowave.c4p.web.security.C4PBasicAuthenticator.invoke(C4PBasicAuthenticator.java:78)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2422)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:171)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:163)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:641)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline$StandardPipelineValveContext.invokeNext(StandardPipeline.java:643)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:480)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:995)
+	at org.apache.ajp.tomcat4.Ajp13Processor.process(Ajp13Processor.java:457)
+	at org.apache.ajp.tomcat4.Ajp13Processor.run(Ajp13Processor.java:576)
+	at java.lang.Thread.run(Thread.java:534)
+WARN  2021-03-25 12:56:42,185  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-25 12:56:42,185  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-03-26 01:26:12,724  org.apache.struts.action.RequestProcessor -- Invalid path /deptWebsiteAction was requested 
+ERROR 2021-03-26 01:27:00,291  org.apache.struts.action.RequestProcessor -- Invalid path /datacenter/downloadApp/showDownload was requested 
+ERROR 2021-03-26 01:27:21,678  org.apache.struts.action.RequestProcessor -- Invalid path /login/Jeecms was requested 
+WARN  2021-03-26 12:09:08,913  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-26 12:09:08,914  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-27 06:26:07,518  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-27 06:26:07,518  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-27 08:48:45,316  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-27 08:48:45,316  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+WARN  2021-03-27 17:45:22,867  com.infowave.c4p.web.filters.ResourceFilter -- Could not find requested resource: /x-res/style.css 
+ERROR 2021-03-27 17:45:22,868  com.infowave.c4p.web.util.BaseAction -- Could not find a forward for mapping: DummyForm action = com.infowave.c4p.web.actions.Process404Error 
+ERROR 2021-03-28 11:42:12,384  org.apache.struts.action.RequestProcessor -- Invalid path / #dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#res=@org.apache.struts2.ServletActionContext@getResponse()).(#res.addHeader('eresult','struts2_security_check'))}/login was requested 
+ERROR 2021-03-28 11:42:12,762  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 
+ERROR 2021-03-28 11:42:13,132  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 
+ERROR 2021-03-28 11:42:13,454  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 
+ERROR 2021-03-28 11:42:13,852  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 
+ERROR 2021-03-28 11:42:14,262  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 
+ERROR 2021-03-28 11:42:14,642  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 
+ERROR 2021-03-28 11:42:15,012  org.apache.struts.action.RequestProcessor -- Invalid path /login was requested 

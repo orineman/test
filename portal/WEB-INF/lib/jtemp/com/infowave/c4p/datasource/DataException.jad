@@ -1,0 +1,26 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/27/2004 8:44:32 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   DataException.java
+
+package com.infowave.c4p.datasource;
+
+
+public class DataException extends Exception
+{
+
+    public DataException(String msg)
+    {
+        super(msg);
+    }
+
+    public DataException(String msg, Throwable t)
+    {
+        super(msg, t);
+    }
+
+    public DataException(Throwable t)
+    {
+        super(t);
+    }
+}

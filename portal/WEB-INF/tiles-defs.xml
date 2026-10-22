@@ -1,0 +1,484 @@
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+
+  <!-- =======================================================  -->
+  <!-- Master definition  									                    -->
+  <!-- =======================================================  -->
+
+  <!-- A page with a header and a menu bar. -->
+  <definition name="pc.pageWithMenu" path="/WEB-INF/jsp/layouts/pc/siteLayoutWithMenu.jsp">
+    <put name="title"  value="Portal" />
+    <put name="pageErrors" value="/WEB-INF/jsp/tiles/pc/pageErrors.jsp" />
+    <put name="header" value="/WEB-INF/jsp/tiles/pc/header.jsp" />
+    <put name="footer" value="/WEB-INF/jsp/tiles/pc/footer.jsp" />
+  </definition>
+  <definition name="pda.mainLayout" path="/WEB-INF/jsp/layouts/pda/classicLayout.jsp">
+	  <put name="title"  value="Portal" />
+    <put name="pageErrors" value="/WEB-INF/jsp/tiles/pda/pageErrors.jsp" />
+	  <put name="header" value="/WEB-INF/jsp/tiles/pda/header.jsp" />
+	  <put name="footer" value="/WEB-INF/jsp/tiles/pda/footer.jsp" />
+  </definition>
+  <definition name="phone.mainLayout" path="/WEB-INF/jsp/layouts/phone/classicLayout.jsp">
+    <put name="title"  value="Portal" />
+  </definition>
+
+  <!-- A page with a header and no  menu bar. -->
+  <definition name="pc.pageWithNoMenu" path="/WEB-INF/jsp/layouts/pc/siteLayout.jsp">
+	  <put name="title"  value="Portal" />
+    <put name="pageErrors" value="/WEB-INF/jsp/tiles/pc/pageErrors.jsp" />
+	  <put name="header" value="/WEB-INF/jsp/tiles/pc/header.jsp" />
+	  <put name="footer" value="/WEB-INF/jsp/tiles/pc/footer.jsp" />
+  </definition>
+
+  <!-- A page for llg to parse. -->
+  <definition name="llg.mainLayout" path="/WEB-INF/jsp/layouts/llg/mainLayout.jsp">
+	  <put name="title"  value="Portal" />
+  </definition>
+
+  <!-- A popup window. -->
+ <!-- Each tile must define a setTitle method .                -->
+
+  <definition name="pc.popupWindow" path="/WEB-INF/jsp/layouts/pc/popupLayout.jsp">
+	  <put name="title"  value="" />
+    <put name="pageErrors" value="/WEB-INF/jsp/tiles/pc/pageErrors.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Login page                                               -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <definition name="pc.loginPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/login.jsp" />
+  </definition>
+
+ <!-- =======================================================  -->
+  <!-- Login page                                               -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <definition name="pda.loginPage" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/login.jsp" />
+  </definition>
+
+ <!-- =======================================================  -->
+  <!-- StdLogin page                                            -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <definition name="pc.stdLoginPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/std_login.jsp" />
+  </definition>
+
+ <!-- =======================================================  -->
+  <!-- StdLogin page                                            -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <definition name="pda.stdLoginPage" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/std_login.jsp" />
+  </definition>
+  <!-- =======================================================  -->
+  <!-- Welcome page: the page we see right after logging in.    -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+    <definition name="pc.welcomePage" path="/WEB-INF/jsp/layouts/pc/mainPageRedirector.jsp" >
+  </definition>
+  <definition name="pc.welcomePagePopup" extends="pc.pageWithMenu" >
+    <put name="title"  value="" />
+    <put name="menu"   value="/WEB-INF/jsp/tiles/pc/desktopList.jsp" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/welcome.jsp" />
+  </definition>
+  <definition name="pda.welcomePage" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/welcome.jsp" />
+  </definition>
+  <definition name="pda.desktopList" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/desktopList.jsp" />
+  </definition>
+  <definition name="pda.desktopPage" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/desktop.jsp" />
+  </definition>
+  <definition name="phone.desktopList" extends="phone.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/phone/desktopList.jsp" />
+  </definition>
+  <definition name="phone.desktopPage" extends="phone.mainLayout" >
+	  <put name="title"  value="" />
+	  <put name="body"   value="/WEB-INF/jsp/tiles/phone/desktop.jsp" />
+  </definition>
+  <definition name="phone.loggedOut" extends="phone.mainLayout" >
+	  <put name="title"  value="" />
+	  <put name="body"   value="/WEB-INF/jsp/tiles/phone/loggedOut.jsp" />
+  </definition>
+  <definition name="llg.status" extends="llg.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/llg/status.jsp" />
+  </definition>
+  <definition name="llg.desktopList" extends="llg.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/llg/desktopList.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Help Page                                                -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <definition name="pc.helpPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/help.jsp" />
+  </definition>
+
+
+  <!-- =======================================================  -->
+  <!-- Create new Account page                                  -->
+  <!-- =======================================================  -->
+
+  <definition name="pc.createAccountPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/createAccount.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Account Creation Success page                           -->
+  <!-- =======================================================  -->
+
+  <definition name="pc.accountCreationSuccessPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/accountCreationSuccess.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Account Creation With Desktop Success page               -->
+  <!-- =======================================================  -->
+
+  <definition name="pc.accountCreationWithDesktopSuccessPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/accountCreationWithDesktopSuccess.jsp" />
+  </definition>
+
+
+  <!-- =======================================================  -->
+  <!-- Attach a device to an existing Account                   -->
+  <!-- =======================================================  -->
+
+  <definition name="pc.attachDesktopToAccount" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/attachDesktopToAccount.jsp" />
+  </definition>
+
+  <!-- ====================================================  -->
+  <!-- Attach Desktop Success page                           -->
+  <!-- ====================================================  -->
+
+  <definition name="pc.attachDesktopToAccountSuccess" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/attachDesktopToAccountSuccess.jsp" />
+  </definition>
+
+  <!-- ====================================================  -->
+  <!-- Change Account Info Page                               -->
+  <!-- ====================================================  -->
+
+  <definition name="pc.changeIdentity" extends="pc.pageWithMenu" >
+    <put name="title"  value="" />
+    <put name="menu"   value="/WEB-INF/jsp/tiles/pc/accountManagementNavBar.jsp" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/changeIdentity.jsp" />
+  </definition>
+
+  <!-- ====================================================  -->
+  <!-- Change Password Page                                  -->
+  <!-- ====================================================  -->
+
+  <definition name="pc.changePassword" extends="pc.pageWithMenu" >
+    <put name="title"  value="" />
+    <put name="menu"   value="/WEB-INF/jsp/tiles/pc/accountManagementNavBar.jsp" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/changePassword.jsp" />
+  </definition>
+
+  <!-- ====================================================  -->
+  <!-- Change Security Question Page                         -->
+  <!-- ====================================================  -->
+
+  <definition name="pc.changeSecurityQuestion" extends="pc.pageWithMenu" >
+    <put name="title"  value="" />
+    <put name="menu"   value="/WEB-INF/jsp/tiles/pc/accountManagementNavBar.jsp" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/changeSecurityQuestion.jsp" />
+  </definition>
+
+  <!-- ====================================================  -->
+  <!-- Change Security Question Page                         -->
+  <!-- ====================================================  -->
+
+  <definition name="pc.accountChangeConfirmation" extends="pc.pageWithMenu" >
+    <put name="title"  value="" />
+    <put name="menu"   value="/WEB-INF/jsp/tiles/pc/accountManagementNavBar.jsp" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/accountChangeConfirmation.jsp"/>
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Desktop page: the content of this page (except for the   -->
+  <!--            header and footer is rendered by the ICM      -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+
+  <definition name="pc.desktopPage" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/desktop.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 1: enter a username               -->
+  <!-- =======================================================  -->
+  <definition name="pc.passwordRecoveryEnterUsername" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/passwdRecoveryUsername.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 1: enter a username               -->
+  <!-- =======================================================  -->
+  <definition name="pda.passwordRecoveryEnterUsername" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/passwdRecoveryUsername.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 2: enter the security answer      -->
+  <!-- =======================================================  -->
+  <definition name="pc.passwordRecoveryEnterAnswer" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/passwdRecoveryAnswer.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 2: enter the security answer      -->
+  <!-- =======================================================  -->
+  <definition name="pda.passwordRecoveryEnterAnswer" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/passwdRecoveryAnswer.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 3: enter a new password           -->
+  <!-- =======================================================  -->
+  <definition name="pc.passwordRecoveryEnterNewPassword" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/passwdRecoveryPassword.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 3: enter a new password           -->
+  <!-- =======================================================  -->
+  <definition name="pda.passwordRecoveryEnterNewPassword" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/passwdRecoveryPassword.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 4: confirmation                   -->
+  <!-- =======================================================  -->
+  <definition name="pc.passwordRecoveryConfirmation" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/passwdRecoverySuccess.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Password recovery step 4: confirmation                   -->
+  <!-- =======================================================  -->
+  <definition name="pda.passwordRecoveryConfirmation" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/passwdRecoverySuccess.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Edit device Page                                         -->
+  <!-- =======================================================  -->
+  <definition name="pc.editDesktop" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/editDesktop.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Confirm a desktop deletion                               -->
+  <!-- =======================================================  -->
+  <definition name="pc.removeDesktopConfirmation" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/removeDesktopConfirmation.jsp" />
+  </definition>
+
+
+  <!-- =======================================================  -->
+  <!-- Enter a license                                          -->
+  <!-- =======================================================  -->
+  <definition name="pc.enterLicenseCode" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/enterLicenseCode.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Ask the license extension question                       -->
+  <!-- =======================================================  -->
+  <definition name="pc.askLicenseExtensionQuestion" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/askLicenseExtensionQuestion.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Confirm before changing the license                      -->
+  <!-- =======================================================  -->
+  <definition name="pc.licenseChangeConfirmation" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/licenseChangeConfirmation.jsp" />
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- Success message after changing the license                 -->
+  <!-- =======================================================  -->
+  <definition name="pc.licenseChangeSuccess" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/licenseChangeSuccess.jsp" />
+  </definition>
+
+  <!-- =======================================================    -->
+  <!-- Success message after changing the license                 -->
+  <!-- =======================================================    -->
+  <definition name="pc.unlicenseDesktop" extends="pc.popupWindow" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/unlicenseDesktop.jsp" />
+  </definition>
+
+
+  <!-- =======================================================  -->
+  <!-- Close a popup window                                     -->
+  <!-- =======================================================  -->
+  <!--
+  <definition name="pc.popupCloser"  >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/popupCloser.jsp" />
+  </definition>
+-->
+
+  <definition name="pc.popupCloser" path="/WEB-INF/jsp/tiles/pc/popupCloser.jsp" >
+  </definition>
+
+  <!-- =======================================================  -->
+  <!-- 404 page: Display with we cannot find the requested url  -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <!-- todo add a tile def for wml -->
+  <definition name="pc.error404" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/error404.jsp" />
+  </definition>
+  <definition name="pda.error404" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/error404.jsp" />
+  </definition>
+  <definition name="phone.error404" extends="phone.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/phone/error404.jsp" />
+  </definition>
+
+
+  <!-- =======================================================  -->
+  <!-- System Error: Something bad happened                     -->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <!-- todo add a tile def for wml -->
+  <definition name="pc.generalError" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pc/generalError.jsp" />
+  </definition>
+  <definition name="pda.generalError" extends="pda.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/pda/generalError.jsp" />
+  </definition>
+  <definition name="phone.generalError" extends="phone.mainLayout" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/phone/generalError.jsp" />
+  </definition>
+
+
+  <!-- =======================================================  -->
+  <!-- teksupport						-->
+  <!--                                                          -->
+  <!-- =======================================================  -->
+  <definition name="pc.tekSupport" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/tekSupport.jsp"/>
+  </definition>
+  <definition name="pc.passwordReset" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/passwordReset.jsp"/>
+  </definition>
+  <definition name="pc.userLocate" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/userLocate.jsp"/>
+  </definition>
+  <definition name="pc.desktopLocate" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/desktopLocate.jsp"/>
+  </definition>
+  <definition name="pc.userResults" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/userResults.jsp"/>
+  </definition>
+  <definition name="pc.desktopResults" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/desktopResults.jsp"/>
+  </definition>
+  <definition name="pc.expiryUpdateRC" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/expiryUpdateRC.jsp"/>
+  </definition>
+  <definition name="pc.expiryUpdate" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/expiryUpdate.jsp"/>
+  </definition>
+  <definition name="pc.licenseRevive" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseRevive.jsp"/>
+  </definition>
+  <definition name="pc.licenseCancel" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseCancel.jsp"/>
+  </definition>
+  <definition name="pc.licenseRevoke" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseRevoke.jsp"/>
+  </definition>
+  <definition name="pc.licenseConfirmRevoke" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseConfirmRevoke.jsp"/>
+  </definition>
+  <definition name="pc.licenseConfirmCancel" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseConfirmCancel.jsp"/>
+  </definition>
+  <definition name="pc.licenseStatusRevoke" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseStatusRevoke.jsp"/>
+  </definition>
+  <definition name="pc.licenseStatusRevive" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseStatusRevive.jsp"/>
+  </definition>
+  <definition name="pc.licenseStatusCancel" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseStatusCancel.jsp"/>
+  </definition>
+  <definition name="pc.licenseGenerate" extends="pc.pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/jsp/tiles/teksupport/licenseGenerate.jsp"/>
+  </definition>
+
+
+</tiles-definitions>

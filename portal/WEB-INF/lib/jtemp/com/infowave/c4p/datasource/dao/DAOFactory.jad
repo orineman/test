@@ -1,0 +1,176 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/27/2004 8:02:23 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   DAOFactory.java
+
+package com.infowave.c4p.datasource.dao;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+// Referenced classes of package com.infowave.c4p.datasource.dao:
+//            AccountDAO, DesktopDAO, ResellerDAO, RegistrationCodeDAO, 
+//            LicenseDAO, AuthenticationDAO, ICMDAO
+
+public class DAOFactory
+{
+
+    public DAOFactory()
+    {
+    }
+
+    public static AccountDAO getAccountDAO()
+    {
+        if(m_accountDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.AccountHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_accountDAO = (AccountDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate AccountDAO from : " + classname);
+            }
+        }
+        return m_accountDAO;
+    }
+
+    public static DesktopDAO getDesktopDAO()
+    {
+        if(m_desktopDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.DesktopHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_desktopDAO = (DesktopDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate DesktopDAO from : " + classname);
+            }
+        }
+        return m_desktopDAO;
+    }
+
+    public static ResellerDAO getResellerDAO()
+    {
+        if(m_resellerDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.ResellerHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_resellerDAO = (ResellerDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate ResellerDAO from : " + classname);
+            }
+        }
+        return m_resellerDAO;
+    }
+
+    public static RegistrationCodeDAO getRegistrationCodeDAO()
+    {
+        if(m_registrationCodeDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.RegistrationCodeHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_registrationCodeDAO = (RegistrationCodeDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate RegistrationCode from : " + classname);
+            }
+        }
+        return m_registrationCodeDAO;
+    }
+
+    public static LicenseDAO getLicenseDAO()
+    {
+        if(m_licenseDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.LicenseHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_licenseDAO = (LicenseDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate LicenseDAO from : " + classname);
+            }
+        }
+        return m_licenseDAO;
+    }
+
+    public static AuthenticationDAO getAuthenticationDAO()
+    {
+        if(m_authenticationDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.AuthenticationHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_authenticationDAO = (AuthenticationDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate AuthenticationDAO from : " + classname);
+            }
+        }
+        return m_authenticationDAO;
+    }
+
+    public static ICMDAO getICMDAO()
+    {
+        if(m_icmDAO == null)
+        {
+            String classname = "com.infowave.c4p.datasource.dao.hibernate.ICMHibernateDAO";
+            try
+            {
+                Class theClass = Class.forName(classname);
+                m_icmDAO = (ICMDAO)theClass.newInstance();
+            }
+            catch(Exception e)
+            {
+                m_log.error("Cannot instanciate ICMDAO from : " + classname);
+            }
+        }
+        return m_icmDAO;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static AccountDAO m_accountDAO = null;
+    private static DesktopDAO m_desktopDAO = null;
+    private static ResellerDAO m_resellerDAO = null;
+    private static RegistrationCodeDAO m_registrationCodeDAO = null;
+    private static LicenseDAO m_licenseDAO = null;
+    private static AuthenticationDAO m_authenticationDAO = null;
+    private static ICMDAO m_icmDAO = null;
+    private static final String ACCOUNT_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.AccountHibernateDAO";
+    private static final String DESKTOP_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.DesktopHibernateDAO";
+    private static final String RESELLER_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.ResellerHibernateDAO";
+    private static final String REGCODE_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.RegistrationCodeHibernateDAO";
+    private static final String LICENSE_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.LicenseHibernateDAO";
+    private static final String AUTHENTICATION_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.AuthenticationHibernateDAO";
+    private static final String ICM_DAO_CLASS = "com.infowave.c4p.datasource.dao.hibernate.ICMHibernateDAO";
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.datasource.dao.DAOFactory.class);
+    }
+}

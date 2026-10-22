@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<LINK REL="StyleSheet" HREF="x-res/style.css" TYPE="text/css">
+			<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+			<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+			<META HTTP-EQUIV="max-age" CONTENT="0">
+			<META HTTP-EQUIV="Expires" CONTENT="0">
+			<script language="javascript">
+function openMainWindow(){
+window.open("/protected/showMainPageInPopup.do",null,
+             "height=600, width=860, left=0, top=0, location=yes, menubar=no, status=yes, toolbar=no, scrollbars=yes, resizable=yes");
+}
+function oldWindowClose(){
+window.close();
+}
+
+			</script>
+	</head>
+	<body onload="openMainWindow();">
+		<P>Laplink Everywhere will open a new browser window optimized for displaying 
+			Laplink Everywhere web pages.&nbsp;&nbsp;
+		</P>
+		<BUTTON onclick="oldWindowClose();"> Click this button to close this window. 
+			</BUTTON>
+		<P>&nbsp;</P>
+		<A href="/protected/showMainPageInPopup.do">Click here if you do not support javascript. 
+			</A>
+
+	</body>
+</html>

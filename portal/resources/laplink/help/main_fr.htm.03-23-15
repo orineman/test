@@ -1,0 +1,81 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="body_bar" valign="top">
+			<!-- this table	defines the toolbar -->
+			<table class="body_bar" cellspacing="0" cellpadding="2" width="100%" border="0">
+				<tr>
+					<td colspan="2" class="toolbar_heading">Support</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%">FAQ 
+							G&eacute;n&eacute;rale</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=security.htm">FAQ de S&eacute;curit&eacute;</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" target="_blank" href="http://www.laplink.com/support/laplink.asp">Support Technique</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						G&eacute;n&eacute;ral</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="showPasswordRecoverypage.do">R&eacute;cup&eacute;ration de mot de passe</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Guides</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Info</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=privacy.htm">D&eacute;claration 
+							de confidentialit&eacute;</a></td>
+				</tr>
+			</table>
+		</td>
+		<TD align="center" valign="top" width="100%">
+			<!-- Begin Content Area -->
+			<!-- end left tool strip -->
+			<TABLE class="content_text" WIDTH="95%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+				<TR>
+					<TD WIDTH="529"><P CLASS="content_heading1">
+							Laplink Internet FAQ's
+							<hr noshade size="1">
+						<p class="content_heading2">Questions G&eacute;n&eacute;rales</p>
+						<LI>
+							<A class="left_body" target="_blank" HREF='http://www.laplink.com/support/faq/FAQ2.asp?ID=215'>Qu&rsquo;est-ce que ce Laplink Internet&nbsp;?</A>
+						<LI>
+							<A class="left_body" target="_blank" HREF='http://www.laplink.com/support/faq/FAQ2.asp?ID=137'>Comment &ccedil;a marche Laplink Internet&nbsp;?</A>
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<br>
+						<p class="content_heading2">Comment dois-je...</p>
+						<LI>
+							<A class="left_body" target="_blank" HREF='http://www.laplink.com/support/faq/FAQ2.asp?ID=139'>J&rsquo;ai oubli&eacute; mon mot de passe, Que dois-je faire&nbsp;?</A>
+						<LI>
+							<A class="left_body" target="_blank" HREF='http://www.laplink.com/support/faq/FAQ2.asp?ID=215'>Comment dois-je connecter &agrave; l&rsquo;ordinateur h&ocirc;te en utilisant le service de
+Laplink Internet&nbsp;?</A>
+					</TD>
+				</TR>
+				<TR>
+					<TD>
+						<br>
+					</TD>
+				</TR>
+
+			</TABLE>
+			<!-- End Content Area -->
+		</TD>
+	</tr>
+</table>

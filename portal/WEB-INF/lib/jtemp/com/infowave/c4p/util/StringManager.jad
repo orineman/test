@@ -1,0 +1,209 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 6/16/2005 3:45:58 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   StringManager.java
+
+package com.infowave.c4p.util;
+
+import java.io.PrintStream;
+import java.text.MessageFormat;
+import java.util.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class StringManager
+{
+
+    public static synchronized StringManager getManager(String packageName)
+    {
+        StringManager mgr = (StringManager)managers.get(packageName);
+        if(mgr == null)
+        {
+            mgr = new StringManager(packageName);
+            managers.put(packageName, mgr);
+        }
+        return mgr;
+    }
+
+    public static synchronized StringManager getManager(String packageName, Locale locale)
+    {
+        StringManager mgr = (StringManager)managers.get(packageName + locale);
+        if(mgr == null)
+        {
+            mgr = new StringManager(packageName, locale);
+            managers.put(packageName + locale, mgr);
+        }
+        return mgr;
+    }
+
+    private StringManager(String packageName)
+    {
+        m_bundleName = packageName + ".properties";
+        m_locale = Locale.getDefault();
+        try
+        {
+            m_bundle = ResourceBundle.getBundle(m_bundleName);
+        }
+        catch(Exception e)
+        {
+            m_bundle = null;
+        }
+        if(m_bundle == null)
+        {
+            m_bundleName = packageName;
+            try
+            {
+                m_bundle = ResourceBundle.getBundle(m_bundleName);
+            }
+            catch(Exception e)
+            {
+                m_bundle = null;
+            }
+        }
+        if(m_bundle == null)
+            m_log.warn("Cannot get bundle for: " + packageName);
+    }
+
+    private StringManager(String packageName, Locale locale)
+    {
+        m_bundleName = packageName + ".properties";
+        m_locale = locale;
+        try
+        {
+            m_bundle = ResourceBundle.getBundle(m_bundleName, locale);
+        }
+        catch(Exception e)
+        {
+            m_bundle = null;
+        }
+        if(m_bundle == null)
+        {
+            m_bundleName = packageName;
+            try
+            {
+                m_bundle = ResourceBundle.getBundle(m_bundleName, locale);
+            }
+            catch(Exception e)
+            {
+                m_bundle = null;
+            }
+        }
+        if(m_bundle == null)
+            m_log.warn("Cannot get bundle for: " + packageName + " for locale " + locale);
+    }
+
+    public String getString(String key)
+    {
+        String str = null;
+        try
+        {
+            if(m_bundle == null)
+            {
+                m_log.warn("No message for key: " + key + " - Bundle " + m_bundleName + " is nor defined");
+                str = key;
+            } else
+            {
+                str = m_bundle.getString(key);
+            }
+        }
+        catch(MissingResourceException e)
+        {
+            m_log.warn("No message for key: " + key + " in bundle " + m_bundleName);
+            str = key;
+        }
+        return str;
+    }
+
+    public String getString(String key, Object args[])
+    {
+        String str = null;
+        String format = getString(key);
+        try
+        {
+            str = MessageFormat.format(format, args);
+        }
+        catch(IllegalArgumentException e)
+        {
+            StringBuffer s = new StringBuffer();
+            s.append(str);
+            for(int i = 0; i < args.length; i++)
+                s.append("args[").append(i).append("]=").append(args[i]);
+
+            m_log.warn(s.toString());
+            str = key;
+        }
+        return str;
+    }
+
+    public String getString(String key, Object arg)
+    {
+        Object args[] = {
+            arg
+        };
+        return getString(key, args);
+    }
+
+    public String getString(String key, Object arg1, Object arg2)
+    {
+        Object args[] = {
+            arg1, arg2
+        };
+        return getString(key, args);
+    }
+
+    public String getString(String key, Object arg1, Object arg2, Object arg3)
+    {
+        Object args[] = {
+            arg1, arg2, arg3
+        };
+        return getString(key, args);
+    }
+
+    public String getString(String key, Object arg1, Object arg2, Object arg3, Object arg4)
+    {
+        Object args[] = {
+            arg1, arg2, arg3, arg4
+        };
+        return getString(key, args);
+    }
+
+    public String getString(String key, Object arg1, Object arg2, Object arg3, Object arg4, Object arg5)
+    {
+        Object args[] = {
+            arg1, arg2, arg3, arg4, arg5
+        };
+        return getString(key, args);
+    }
+
+    public static void main(String args[])
+    {
+        String appRes = "laplink";
+        String key1 = "message.copyright";
+        key1 = "mail.newAccountBody";
+        StringManager mgr = getManager(appRes);
+        StringManager mgr_fr = getManager(appRes, Locale.CANADA_FRENCH);
+        String msg = mgr.getString(key1);
+        System.out.println(msg);
+        msg = mgr_fr.getString(key1);
+        System.out.println(msg);
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+    private static Hashtable managers = new Hashtable();
+    private ResourceBundle m_bundle;
+    private String m_bundleName;
+    private Locale m_locale;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.util.StringManager.class);
+    }
+}

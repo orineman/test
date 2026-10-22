@@ -1,0 +1,38 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 3:04:00 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   LicenseDAO.java
+
+package com.infowave.c4p.datasource.dao;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.model.*;
+import java.util.List;
+
+public interface LicenseDAO
+{
+
+    public abstract List getByCode(String s, String s1)
+        throws DataException;
+
+    public abstract void update(License license)
+        throws DataException;
+
+    public abstract List getByCodeAndUserId(String s, String s1, String s2)
+        throws DataException;
+
+    public abstract List getUnusedByCode(String s, String s1)
+        throws DataException;
+
+    public abstract void licenseDesktop(License license, Desktop desktop, List list, List list1, Account account)
+        throws DataException;
+
+    public abstract void unlicenseDesktop(List list, Desktop desktop)
+        throws DataException;
+
+    public abstract int countLicenses(String s, String s1)
+        throws DataException;
+
+    public abstract void createLicenses(List list)
+        throws DataException;
+}

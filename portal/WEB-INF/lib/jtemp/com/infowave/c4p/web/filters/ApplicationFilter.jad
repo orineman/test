@@ -1,0 +1,108 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 3/15/2005 4:06:43 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   ApplicationFilter.java
+
+package com.infowave.c4p.web.filters;
+
+import com.infowave.c4p.web.util.*;
+import java.io.IOException;
+import java.util.Enumeration;
+import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.httpclient.URI;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class ApplicationFilter
+    implements Filter
+{
+
+    public ApplicationFilter()
+    {
+        config = null;
+    }
+
+    public void init(FilterConfig filterconfig)
+        throws ServletException
+    {
+        config = filterconfig;
+    }
+
+    public void destroy()
+    {
+    }
+
+    public void doFilter(ServletRequest servletrequest, ServletResponse servletresponse, FilterChain filterchain)
+        throws IOException, ServletException
+    {
+        boolean flag = false;
+        if(servletrequest instanceof HttpServletRequest)
+        {
+            HttpServletRequest httpservletrequest = (HttpServletRequest)servletrequest;
+            HttpServletResponse httpservletresponse = (HttpServletResponse)servletresponse;
+            javax.servlet.http.HttpSession httpsession = httpservletrequest.getSession();
+            String s = null;
+            com.infowave.c4p.service.dto.DesktopDTO desktopdto = null;
+            SessionState sessionstate = WebUtil.getSessionState(httpservletrequest);
+            if(sessionstate != null)
+                desktopdto = sessionstate.getCurrentDesktop();
+            if(desktopdto != null)
+            {
+                m_log.debug("query string: " + httpservletrequest.getQueryString());
+                String s2;
+                for(Enumeration enumeration = httpservletrequest.getParameterNames(); enumeration.hasMoreElements(); m_log.debug(s2 + "=" + httpservletrequest.getParameter(s2)))
+                    s2 = (String)enumeration.nextElement();
+
+                URI uri = new URI(httpservletrequest.getRequestURI());
+                String s4 = uri.getEscapedURI();
+                m_log.debug("got URI: " + httpservletrequest.getRequestURI() + " - escaped: " + s4 + " - translated: " + httpservletrequest.getPathTranslated());
+                s = DesktopUtils.getAppUrl(desktopdto, s4);
+            }
+            if(s != null)
+            {
+                flag = true;
+                String s1 = httpservletrequest.getParameter("did");
+                if(s1 == null)
+                {
+                    m_log.warn("no did in the request: ");
+                    RequestDispatcher requestdispatcher = ctx.getRequestDispatcher("/showGeneralErrorPage.do");
+                    requestdispatcher.forward(servletrequest, servletresponse);
+                    return;
+                }
+                m_log.debug("Desktop url: " + s);
+                String s3 = httpservletrequest.getHeader("referer");
+                java.util.Map map = DesktopUtils.getApplicationRequestHeader(httpservletrequest, desktopdto);
+                RequestRedirector requestredirector = new RequestRedirector(httpservletrequest, s, map);
+                httpservletrequest.setAttribute("c4p_method", requestredirector);
+                String s5 = "/protected/showDesktopApplication.do?did=" + s1;
+                m_log.debug("dispatching to: " + s5);
+                if(ctx == null)
+                    ctx = config.getServletContext();
+                RequestDispatcher requestdispatcher1 = ctx.getRequestDispatcher(s5);
+                requestdispatcher1.forward(servletrequest, servletresponse);
+            }
+        }
+        if(!flag)
+            filterchain.doFilter(servletrequest, servletresponse);
+    }
+
+    static Class _mthclass$(String s)
+    {
+        return Class.forName(s);
+        ClassNotFoundException classnotfoundexception;
+        classnotfoundexception;
+        throw new NoClassDefFoundError(classnotfoundexception.getMessage());
+    }
+
+    private static Log m_log;
+    private ServletContext ctx;
+    private FilterConfig config;
+    private static final String FILE_PREFIX = "x-file";
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.filters.ApplicationFilter.class);
+    }
+}

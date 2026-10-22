@@ -1,0 +1,90 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/21/2004 9:56:13 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   CreateHomeData.java
+
+package com.infowave.c4p.datasource.test;
+
+import com.infowave.c4p.datasource.dao.*;
+import com.infowave.c4p.model.*;
+import com.infowave.c4p.service.delegate.DelegateFactory;
+import com.infowave.c4p.service.delegate.LicenseManager;
+import net.sf.hibernate.HibernateException;
+
+// Referenced classes of package com.infowave.c4p.datasource.test:
+//            CreateLaplinkData
+
+public class CreateHomeData extends CreateLaplinkData
+{
+
+    public CreateHomeData()
+    {
+    }
+
+    protected String getResellerHostname()
+    {
+        return "localhost";
+    }
+
+    protected String getICMHostname()
+    {
+        return "localhost:8080";
+    }
+
+    private void setlicenses()
+        throws Exception
+    {
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        LicenseManager licenseMgr = DelegateFactory.getLicenseManager();
+        String did = "LTqceHV2";
+        String code = "f1";
+        Desktop desktop = desktopDAO.getByDid(did);
+        Account account = desktop.getAccount();
+        licenseMgr.setLicenseCode(account.getId(), desktop.getId(), code, false);
+    }
+
+    private void changeResellerInfo()
+        throws Exception
+    {
+        ResellerDAO resellerDAO = DAOFactory.getResellerDAO();
+        Reseller reseller = resellerDAO.getByCode("laplink");
+        reseller.setLicenseCodeFormat("1,1");
+        resellerDAO.update(reseller);
+    }
+
+    private void changeAccounts()
+        throws Exception
+    {
+        Desktop desktop = new Desktop();
+        desktop.setDid("foobar");
+        desktop.setName("My PC2");
+        desktop.setOwner(m_account1.getUsername());
+        m_account1.addDesktop(desktop);
+        m_account2.addForeignDesktop(desktop);
+        DAOFactory.getDesktopDAO().update(desktop);
+        DAOFactory.getAccountDAO().update(m_account1);
+        DAOFactory.getAccountDAO().update(m_account2);
+    }
+
+    public void createData()
+        throws HibernateException, Exception
+    {
+        super.createData();
+        changeResellerInfo();
+        setlicenses();
+        changeAccounts();
+    }
+
+    public static void main(String args[])
+    {
+        CreateHomeData h = new CreateHomeData();
+        try
+        {
+            h.createData();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+}

@@ -1,0 +1,22 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 3:11:29 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   LicenseManager.java
+
+package com.infowave.c4p.service.delegate;
+
+import com.infowave.c4p.service.ServiceException;
+import java.util.List;
+
+public interface LicenseManager
+{
+
+    public abstract boolean isFixedTerm(String s, String s1)
+        throws ServiceException;
+
+    public abstract List setLicenseCode(String s, String s1, String s2, boolean flag)
+        throws ServiceException;
+
+    public abstract List unlicense(String s)
+        throws ServiceException;
+}

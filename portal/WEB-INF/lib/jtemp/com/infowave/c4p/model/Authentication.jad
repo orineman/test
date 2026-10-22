@@ -1,0 +1,151 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/27/2004 3:46:22 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   Authentication.java
+
+package com.infowave.c4p.model;
+
+import com.infowave.c4p.util.security.PasswordEncoder;
+import com.infowave.c4p.util.security.PasswordEncoderFactory;
+import java.io.PrintStream;
+
+// Referenced classes of package com.infowave.c4p.model:
+//            Role, Account
+
+public class Authentication
+{
+
+    public Authentication()
+    {
+        id = null;
+        username = null;
+        password = null;
+        account = null;
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    public String getAuthType()
+    {
+        return authType;
+    }
+
+    public void setAuthType(String authType)
+    {
+        this.authType = authType;
+    }
+
+    public String getRolename()
+    {
+        return rolename;
+    }
+
+    public void setRolename(String name)
+    {
+        rolename = name;
+        role = Role.fromCode(name);
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
+
+    public Role getRole()
+    {
+        return role;
+    }
+
+    public void setRole(Role role)
+    {
+        this.role = role;
+        rolename = role.getName();
+    }
+
+    public Account getAccount()
+    {
+        return account;
+    }
+
+    public void setAccount(Account account)
+    {
+        this.account = account;
+    }
+
+    /**
+     * @deprecated Method validatePassword is deprecated
+     */
+
+    public boolean validatePassword(String password)
+    {
+        String encoderClassname = "com.infowave.c4p.laplink.security.PasswordEncoderImpl";
+        PasswordEncoderFactory factory = PasswordEncoderFactory.instance();
+        return factory.getEncoder(encoderClassname).match(password, this.password);
+    }
+
+    public String toString()
+    {
+        StringBuffer sb = new StringBuffer();
+        sb.append("Authentication -username: ").append(username);
+        sb.append(" password: ").append(password);
+        sb.append(" type: ").append(authType);
+        sb.append(" role: ").append(role);
+        if(account != null)
+            sb.append(" account: ").append(account.getUsername());
+        return sb.toString();
+    }
+
+    private static void testValidatePassword()
+        throws Exception
+    {
+        String password = "pp";
+        String encodedPassword = "p";
+        Authentication auth = new Authentication();
+        auth.setPassword(encodedPassword);
+        auth.setAuthType("laplink");
+        System.out.println("password valid: " + auth.validatePassword(password));
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            testValidatePassword();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    private String id;
+    private String username;
+    private String password;
+    private String authType;
+    private String rolename;
+    private Account account;
+    private Role role;
+}

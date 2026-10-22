@@ -1,0 +1,32 @@
+<br>
+<table cellpadding="5" width="100%">
+	<tr>
+		<td class="content_heading1">
+			<B>CONGRATULATIONS!!</B><br>
+			Your Laplink Internet Account has been created. Please write down your username 
+			and password and store it in a safe location.
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="3" class="content_text">
+			<B>Finish installation of Laplink Internet:</B>
+			<OL>
+				<LI>On each PC you wish to access, you will need to register that computer to your 
+					Laplink Internet Account.
+					<BR>
+					If your computer has not been registered for Laplink Internet you will be 
+					prompted with the following screen;<br><br>
+					<img src="x-res/REGSCREEN.JPG"><br><br>
+				<LI>Click Yes and you will be brought to a Laplink Internet web page.<br>
+				<LI>Select "Click here to assign this PC to your Account"<br>
+				<LI>Enter your Laplink Internet username, password and a name that you want to use 
+					to access this PC<br>
+			</OL>
+		</td>
+	</tr>
+</table>
+<br>

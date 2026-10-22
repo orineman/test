@@ -1,0 +1,33 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/27/2004 5:17:35 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   ShowHelpPage.java
+
+package com.infowave.c4p.web.actions;
+
+import com.infowave.c4p.web.util.*;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts.action.*;
+
+public class ShowHelpPage extends BaseAction
+{
+
+    public ShowHelpPage()
+    {
+    }
+
+    public ActionForward executeLogic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        SessionState state = WebUtil.getSessionState(request);
+        state.enterHelpSection();
+        return null;
+    }
+
+    protected boolean isAuthorized(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse httpservletresponse, ActionErrors actionerrors)
+    {
+        return true;
+    }
+}

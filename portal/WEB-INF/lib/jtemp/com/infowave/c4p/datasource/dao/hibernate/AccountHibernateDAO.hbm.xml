@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.infowave.c4p.model.Account" table="account">
+
+       <id name="id" type="string" unsaved-value="null" >
+            <column name="id" length="32" not-null="true"/>
+            <generator class="uuid.hex"/>
+        </id>
+
+        <property name="username">
+           <column name="username" unique="true"  sql-type="varchar(20)"/>
+         </property>
+
+        <property name="firstName">
+            <column name="firstname" sql-type="varchar(32)"/>
+        </property>
+        <property name="lastName">
+            <column name="lastname" sql-type="varchar(32)" />
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(64)" not-null="true"/>
+        </property>
+
+        <property name="locale">
+            <column name="locale" not-null="true" sql-type="varchar(20)" />
+        </property>
+        <property name="creationDate">
+            <column name="creationDate"  not-null="true"/>
+        </property>
+        <property name="billingId">
+            <column name="billingId" sql-type="varchar(250)" />
+        </property>
+        <property name="securityQuestion">
+            <column name="securityQuestion" not-null="true"/>
+        </property>
+        <property name="securityAnswer">
+            <column name="securityAnswer" sql-type="varchar(40)" not-null="true"/>
+        </property>
+        <property name="regCode">
+            <column name="regCode" sql-type="varchar(100)"/>
+        </property>
+        <property name="countryCode">
+            <column name="countryCode" sql-type="char(2)" not-null="true"/>
+        </property>
+      <!--          -->
+      <!-- Reseller -->
+      <!--          -->
+        <many-to-one
+             name="reseller"
+            column="resellerId"
+            not-null="true"/>
+      <!--          -->
+      <!-- Desktops -->
+      <!--          -->
+
+      <set name="desktops" inverse="true">
+        <key column="accountId"/>
+        <one-to-many class="com.infowave.c4p.model.Desktop"/>
+      </set>
+
+
+      <!--                  -->
+      <!-- Foreign Desktops -->
+      <!--                  -->
+      <set name="foreignDesktops" table="desktopaccess">
+        <key column="accountId"/>
+        <many-to-many class="com.infowave.c4p.model.Desktop" column="desktopId"/>
+      </set>
+
+    </class>
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="Account.by.username">
+    <![CDATA[
+     from Account as acc where acc.username= :username
+     ]]>
+     </query>
+
+  <query name="Account.by.id">
+    <![CDATA[
+     from Account as acc where acc.id= :id
+     ]]>
+     </query>
+
+  <query name="Account.like.username">
+    <![CDATA[
+     from Account as acc where acc.username like :username
+     ]]>
+     </query>
+
+  <query name="Account.like.firstname">
+    <![CDATA[
+     from Account as acc where acc.firstName like :firstName
+     ]]>
+     </query>
+
+  <query name="Account.like.lastname">
+    <![CDATA[
+     from Account as acc where acc.lastName like :lastName
+     ]]>
+     </query>
+
+  <query name="Account.like.email">
+    <![CDATA[
+     from Account as acc where acc.email like :email
+     ]]>
+     </query>
+
+  <query name="Count.accounts.like.username">
+    <![CDATA[
+     select count(acc) from Account as acc where acc.username like :username
+     ]]>
+     </query>
+
+  <query name="Count.accounts.like.firstname">
+    <![CDATA[
+     select count(acc) from Account as acc where acc.firstName like :firstName
+     ]]>
+     </query>
+
+  <query name="Count.accounts.like.lastname">
+    <![CDATA[
+     select count(acc) from Account as acc where acc.lastName like :lastName
+     ]]>
+     </query>
+
+  <query name="Count.accounts.like.email">
+    <![CDATA[
+     select count(acc) from Account as acc where acc.email like :email
+     ]]>
+     </query>
+
+  
+</hibernate-mapping>

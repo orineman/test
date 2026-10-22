@@ -1,0 +1,176 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 2/10/2005 5:21:25 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   SetLicenseCode.java
+
+package com.infowave.c4p.web.actions;
+
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.delegate.DelegateFactory;
+import com.infowave.c4p.service.delegate.LicenseManager;
+import com.infowave.c4p.service.dto.*;
+import com.infowave.c4p.util.ErrorCode;
+import com.infowave.c4p.util.PortalError;
+import com.infowave.c4p.web.util.SessionState;
+import com.infowave.c4p.web.util.WebUtil;
+import java.io.PrintStream;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.*;
+
+// Referenced classes of package com.infowave.c4p.web.actions:
+//            UserAction, LicenseForm
+
+public class SetLicenseCode extends UserAction
+{
+
+    public SetLicenseCode()
+    {
+    }
+
+    public ActionForward executeLogic(ActionMapping mapping, ActionForm actionForm, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        javax.servlet.http.HttpSession session = request.getSession();
+        SessionState state = WebUtil.getSessionState(request);
+        LicenseForm form = (LicenseForm)actionForm;
+        LicenseManager licenseManager = DelegateFactory.getLicenseManager();
+        ActionForward forward = null;
+        request.setAttribute("did", form.getDid());
+        request.setAttribute("code", form.getCode());
+        request.setAttribute("extensionAnswer", form.getExtensionAnswer());
+        if(!super.isTokenValid(request, true))
+        {
+            System.out.println("token not valid");
+            PortalError error = new PortalError(ErrorCode.FORM_ALREADY_SUBMITTED);
+            errors.add(error);
+            return null;
+        }
+        System.out.println("token valid");
+        super.resetToken(request);
+        List inputErrors = validateLicenseCodeAndDid(mapping, actionForm, request);
+        if(!inputErrors.isEmpty())
+        {
+            errors.addAll(inputErrors);
+            super.saveToken(request);
+            return null;
+        }
+        if(form.getEnterLicenseCodeButton() != null)
+            forward = processLicenseCodeEntered(mapping, actionForm, request, response, errors);
+        else
+        if(form.getExtensionQuestionButton() != null)
+        {
+            String answer = form.getExtensionAnswer();
+            if(answer == null)
+            {
+                m_log.warn("no answer in the request");
+                PortalError error = new PortalError(ErrorCode.INVALID_PARAMETERS);
+                errors.add(error);
+            } else
+            {
+                forward = super.findForward(request, mapping, "success.confirmation");
+            }
+        } else
+        if(form.getConfirmButton() != null)
+        {
+            forward = processConfirmation(mapping, actionForm, request, response, errors);
+        } else
+        {
+            m_log.warn("Unknown action");
+            PortalError error = new PortalError(ErrorCode.INVALID_PARAMETERS);
+            errors.add(error);
+        }
+        super.saveToken(request);
+        return forward;
+    }
+
+    public ActionForward processLicenseCodeEntered(ActionMapping mapping, ActionForm actionForm, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        ActionForward actionForward = null;
+        javax.servlet.http.HttpSession session = request.getSession();
+        SessionState state = WebUtil.getSessionState(request);
+        LicenseForm form = (LicenseForm)actionForm;
+        LicenseManager licenseManager = DelegateFactory.getLicenseManager();
+        try
+        {
+            DesktopDTO desktop = state.getDesktop(form.getDid());
+            boolean mustAskAboutExtension = false;
+            if(desktop.getLicenseSerialNumber() != null && desktop.isFixedTerm())
+            {
+                String resellerId = state.getReseller().getId();
+                if(licenseManager.isFixedTerm(form.getLicenseCode(), resellerId))
+                    mustAskAboutExtension = true;
+            }
+            if(mustAskAboutExtension)
+                actionForward = super.findForward(request, mapping, "success.askAboutExtension");
+            else
+                actionForward = super.findForward(request, mapping, "success.confirmation");
+        }
+        catch(ServiceException e)
+        {
+            errors.add(e.getError());
+            ErrorCode code = e.getError().getCode();
+            if(!code.equals(ErrorCode.INVALID_LICENSE_NUMBER))
+                m_log.error("Could not set license", e);
+        }
+        return actionForward;
+    }
+
+    private List validateLicenseCodeAndDid(ActionMapping mapping, ActionForm actionForm, HttpServletRequest request)
+    {
+        LicenseForm form = (LicenseForm)actionForm;
+        List inputErrors = form.validateLicenseCode(mapping, request);
+        inputErrors.addAll(form.validateDid(mapping, request));
+        return inputErrors;
+    }
+
+    public ActionForward processConfirmation(ActionMapping mapping, ActionForm actionForm, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        ActionForward actionForward = null;
+        javax.servlet.http.HttpSession session = request.getSession();
+        SessionState state = WebUtil.getSessionState(request);
+        LicenseForm form = (LicenseForm)actionForm;
+        LicenseManager licenseManager = DelegateFactory.getLicenseManager();
+        boolean extendLicense = false;
+        if(form.getExtensionAnswer() != null && form.getExtensionAnswer().equalsIgnoreCase("extend"))
+            extendLicense = true;
+        DesktopDTO desktop = state.getDesktop(form.getDid());
+        try
+        {
+            List freedUpLicenses = licenseManager.setLicenseCode(state.getUserDTO().getId(), desktop.getId(), form.getLicenseCode(), extendLicense);
+            state.refreshDesktop(desktop.getDid());
+            if(!freedUpLicenses.isEmpty())
+                request.setAttribute("c4p_freedup_licenses", freedUpLicenses);
+            ActionForward main = mapping.findForward("showAccountManagementPage");
+            request.setAttribute("page", main.getPath());
+        }
+        catch(ServiceException e)
+        {
+            errors.add(e.getError());
+            ErrorCode code = e.getError().getCode();
+            if(!code.equals(ErrorCode.INVALID_LICENSE_NUMBER))
+                m_log.error("Could not set license", e);
+        }
+        return actionForward;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.actions.SetLicenseCode.class);
+    }
+}

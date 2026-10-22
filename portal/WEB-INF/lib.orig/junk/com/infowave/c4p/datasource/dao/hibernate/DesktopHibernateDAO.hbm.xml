@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="com.infowave.c4p.model.Desktop" table="desktop">
+
+    <id name="id" type="string" unsaved-value="null" >
+      <column name="id" length="32" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="did">
+      <column name="did" sql-type="varchar(128)" unique="true" not-null="true"/>
+    </property>
+    <property name="name">
+      <column name="name" sql-type="varchar(20)"/>
+    </property>
+    <property name="owner">
+      <column name="owner" sql-type="varchar(20)"/>
+    </property>
+    <property name="licenseSerialNumber">
+      <column name="licenseSerialNumber" sql-type="varchar(250)"/>
+    </property>
+    <property name="expiryDate"/>
+    <property name="creationDate"/>
+    <property name="visible"/>
+    <property name="licenseHistory">
+      <column name="licenseHistory" sql-type="text"/>
+    </property>
+    <property name="registrationCode">
+      <column name="registrationCode" sql-type="varchar(100)"/>
+    </property>
+    <property name="softwareVersion">
+      <column name="softwareVersion" sql-type="varchar(10)"/>
+    </property>
+
+    <!--         -->
+    <!-- Account -->
+    <!--         -->
+    <!-- the accountId column can be null because we can create
+         a desktop before an account -->
+    <many-to-one name="account" column="accountId" not-null="false"/>
+
+
+    <!--                  -->
+    <!-- Foreign Accounts -->
+    <!--                  -->
+
+    <set name="foreignAccounts" table="desktopaccess"  lazy="true">
+        <key column="desktopId"/>
+        <many-to-many class="com.infowave.c4p.model.Account" column="accountId"/>
+      </set>
+
+    <!--         -->
+    <!-- License -->
+    <!--         -->
+
+    <many-to-one  name="license" column="licenseId"  />
+ 
+  </class>
+
+
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="Desktop.by.did">
+    <![CDATA[
+     from Desktop as desktop where desktop.did= :did
+     ]]>
+     </query>
+
+  <query name="Desktop.by.id">
+    <![CDATA[
+     from Desktop as desktop where desktop.id= :id
+     ]]>
+     </query>
+
+
+
+
+
+
+</hibernate-mapping>

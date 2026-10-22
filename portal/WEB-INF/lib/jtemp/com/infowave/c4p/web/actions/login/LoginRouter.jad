@@ -1,0 +1,73 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 9/27/2004 3:49:31 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   LoginRouter.java
+
+package com.infowave.c4p.web.actions.login;
+
+import com.infowave.c4p.web.util.BaseAction;
+import com.infowave.c4p.web.util.WebUtil;
+import java.security.Principal;
+import java.util.List;
+import javax.servlet.http.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.struts.action.*;
+
+public class LoginRouter extends BaseAction
+{
+
+    public LoginRouter()
+    {
+    }
+
+    public ActionForward executeLogic(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response, List errors)
+        throws Exception
+    {
+        ActionForward forward = null;
+        HttpSession session = request.getSession();
+        if(request.getUserPrincipal() != null)
+        {
+            String username = request.getUserPrincipal().getName();
+            m_log.debug("User " + request.getParameter("j_username") + " attempting to log in while user " + request.getUserPrincipal() + " is still logged in - login out");
+            forward = mapping.findForward("login");
+            session.invalidate();
+            WebUtil.setNoCacheHeaders(response);
+            response.sendRedirect(forward.getPath() + "?" + "action" + "=" + "logout" + "&username=" + username);
+            response.flushBuffer();
+            return null;
+        } else
+        {
+            session.setAttribute("j_username", request.getParameter("j_username"));
+            session.setAttribute("j_password", request.getParameter("j_password"));
+            session.setAttribute("j_security_check", request.getParameter("j_security_check"));
+            String forwardDestinee = null;
+            forwardDestinee = "mainPage";
+            session.setAttribute("c4p_forwardDestinee", forwardDestinee);
+            String url = "/protected/loginProxy.do";
+            response.sendRedirect(response.encodeRedirectURL(url));
+            forward = mapping.findForward("dummy");
+            return forward;
+        }
+    }
+
+    protected boolean isAuthorized(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse httpservletresponse, ActionErrors actionerrors)
+    {
+        return true;
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.actions.login.LoginRouter.class);
+    }
+}

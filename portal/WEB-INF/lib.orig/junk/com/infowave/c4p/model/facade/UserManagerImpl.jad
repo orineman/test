@@ -1,0 +1,461 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 5/26/2004 11:28:45 AM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   UserManagerImpl.java
+
+package com.infowave.c4p.model.facade;
+
+import com.infowave.c4p.datasource.DataException;
+import com.infowave.c4p.datasource.dao.*;
+import com.infowave.c4p.model.*;
+import com.infowave.c4p.model.assembler.UserAssembler;
+import com.infowave.c4p.service.ServiceException;
+import com.infowave.c4p.service.delegate.UserManager;
+import com.infowave.c4p.service.dto.UserDTO;
+import com.infowave.c4p.service.dto.UserRegistrationDTO;
+import com.infowave.c4p.util.ErrorCode;
+import com.infowave.c4p.util.PortalError;
+import com.infowave.c4p.util.security.PasswordEncoder;
+import com.infowave.c4p.util.security.PasswordEncoderFactory;
+import java.io.PrintStream;
+import java.util.*;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class UserManagerImpl
+    implements UserManager
+{
+
+    public UserManagerImpl()
+    {
+    }
+
+    public UserDTO getUserDTO(String username)
+        throws ServiceException
+    {
+        UserDTO dto = null;
+        Account account = null;
+        AccountDAO accountDAO = DAOFactory.getAccountDAO();
+        try
+        {
+            account = accountDAO.getByUsername(username);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        if(account == null)
+        {
+            PortalError error = new PortalError(ErrorCode.INVALID_USERNAME, username);
+            throw new ServiceException(error);
+        } else
+        {
+            dto = UserAssembler.createUserDTO(account);
+            return dto;
+        }
+    }
+
+    public UserDTO RegisterUser(UserRegistrationDTO registrationInfo)
+        throws ServiceException
+    {
+        AccountDAO accountDAO = DAOFactory.getAccountDAO();
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        ResellerDAO resellerDAO = DAOFactory.getResellerDAO();
+        AuthenticationDAO authenticationDAO = DAOFactory.getAuthenticationDAO();
+        try
+        {
+            if(accountDAO.getByUsername(registrationInfo.getUsername()) != null)
+            {
+                PortalError error = new PortalError(ErrorCode.USERNAME_ALREADY_EXISTS, registrationInfo.getUsername());
+                throw new ServiceException(error);
+            }
+            if(registrationInfo.getDid() != null && desktopDAO.getByDid(registrationInfo.getDid()) != null)
+            {
+                PortalError error = new PortalError(ErrorCode.DID_ALREADY_DEFINED, registrationInfo.getDid());
+                throw new ServiceException(error);
+            }
+            Reseller reseller = resellerDAO.getByCode(registrationInfo.getResellerId());
+            if(reseller == null)
+            {
+                m_log.error("RegisterUser - unknown reseller: " + registrationInfo.getResellerId());
+                PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+                throw new ServiceException(error);
+            }
+            PasswordEncoder enc = PasswordEncoderFactory.instance().getEncoder(reseller.getPasswordEncoder());
+            Date creationDate = new Date();
+            Desktop desktop = null;
+            if(registrationInfo.getDid() != null)
+            {
+                desktop = new Desktop();
+                desktop.setDid(registrationInfo.getDid());
+                desktop.setCreationDate(creationDate);
+                desktop.setExpiryDate(reseller.getDemoExpiryDate(creationDate));
+                desktop.setName(registrationInfo.getPcName());
+            }
+            Account account = new Account();
+            account.setUsername(registrationInfo.getUsername());
+            account.setEmail(registrationInfo.getEmail());
+            account.setCreationDate(creationDate);
+            account.setLocale(reseller.getDefaultLocale());
+            account.setSecurityQuestion(registrationInfo.getSecurityQuestion());
+            account.setSecurityAnswer(registrationInfo.getSecurityAnswer());
+            Authentication authentication = new Authentication();
+            authentication.setPassword(enc.encode(registrationInfo.getPassword()));
+            authentication.setAuthType(reseller.getPasswordEncoder());
+            authentication.setRole(Role.USER);
+            authentication.setRolename(Role.USER.getName());
+            authentication.setUsername(registrationInfo.getUsername());
+            account.setReseller(reseller);
+            authentication.setAccount(account);
+            if(registrationInfo.getDid() != null)
+            {
+                desktop.setAccount(account);
+                account.addDesktop(desktop);
+                desktop.setOwner(account.getUsername());
+            }
+            DAOFactory.getAccountDAO().createAcount(account, authentication, desktop);
+            StringBuffer msg = new StringBuffer();
+            msg.append("Created new account for user: ").append(registrationInfo.getUsername());
+            if(desktop != null)
+            {
+                msg.append("Desktop: ").append(desktop.getDid());
+                msg.append(" Expiry date: ").append(desktop.getExpiryDate());
+            }
+            m_log.info(msg);
+        }
+        catch(DesktopAlreadyAddedException e)
+        {
+            PortalError error = new PortalError(ErrorCode.PC_NAME_ALREADY_EXISTS, registrationInfo.getPcName());
+            throw new ServiceException(error);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return null;
+    }
+
+    public void addDesktopToAccount(String username, String password, String did, String pcName)
+        throws ServiceException
+    {
+        AccountDAO accountDAO = DAOFactory.getAccountDAO();
+        DesktopDAO desktopDAO = DAOFactory.getDesktopDAO();
+        ResellerDAO resellerDAO = DAOFactory.getResellerDAO();
+        AuthenticationDAO authenticationDAO = DAOFactory.getAuthenticationDAO();
+        try
+        {
+            Authentication authentication = authenticationDAO.getByUsername(username);
+            if(authentication == null)
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+                throw new ServiceException(error);
+            }
+            if(!validatePassword(authentication, password))
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_PASSWORD);
+                throw new ServiceException(error);
+            }
+            Account account = authentication.getAccount();
+            for(Iterator it = account.getDesktops().iterator(); it.hasNext();)
+            {
+                Desktop desktop = (Desktop)it.next();
+                if(desktop.getName().equalsIgnoreCase(pcName))
+                {
+                    PortalError error = new PortalError(ErrorCode.PC_NAME_ALREADY_EXISTS);
+                    throw new ServiceException(error, pcName);
+                }
+            }
+
+            if(desktopDAO.getByDid(did) != null)
+            {
+                PortalError error = new PortalError(ErrorCode.DID_ALREADY_DEFINED, did);
+                throw new ServiceException(error);
+            }
+            Date creationDate = new Date();
+            Desktop desktop = new Desktop();
+            desktop.setDid(did);
+            desktop.setCreationDate(creationDate);
+            desktop.setExpiryDate(account.getReseller().getDemoExpiryDate(creationDate));
+            desktop.setName(pcName);
+            try
+            {
+                account.addDesktop(desktop);
+            }
+            catch(DesktopAlreadyAddedException e)
+            {
+                PortalError error = new PortalError(ErrorCode.DID_ALREADY_DEFINED);
+                throw new ServiceException(error, did);
+            }
+            desktop.setAccount(account);
+            desktop.setOwner(account.getUsername());
+            desktopDAO.update(desktop);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    public UserDTO changeIdentity(String username, String firstName, String lastName, String email)
+        throws ServiceException
+    {
+        Account account = null;
+        try
+        {
+            AuthenticationDAO authenticationDAO = DAOFactory.getAuthenticationDAO();
+            Authentication authentication = authenticationDAO.getByUsername(username);
+            if(authentication == null)
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+                throw new ServiceException(error);
+            }
+            account = authentication.getAccount();
+            boolean mustSave = false;
+            if(firstName != null && !firstName.equals("") && !firstName.equals(account.getFirstName()))
+            {
+                account.setFirstName(firstName);
+                mustSave = true;
+            }
+            if(lastName != null && !lastName.equals("") && !lastName.equals(account.getLastName()))
+            {
+                account.setLastName(lastName);
+                mustSave = true;
+            }
+            if(email != null && !email.equals("") && !email.equals(account.getEmail()))
+            {
+                account.setEmail(email);
+                mustSave = true;
+            }
+            if(mustSave)
+            {
+                AccountDAO accountDAO = DAOFactory.getAccountDAO();
+                accountDAO.update(account);
+            }
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return UserAssembler.createUserDTO(account);
+    }
+
+    public void changePassword(String username, String currentPassword, String newPassword)
+        throws ServiceException
+    {
+        try
+        {
+            AuthenticationDAO authenticationDAO = DAOFactory.getAuthenticationDAO();
+            Authentication authentication = authenticationDAO.getByUsername(username);
+            if(authentication == null)
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+                throw new ServiceException(error);
+            }
+            if(!validatePassword(authentication, currentPassword))
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_PASSWORD);
+                throw new ServiceException(error);
+            }
+            String encrypted = encodePassword(authentication, newPassword);
+            authentication.setPassword(encrypted);
+            authenticationDAO.update(authentication);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    public void changeSecurityQuestion(String username, String password, int question, String answer)
+        throws ServiceException
+    {
+        try
+        {
+            AuthenticationDAO authenticationDAO = DAOFactory.getAuthenticationDAO();
+            Authentication authentication = authenticationDAO.getByUsername(username);
+            if(authentication == null)
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+                throw new ServiceException(error);
+            }
+            if(!validatePassword(authentication, password))
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_PASSWORD);
+                throw new ServiceException(error);
+            }
+            Account account = null;
+            account = authentication.getAccount();
+            account.setSecurityQuestion(question);
+            account.setSecurityAnswer(answer);
+            AccountDAO accountDAO = DAOFactory.getAccountDAO();
+            accountDAO.update(account);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    public int getSecurityQuestion(String username)
+        throws ServiceException
+    {
+        Account account;
+        AccountDAO accountDAO = DAOFactory.getAccountDAO();
+        account = accountDAO.getByUsername(username);
+        if(account == null)
+        {
+            PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+            throw new ServiceException(error);
+        }
+        return account.getSecurityQuestion();
+        DataException e;
+        e;
+        PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+        throw new ServiceException(error, e);
+    }
+
+    public boolean validateSecurityAnswer(String username, String answer)
+        throws ServiceException
+    {
+        Account account;
+        AccountDAO accountDAO = DAOFactory.getAccountDAO();
+        account = accountDAO.getByUsername(username);
+        if(account == null)
+        {
+            PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+            throw new ServiceException(error);
+        }
+        if(account.getSecurityAnswer() != null && account.getSecurityAnswer().equals(answer))
+            return true;
+        return false;
+        DataException e;
+        e;
+        PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+        throw new ServiceException(error, e);
+    }
+
+    public void resetPassword(String username, String password)
+        throws ServiceException
+    {
+        try
+        {
+            AuthenticationDAO authenticationDAO = DAOFactory.getAuthenticationDAO();
+            Authentication authentication = authenticationDAO.getByUsername(username);
+            if(authentication == null)
+            {
+                PortalError error = new PortalError(ErrorCode.INVALID_USERNAME);
+                throw new ServiceException(error);
+            }
+            String encrypted = encodePassword(authentication, password);
+            authentication.setPassword(encrypted);
+            authenticationDAO.update(authentication);
+        }
+        catch(DataException e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+    }
+
+    private String encodePassword(Authentication authentication, String password)
+        throws ServiceException
+    {
+        String encodedPassword = null;
+        try
+        {
+            PasswordEncoder encoder = null;
+            Class theClass = Class.forName(authentication.getAuthType());
+            encoder = (PasswordEncoder)theClass.newInstance();
+            encodedPassword = encoder.encode(password);
+        }
+        catch(Exception e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return encodedPassword;
+    }
+
+    private boolean validatePassword(Authentication authentication, String password)
+        throws ServiceException
+    {
+        boolean valid = false;
+        try
+        {
+            PasswordEncoder encoder = null;
+            Class theClass = Class.forName(authentication.getAuthType());
+            encoder = (PasswordEncoder)theClass.newInstance();
+            valid = encoder.match(password, authentication.getPassword());
+        }
+        catch(Exception e)
+        {
+            PortalError error = new PortalError(ErrorCode.SYSTEM_ERROR);
+            throw new ServiceException(error, e);
+        }
+        return valid;
+    }
+
+    private static void testChangeIdentity()
+        throws Exception
+    {
+        UserManagerImpl um = new UserManagerImpl();
+        um.changeIdentity("c4test", "toto", null, null);
+    }
+
+    private static void testChangeSecurityQuestion()
+        throws Exception
+    {
+        UserManagerImpl um = new UserManagerImpl();
+        um.changeSecurityQuestion("c4test", "pppp", 0, "NEW QUESTION");
+    }
+
+    private static void testRegisterUser()
+        throws Exception
+    {
+        UserRegistrationDTO info = new UserRegistrationDTO();
+        info.setUsername("toto");
+        info.setPassword("p");
+        info.setPcName("The PC");
+        info.setEmail("qwqw@llk.com");
+        info.setDid("1234");
+        info.setResellerId("laplink");
+        info.setSecurityAnswer("foo");
+        info.setSecurityQuestion(0);
+        UserManagerImpl um = new UserManagerImpl();
+        um.RegisterUser(info);
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            testChangeSecurityQuestion();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.model.facade.UserManagerImpl.class);
+    }
+}

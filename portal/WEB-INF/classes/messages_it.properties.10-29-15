@@ -1,0 +1,257 @@
+# The display modes' names
+
+displayMode.pc=PC
+
+displayMode.pda=PDA
+
+displayMode.phone=TELEFONO
+
+
+
+#Fields
+
+field.username=Nome utente
+
+field.password=Password
+
+field.user=Utente
+
+field.pc=PC
+
+field.emailAddress=Indirizzo email
+
+field.secretQuestion=Domanda segreta
+
+field.secretAnswer=Risposta segreta
+
+field.pcName=Nome PC
+
+field.passwordAgain=Digita nuovamente la password
+
+field.currentPassword=Password attuale
+
+field.newPassword=Nuova password
+
+field.newPasswordAgain=Ridigita la nuova password
+
+field.firstName=Nome
+
+field.lastName=Cognome
+
+field.enabled=Abilitato
+
+field.softwareVersion=Versione
+
+field.license=Stato
+
+field.expiryDate=Data di scadenza
+
+field.enablePC=Abilita PC per accesso remoto
+
+field.languagePreference=Preferenza lingua:
+
+field.English=Inglese
+
+field.German=Tedesco
+
+field.French=Francese
+
+field.Italian=Italiano
+
+field.Spanish=Spagnol
+
+
+
+# Titles
+
+title.myPCs=I miei PC
+
+title.myAccount=Il mio conto
+
+title.help=Guida
+
+title.view=Visualizza
+
+
+
+# Button/actions
+
+action.logout=Logout
+
+action.submit=Invia
+
+action.save=Salva
+
+action.EditAccountInformation=Conto
+
+action.changePassword=Cambia password
+
+action.changeSecurityQuestion=Cambia domanda sicurezza
+
+action.continue=Continua
+
+action.cancel=Cancella
+
+action.editDesktop=Modifica
+
+action.unlicense=Annulla assegnazione
+
+action.setLicense=Immettere numero di serie
+
+action.remove=Rimuovi
+
+action.close=Chiudi
+
+action.login=Login
+
+
+
+# Messages
+
+msg.removelicense=Nota: Devi eliminare i numeri seriali associati a questo PC prima di rimuoverlo dal tuo account.
+
+msg.secretAnswer=Scegli una domanda segreta a cui puoi rispondere soltanto tu. Se dimentichi la password, useremo questa domanda per verificare la tua identità.
+
+msg.welcome=Benvenuto
+
+msg.confirmationPasswordChange=La tua password è stata cambiata.
+
+msg.confirmationSecurityQuestionChange=Domanda di sicurezza cambiata.
+
+msg.passwordRecoverySuccess=La tua password è stata cambiata.
+
+msg.invalidUsernameOrPassword=Nome utente o password invalidi.
+
+msg.logoutMessage=Sei stato scollegato.
+msg.logoutNamedUserMessage=L'utente {0} è stato scollegato. 
+
+msg.notSecure=Avvertenza: Non stai usando una connessione sicura!
+
+msg.pleaseEnterUnusedLicense=Immettere un numero di serie non utilizzato di seguito:
+
+msg.extendVsTransferLicenseQuestion=La tua licenza attuale non è scaduta. Vuoi rilasciarla e usarne una nuova o estenderla con una nuova?
+
+msg.licenseHasNotExpiredWarning=La tua licenza attuale per questo PC non è ancora scaduta. L'immissione di un nuovo codice di licenza estenderà il tuo abbonamento.
+
+msg.licenseChangeConfirmationQuestion=Sei sicuro di voler usare questa licenza?
+
+msg.licenseChangeSuccess=I tuoi cambiamenti sono stati accettati
+
+msg.unlicenseConfirmationQuestion=Sei sicuro di voler cancellare la licenza per questo PC?
+
+msg.daysToDesktopExpiryDate=[Scade fra {0} giorni]
+
+msg.desktopHasExpired=[Scaduta]
+
+msg.noDesktopsAvail=Nessun desktop è stato configurato
+
+msg.yes=Sì
+msg.no=No
+msg.unsubscribed=Gratuito
+msg.subscribed=Sottoscrizione effettuata
+msg.settings=Impostazioni
+msg.yourPCs=I tuoi PC
+msg.pcLicenses=Numero di serie PC
+msg.notAvailableAbbreviation=n/d
+msg.removeDesktopConfirmationQuestion=Vuoi rimuovere questo PC permanentemente?
+msg.phone.loggedOut=Questa è la pagina principale
+msg.phone.pageNotFound=Pagina non trovata
+msg.phone.generalError=Errore generale
+msg.marketing=<table cellpadding=3 cellspacing=0 border=0><tr><td>&nbsp;</td><td><font face=arial color=#29416E size=+1><b>Benvenuto in Laplink Internet</b></font><br><b style='font-family:Verdana; color: #29416e; font-size:11px;'>Questo servizio ti permette di collegare i computer dotati di Laplink Gold via Internet senza alcuna configurazione speciale</td></tr><tr><td colspan="2" align="center"><font face="arial" size="-2"><a href='http://www.laplink.com/products/llgold/overview.asp'>Altri dati...</a></font></td></tr><tr><td height=8 colspan=2></td></tr></table>
+msg.secure=Sicuro
+msg.standard=Standard
+msg.note=Note
+msg.modifynote=To enable, rename or remove one of your PCs select the Modify button under the Settings column
+
+# Message for html links
+
+msg.link.signupNewAccount=Creazione di un conto
+
+msg.link.Fare clicHere=Fai clic qui
+
+msg.link.forgotYourPassword=Dimenticato la password?
+
+msg.link.noHttpsSupport= Nessun supporto HTTPS?
+
+msg.link.downloadSoftware=Download software Laplink Internet
+
+msg.link.createaccount=Fai clic qui per creare un nuovo conto Laplink Internet
+
+msg.link.assignaccount=Fai clic qui per assegnare questo PC al tuo conto
+
+
+# Titles
+
+title.createAccount=Crea un nuovo conto
+
+title.addDesktopToAccount=Assegna questo PC ad un utente esistente
+
+title.changeSecurityQuestion=Amministrazione \\ Cambia domanda segreta
+
+title.changePassword=Amministrazione \\ Cambia password
+
+title.changeAccountInfo=Amministrazione \\ Conto
+
+title.manageProfile=Gestisci profilo
+
+title.passwordRecovery.username=Immetti nome utente sotto:
+
+title.passwordRecovery.securityQuestion=Rispondi sotto alla tua domanda segreta:
+
+title.passwordRecovery.enterPassword=Fornisci una nuova password per {0}:
+
+#
+
+#  Errors
+
+#  Important: the names of these properties must correspond to error codes as
+
+# devine in the util.ErrorCode class.
+
+error.DATA_ENTRY_LICENSE_CODE_FORMAT=Immetti un codice di licenza valido
+
+error.USERNAME_ALREADY_EXISTS=Questo nome utente esiste già.
+
+error.PC_NAME_ALREADY_EXISTS_CODE=Questo nome di PC esiste già.
+
+error.DATA_ENTRY_USERNAME_MISSING=Devi immettere un nome utente
+
+error.DATA_ENTRY_PASSWORD_MISSING=Devi immettere una password
+
+error.DATA_ENTRY_PASSWORD_CONF_MISSING=Devi immettere una password di conferma
+
+error.DATA_ENTRY_EMAIL_MISSING=Devi immettere un indirizzo email
+
+error.DATA_ENTRY_SEC_ANSWER_MISSING=Devi immettere una risposta di sicurezza
+
+error.DATA_ENTRY_PC_NAME_MISSING=Devi immettere un nome di PC
+
+error.DATA_ENTRY_EMAIL_FORMAT=Indirizzo email invalido
+
+error.DATA_ENTRY_USERNAME_FORMAT=Il nome utente deve contenere almeno 4 caratteri
+
+error.DATA_ENTRY_PASSWORD_FORMAT=La password deve contenere almeno 4 caratteri
+
+error.DATA_ENTRY_PASSWORDS_DONT_MATCH=La password di conferma non corrisponde alla password
+
+error.DID_ALREADY_DEFINED=DID già definito: {0}
+
+error.INVALID_PASSWORD=Password invalida
+
+error.PC_NAME_ALREADY_EXISTS=Hai già un PC con quel nome
+
+error.INVALID_USER_NAME=Il nome utente immesso non esiste
+
+error.SYSTEM_ERROR=Impossibile completare l'ultima operazione
+
+error.INVALID_SECURITY_ANSWER=La tua risposta alla domanda di sicurezza non corrisponde alla risposta depositata.
+
+error.INVALID_LICENSE_NUMBER=Codice licenza invalido
+
+error.INVALID_LICENSE_NUMBER=Codice licenza invalido
+
+error.INVALID_PARAMETERS=Impossibile completare la tua richiesta
+
+error.TOO_MANY_LICENSES_CODE=Hai troppe licenze per questo desktop.
+
+error.FORM_ALREADY_SUBMITTED=Questa pagina è stata già presentata

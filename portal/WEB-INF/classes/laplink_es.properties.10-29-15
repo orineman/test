@@ -1,0 +1,23 @@
+message.copyright= Copyright Laplink Software Inc.
+message.pda_copyright= Copyright Laplink Software Inc.
+message.pda_login=Laplink Login
+message.login=Acceso a Laplink Internet
+
+title.subscripion=Suscripción Laplink
+title.pcConfiguration=Configuración PC Laplink
+title.mainWindowTitle=Laplink Internet
+title.passwordRecovery=Recuperación de la contraseña para Laplink Internet 
+
+securityQuestion.1=¿Cuáles son los últimos dígitos de su Número de Seguro Social?
+securityQuestion.2=¿Cuáles son los últimos dígitos de su tarjeta de crédito?
+securityQuestion.3=¿Cuál es el nombre de soltera de su madre?
+securityQuestion.4=¿Cuál es el segundo nombre de su padre?
+
+
+msg.helpForGettingAlicenseCode= Para obtener la ayuda cómo encontrar e ingresar números de serie pulse <a href="http://www.laplink.com/support/faq/faq.asp?pid=5&q1=serial&c1=%24contents" target="_blank">aquí</a>
+msg.toPurchaseALicenseCode= Para comprar un número de serie, haga clic <a href={0} target="_blank">aquí</a>.
+msg.passwordRecoveryHint=Note: If you have forgotten your username, open the Laplink Internet console on your PC, select "Configure->Users and Sharing" and look at the "Me" entry.
+
+mail.newAccountSubject= [Laplink Internet] Gracias por su inscripción!
+mail.newAccountFrom=support@laplink.com
+mail.newAccountBody= Gracias nuevamente por su inscripción a Laplink Internet.\n\nPara su conveniencia, unos cuantos consejos de cómo acceder \na sus ordenadores.\n\n-Instale Laplink Gold en cada ordenador al cual desea acceder.\n\n-Corra Laplink Gold en aquellos ordenadores y cuando sea informado que el ordenador no esta registrado \npulse en Si y efectúe los pasos necesarios para registrar el ordenador con su cuenta Laplink Internet existente \n\n\n Si necesita asistencia, por favor contacte el soporte técnico de Laplink dirigiéndose a http://www.laplink.com/support/laplink.asp.\n\nSaludos Cordiales,\n Laplink Internet Support\nsupport@laplink.com\n

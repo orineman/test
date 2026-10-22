@@ -1,0 +1,277 @@
+// Decompiled by DJ v3.4.4.74 Copyright 2003 Atanas Neshkov  Date: 2/15/2005 4:59:07 PM
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   DesktopUtils.java
+
+package com.infowave.c4p.web.util;
+
+import com.infowave.c4p.commons.DisplayMode;
+import com.infowave.c4p.service.dto.*;
+import java.io.PrintStream;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+// Referenced classes of package com.infowave.c4p.web.util:
+//            WebUtil, SessionState, Base64Encoder
+
+public class DesktopUtils
+{
+
+    public DesktopUtils()
+    {
+    }
+
+    public static String getAppUrl(DesktopDTO desktop, String url)
+    {
+        String appUrl = null;
+        Pattern pattern = desktop.getAppUrlPattern();
+        Matcher matcher = pattern.matcher(url);
+        if(matcher.find())
+            if(matcher.groupCount() == 1)
+            {
+                StringBuffer sb = new StringBuffer();
+                sb.append(desktop.getIcmURL());
+                if(!desktop.getIcmURL().endsWith("/") && !matcher.group(1).startsWith("/"))
+                    sb.append("/");
+                sb.append(matcher.group(1));
+                appUrl = sb.toString();
+            } else
+            {
+                m_log.error("the app url regexp should have one group - found: " + matcher.groupCount() + " groups - pattern: " + pattern.toString());
+                appUrl = null;
+            }
+        return appUrl;
+    }
+
+    /**
+     * @deprecated Method getFilesUrl is deprecated
+     */
+
+    public static String getFilesUrl(DesktopDTO desktop, String url)
+    {
+        String filesUrl = null;
+        Matcher matcher = FILES_URL_PATTERN.matcher(url);
+        if(matcher.find())
+        {
+            filesUrl = matcher.group();
+            filesUrl = filesUrl.substring(1);
+        }
+        return filesUrl;
+    }
+
+    public static String getDidParameter(String url)
+    {
+        String did = null;
+        Matcher matcher = DID_PARAM_PATTERN.matcher(url);
+        if(matcher.find() && matcher.group(2) != null)
+            did = matcher.group(2);
+        return did;
+    }
+
+    public static Map getDownlofFileRequestHeader(HttpServletRequest request, DesktopDTO desktop)
+    {
+        Map headers = new HashMap();
+        SessionState state = WebUtil.getSessionState(request);
+        UserDTO user = state.getUserDTO();
+        String password = "ignored";
+        String authorization = "Basic " + Base64Encoder.encode(user.getUsername() + ":" + password);
+        headers.put(HEADER_AUTHORIZATION, authorization);
+        return headers;
+    }
+
+    public static Map getApplicationRequestHeader(HttpServletRequest request, DesktopDTO desktop)
+    {
+        Map headers = new HashMap();
+        SessionState state = WebUtil.getSessionState(request);
+        UserDTO user = state.getUserDTO();
+        String password = "ignored";
+        String authorization = "Basic " + Base64Encoder.encode(user.getUsername() + ":" + password);
+        headers.put(HEADER_AUTHORIZATION, authorization);
+        String modes = state.getSupportedDisplayModesAsString();
+        headers.put(HEADER_SUPPORTED_MODES, modes);
+        headers.put(HEADER_CURRENT_MODE, state.getDisplayMode().getCode());
+        boolean firstDesktop = true;
+        StringBuffer buff = new StringBuffer();
+        for(Iterator it = state.getOrderedDesktops().iterator(); it.hasNext();)
+        {
+            DesktopDTO itDesktop = (DesktopDTO)it.next();
+            if(itDesktop.isVisible())
+            {
+                if(firstDesktop)
+                    firstDesktop = false;
+                else
+                    buff.append("; ");
+                buff.append(itDesktop.getDid()).append("/");
+                buff.append(encodeForDeviceListHeader(itDesktop.getName())).append("/");
+                buff.append(encodeForDeviceListHeader(itDesktop.getOwner())).append("/");
+                buff.append(itDesktop.getIcmURL()).append("/");
+                buff.append(itDesktop.getDaysToExpiry()).append("/");
+            }
+        }
+
+        headers.put(HEADER_DESKTOP_LIST, buff.toString());
+        headers.put(HEADER_EXPIRY_URL, state.getReseller().getExpiryUrl());
+        headers.put(HEADER_DEVICE_ICON_URL, "x-devicon");
+        headers.put(HEADER_USER_AGENT, request.getHeader("User-Agent"));
+        return headers;
+    }
+
+    public static String encodeForDeviceListHeader(String input)
+    {
+        String encoded = null;
+        try
+        {
+            input.getBytes("US-ASCII");
+            StringBuffer buff = new StringBuffer();
+            char chars[] = input.toCharArray();
+            for(int i = 0; i < chars.length; i++)
+            {
+                char c = chars[i];
+                if(c == ' ')
+                    buff.append("%20");
+                else
+                if(c == '%')
+                    buff.append("%25");
+                else
+                if(c == '/')
+                    buff.append("%2F");
+                else
+                if(c == ';')
+                    buff.append("%3B");
+                else
+                    buff.append(c);
+            }
+
+            encoded = buff.toString();
+        }
+        catch(Exception e)
+        {
+            m_log.error("This value cannot be sent in a http header as it contains non US-ASCII characters: " + input);
+            encoded = "";
+        }
+        return encoded;
+    }
+
+    private static void testGetAppUrl()
+        throws Exception
+    {
+        String regexp = "/[LMS]/.*";
+        String icmUrl = "https://www.infowave.com";
+        String url = "http:/foo.bar.com/html/doit.do/S/toto?did=123";
+        regexp = "/files.laplink.com/(.*)";
+        url = "http:/www.portal.com/html/files.laplink.com/S/toto?did=123";
+        url = "http://rome.infowave.com/html/t/apps/files.laplink.com/L/c:/INFOWAVE?did=5Ai4KasZ";
+        url = "http://rome.infowave.com/html/t/apps//lsfiles/D:/Music/goback.gif?did=LTqceHV2&GetActions";
+        url = "http://rome.infowave.com/html/p/apps//lsfiles/F:/Music/60's?did=5Ai4KasZ&LLMethod=GetNavigatePage";
+        regexp = "/html/t/apps/(.*)";
+        regexp = "/html/[tp]/apps/(.*)";
+        DesktopDTO dto = new DesktopDTO();
+        dto.setAppUrlRegexp(regexp);
+        dto.setIcmURL(icmUrl);
+        System.out.println("apps url: " + getAppUrl(dto, url));
+    }
+
+    private static void testGeFilesUrl()
+        throws Exception
+    {
+        String url = "http://www.portal/com/html/showDesktop.do/html/p/apps/files.laplink.com/L/C%3A?did=khPdprqn";
+        url = "/html/p/apps/files.laplink.com/L/C:";
+        DesktopDTO dto = new DesktopDTO();
+        System.out.println("Files url: " + getFilesUrl(dto, url));
+    }
+
+    private static void testGetDidParameter()
+        throws Exception
+    {
+        String url = "wewe.wewe.wewe/popo.popo?popo=popo&did=1234/&lklk=popo";
+        System.out.println("did:" + getDidParameter(url));
+    }
+
+    private static void test()
+        throws Exception
+    {
+        String s = " %/;";
+        StringBuffer buff = new StringBuffer();
+        char chars[] = s.toCharArray();
+        for(int i = 0; i < chars.length; i++)
+        {
+            char c = chars[i];
+            if(c == ' ')
+                System.out.println("space");
+            else
+            if(c == '%')
+                System.out.println("percent");
+            else
+            if(c == '/')
+                System.out.println("slash");
+            else
+            if(c == ';')
+                System.out.println("semicolon");
+            else
+                System.out.println("char:" + c);
+        }
+
+    }
+
+    public static String toHex(int i)
+    {
+        StringBuffer buf = new StringBuffer(2);
+        if((i & 0xff) < 16)
+            buf.append("0");
+        buf.append(Long.toString(i & 0xff, 16).toUpperCase());
+        return buf.toString().toString();
+    }
+
+    private static void testEncodeForDeviceListHeader()
+        throws Exception
+    {
+        DesktopDTO dto = new DesktopDTO();
+        String s = "a a%a/a;";
+        System.out.println(encodeForDeviceListHeader(s));
+    }
+
+    public static void main(String args[])
+    {
+        try
+        {
+            testGetAppUrl();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    static Class _mthclass$(String x0)
+    {
+        return Class.forName(x0);
+        ClassNotFoundException x1;
+        x1;
+        throw new NoClassDefFoundError(x1.getMessage());
+    }
+
+    private static Log m_log;
+    private static final String DID_PARAM_REGEXP = "(did=([^/&]*))";
+    private static Pattern DID_PARAM_PATTERN = Pattern.compile("(did=([^/&]*))");
+    private static String FILES_URL_REGEXP;
+    private static Pattern FILES_URL_PATTERN;
+    private static String HEADER_DESKTOP_LIST = "DesktopList";
+    private static String HEADER_CONN_STATUS = "ConnectionStatus";
+    private static String HEADER_AUTHORIZATION = "Authorization";
+    private static String HEADER_SUPPORTED_MODES = "SupportedMode";
+    private static String HEADER_EXPIRY_URL = "ExpiryURL";
+    private static String HEADER_DEVICE_ICON_URL = "ConnectionStatus";
+    private static String HEADER_CURRENT_MODE = "CurrentMode";
+    private static String HEADER_USER_AGENT = "User-Agent";
+
+    static 
+    {
+        m_log = LogFactory.getLog(com.infowave.c4p.web.util.DesktopUtils.class);
+        FILES_URL_REGEXP = "(/files.laplink.com/(.*))";
+        FILES_URL_PATTERN = Pattern.compile(FILES_URL_REGEXP);
+    }
+}

@@ -1,0 +1,268 @@
+<table width="100%" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="body_bar" valign="top">
+			<!-- this table	defines the toolbar -->
+			<table class="body_bar" cellspacing="0" cellpadding="2" width="100%" border="0">
+				<tr>
+					<td colspan="2" class="toolbar_heading">Assistenza</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=main.htm">FAQ 
+							generali</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="help.do?page=security.htm">FAQ  
+							Sicurezza</a></td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" target="_blank" href="http://www.laplink.com/support/laplink.asp">Assistenza 
+							Tecnica</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Generali</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%"><a class="left_body" href="showPasswordRecoverypage.do">Recupero 
+							Password</a></td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Guide</td>
+				</tr>
+				<tr>
+					<td colspan="2" class="toolbar_heading"><br>
+						Info</td>
+				</tr>
+				<tr>
+					<td valign="middle" width="0%"><img src="x-res/BULLET.GIF" hspace="2"></td>
+					<td class="left_body" width="100%">Politica della privacy</td>
+				</tr>
+			</table>
+		</td>
+		<TD align="center" valign="top" width="100%">
+			<!-- end left tool strip -->
+			<!-- content area -->
+			<TABLE class="content_text" WIDTH="95%" BORDER="0" CELLSPACING="0" CELLPADDING="0">
+				<TR>
+					<TD HEIGHT="5"><P CLASS="content_heading1">Laplink Software Inc. e la vostra privacy
+							<hr noshade size="1">
+					</TD>
+				</TR>
+				<TR>
+					<TD HEIGHT="8"></TD>
+				</TR>
+				<TR>
+					<TD>
+						<UL>
+							<LI>
+								<A class="left_body" HREF="#COLLECT">Quali informazioni personali raccogliamo dagli utenti che visitano il nostro sito Web?</A>
+							<LI>
+								<A class="left_body" HREF="#HAPPENS">Che cosa succede alle informazioni che raccogliamo?</A>
+							<LI>
+								<A class="left_body" HREF="#WHY">Perché le raccogliamo?</A>
+							<LI>
+								<A class="left_body" HREF="#SECURITY">Sicurezza</A>
+							<LI>
+								<A class="left_body" HREF="#CHOICE">Libertà di scelta: "l'opting-out"</A>
+							<LI>
+								<A class="left_body" HREF="#PROFILE">Come aggiornate il vostro profilo MySupport</A>
+							<LI>
+								<A class="left_body" HREF="#DISCLAIMER">Esonero legale</A>
+							<LI>
+								<A class="left_body" HREF="#CHANGE">Che cosa accade se modifichiamo la nostra politica della privacy?</A>
+							<LI>
+								<A class="left_body" HREF="#COOKIES">"Cookies" e come li utilizziamo</A>
+							<LI>
+								<A class="left_body" HREF="#INTOUCH">Come potete contattarci</A>
+							<LI>
+								<A class="left_body" HREF="#COMMENTS">Che cosa succede ai vostri commenti inviati via e-mail?</A></LI>
+						</UL>
+						<P></P>
+						<A NAME="COLLECT"></A>
+						<hr noshade size="1">
+						<P><B>Quali informazioni personali raccogliamo dagli utenti che visitano il nostro sito Web?</B></P>
+						<P>Potete accedere liberamente alla maggior parte del nostro sito senza fornire qualsiasi informazione
+							personale. Per alcune aree del nostro sito Web, come alcune delle  
+							aree dell'assistenza tecnica e l'area di scaricamento del software in prova, dovete inserire  
+							alcuni dati personali. Non raccogliamo dati personali
+							senza comunicarvelo prima!</P>
+						<P>Il tipo di informazioni che richiediamo in questi moduli online comprendono il vostro
+							nome, indirizzo postale, indirizzo e-mail e nome di società. Possiamo anche richiedervi
+							le dimensioni della vostra organizzazione e come avete scoperto i nostri prodotti.
+							Non tutte le informazioni che richiediamo sono necessarie e potete omettere di rispondere a
+							qualsiasi domanda facoltativa.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="HAPPENS"></A>
+						<BR>
+						<P><B>Che cosa succede alle informazioni che raccogliamo?</B></P>
+						<P>Le informazioni che ci fornite quando effettuate la registrazione per scaricare il software gratuito in
+							prova o per registrare un prodotto sono memorizzate con un numero d'identificazione unico. Le
+							informazioni contenute nel vostro profilo personale non sono fornite ad altri al di fuori
+							di Laplink Software Inc., né vengono condivise con i nostri agenti designati. Tutte le
+							informazioni da voi fornite durante le transazioni di e-commerce sono memorizzate su un server sicuro che codifica tutte le vostre informazioni
+							personali, inclusi il vostro nome, indirizzo e numero di carta di credito.</P>
+						<P>Laplink Software Inc. occasionalmente utilizza le informazioni fornite dai clienti per inviare
+							annunci su nuovi prodotti e servizi Laplink. <A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A></P>
+						<A NAME="WHY"></A>
+						<BR>
+						<P><B>Perché le raccogliamo?</B></P>
+						<P>Le informazioni che ci fornite ci assistono a migliorare i nostri prodotti software, per
+							personalizzare la vostra esperienza sul nostro sito Web e per fornirvi l'assistenza tecnica che si
+							addice meglio alle vostre esigenze. Occasionalmente utilizziamo le informazioni che ci fornite per
+							inviarvi annunci elettronici o postali sui prodotti e servizi 
+							Laplink. E periodicamente possiamo inviare annunci, omaggi o offerte speciali per posta per
+							conto dei nostri partner, se riteniamo che il messaggio sia 
+							pertinente alle vostre esigenze.</P>
+						<P>Non forniamo mai il vostro indirizzo di posta elettronica o numero di telefono ad altri 
+							all'esterno di Laplink Inc., né li forniamo ai nostri agenti designati.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="SECURITY"></A>
+						<BR>
+						<P><B>Sicurezza</B></P>
+						<P>Laplink Software Inc. comprende e rispetta le vostre preoccupazioni sulla privacy. Secondo la 
+							società, la
+							politica di sicurezza aziendale è talmente importante che include un quadro generale della
+							politica nell'orientamento di ciascun dipendente. L'accesso alla base dati clienti è
+							limitato soltanto ai dipendenti che hanno un'esigenza specifica per accedere a quei
+							dati per svolgere il proprio lavoro. E anche in quel caso, l'accesso ai dati sui clienti è protetto da
+							password. Ogni trimestre esaminiamo ed aggiorniamo la nostra sicurezza Web. Oltre a
+							salvaguardare la privacy di qualsiasi dato che ci fornite durante la visita al nostro sito,
+							Laplink Software Inc. ha stipulato partnership con altre società che hanno lo stesso profondo 
+							riguardo nei confronti delle vostre preoccupazioni sulla privacy.</P>
+						<P>Laplink Software Inc. non gestisce transazioni finanziarie tramite il Web, per cui non ha bisogno di
+							prodotti di codifica streaming. Laplink Software Inc. lavora con una terza parte
+							che funge da intermediaria fidata per gestire le transazioni di
+							e-commerce con i nostri clienti. Digital River gestisce l'e-commerce su un server
+							sicuro che codifica tutte le informazioni personali dei nostri clienti. Per avere più informazioni
+							su come Digital River gestisce la privacy delle informazioni connesse a queste
+							transazioni di e-commerce, vedete la <A class="left_body"  HREF="http://drhome.digitalriver.com/live/drv_00pvs_000.shtml" TARGET="_new">
+								dichiarazione di privacy</A> di questa società.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="CHOICE"></A>
+						<BR>
+						<P><B>Libertà di scelta: "l'opting-out"</B></P>
+						<P>Non volete ricevere messaggi elettronici o postali dalla nostra società? Quando richiediamo le informazioni, diamo ai visitatori del nostro
+							sito Web l'opportunità di "opt-out" dall'utilizzo delle informazioni che li riguardano per
+							scopi che non sono direttamente correlati al nostro sito Web.
+							Il vostro profilo MySupport contiene una casella che selezionate per
+							indicare che non volete ricevere notizie o informazioni sui prodotti.</P>
+						<P>I visitatori che non desiderano più ricevere mailing sui nostri prodotti o
+							materiali promozionali inviati per conto dei nostri partner hanno tre opzioni per 
+							l'opting-out:
+							<UL>
+								<LI>
+									<P>Visitate <a class="left_body" href="protected/showAccountManagementPage.do">Profilo MySupport</a>. 
+										Fate clic su una casella per scegliere di non ricevere materiali promozionali futuri.</P>
+								<LI>
+									<P>Fate clic sul link di opt-out che trovate su ciascun e-mail promozionale.</P>
+								<LI>
+									<P>Inviateci un breve messaggio per dirci che non desiderate ricevere più i materiali 
+										promozionali. Per consentirci di elaborare tempestivamente la vostra richiesta, ricordate di includere 
+										il vostro indirizzo completo e il vostro indirizzo e-mail. Inviate la vostra richiesta a:<br>
+									<P>Laplink Software Inc.<BR>
+										10210&nbsp;NE Points Drive<BR>
+										Kirkland, WA 98033<BR>
+										USA<BR>
+										Tel.: 425.952.6000<BR>
+										Fax: 425.952.6002<BR>
+									</P>
+								</LI>
+							</UL>
+						<P></P>
+						<P>Notifichiamo ai visitatori del nostro sito quando le loro informazioni sono 
+							raccolte da qualsiasi parte esterna. Lo facciamo così che i visitatori di Laplink Software Inc. possano decidere 
+							in modo informato se procedere o meno con i servizi che richiedono  
+							una parte esterna.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="PROFILE"></A>
+						<BR>
+						<P><B>Come aggiornate il vostro profilo MySupport</B></P>
+						<P>Con il servizio conveniente di MySupport potete registrare i prodotti Laplink, 
+							inviare e controllare le vostre richieste di assistenza, effettuare la registrazione per ricevere avvisi e-mail per comunicarvi il 
+							lancio di nuovi prodotti e offerte speciali o per "l'opting-out" di 
+							mailing di questo tipo.</P>
+						<P>Una volta effettuata la registrazione, potete aggiornare o modificare il vostro profilo personale 
+							in qualsiasi momento, visitando la sezione <a class="left_body" href="protected/showAccountManagementPage.do">MySupport</a>
+							del nostro sito Web.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="DISCLAIMER"></A>
+						<BR>
+						<P><B>Esonero legale</B></P>
+						<P>Possiamo rivelare informazioni personali quando è richiesto a norma di legge o nella convinzione in
+							buona fede che un'azione di questo tipo sia necessaria per la conformità alle disposizioni
+							di legge o ad un processo legale notificato sul nostro sito Web.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="CHANGE"></A>
+						<BR>
+						<P><B>Che cosa succede se modifichiamo la nostra politica della privacy?</B></P>
+						<P>Utilizzeremo le informazioni in conformità con la politica della privacy ai sensi della quale sono
+							state raccolte le informazioni.</P>
+						<P>Possiamo scegliere di modificare le nostre politiche della privacy. Quando decideremo
+							di apportare qualsiasi cambiamento, tuttavia, pubblicheremo le relative revisioni su questa pagina
+							così che i nostri visitatori siano sempre consapevoli delle informazioni che raccogliamo, come le utilizziamo
+							ed in quali circostanze - eventuali - le riveliamo. Se in qualsiasi momento 
+							decidiamo di utilizzare informazioni personalmente identificabili in un modo diverso da
+							quello stabilito al momento in cui le abbiamo raccolte, ve lo comunichiamo tramite e-mail.
+							Sono i visitatori del sito Laplink Software Inc. a decidere se utilizziamo le informazioni specifiche che li riguardano in
+							un modo diverso da quello stabilito quando hanno presentato quelle 
+							informazioni.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="COOKIES"></A>
+						<BR>
+						<P><B>"Cookies" e come li utilizziamo</B></P>
+						<P>Un cookie è simile ad una carta d'identificazione elettronica. È una piccola stringa di codice inviato dal
+							nostro server Web, che risiede nel vostro disco fisso. Il cookie consente al nostro server di  
+							identificarvi quando ritornate per un'altra visita. Un cookie non è un programma e 
+							non può eseguire o svolgere qualsiasi operazione sul vostro computer!</P>
+						<P>Il cookie è utile perché noi vi riconosciamo automaticamente quando ritornate
+							al nostro sito Web e ci consente di personalizzare le informazioni che vi presentiamo
+							in base alle vostre esigenze personali e interazioni precedenti con il nostro sito.</P>
+						<P>I cookie ci assistono inoltre a comprendere meglio gli interessi e i modelli
+							dei visitatori e ciò significa che possiamo creare siti Web migliori!</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+						<A NAME="INTOUCH"></A>
+						<BR>
+						<P><B>Come potete contattarci</B></P>
+						<P>Potete scrivere, telefonare o inviarci messaggi e-mail con qualsiasi domanda
+							o commento relativo alle nostre politiche della privacy!</P>
+						<P>Laplink Software Inc.<BR>
+							10210 NE Points Drive<BR>
+							Kirkland, WA. 98033<BR>
+							USA<BR>
+							Tel.: 425.952.6000<BR>
+							Fax: 425.962.6002<BR>
+							<A class="left_body" HREF="mailto:webmaster@laplink.com">webmaster@laplink.com</A><BR>
+							<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A></P>
+						<A NAME="COMMENTS"></A>
+						<BR>
+						<P><B>Che cosa succede ai vostri commenti inviati via e-mail</B></P>
+						<P>Utilizziamo link e-mail su questa pagina e in tutto il nostro sito Web per
+							permettervi di contattarci più facilmente direttamente con qualsiasi domanda o commento.</P>
+						<P>Leggiamo e cerchiamo di rispondere tempestivamente a tutti i messaggi. Oltre a rispondere
+							direttamente alle vostre domande o commenti, possiamo anche mantenere il vostro messaggio e-mail in 
+							archivio per utilizzare il vostro feedback per migliorare il nostro sito Web e il nostro software.
+							A volte, dopo aver esaminato i vostri commenti, possiamo eliminare il messaggio e-mail. Nessuna
+							informazione personale contenuta nel vostro messaggio e-mail sarà condivisa con 
+							qualsiasi terza parte senza il vostro consenso specifico.</P>
+						<A HREF="#TOP"><IMG SRC="x-res/TOP.GIF" BORDER="0"></A>
+						<P></P>
+					</TD>
+				</TR>
+			</TABLE>
+			<!-- End Content Area -->
+		</TD>
+	</tr>
+</table>

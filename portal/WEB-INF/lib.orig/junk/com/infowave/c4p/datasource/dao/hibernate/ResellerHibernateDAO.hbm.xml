@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="com.infowave.c4p.model.Reseller" table="reseller">
+
+    <id name="id" type="string" unsaved-value="null" >
+      <column name="id" length="32" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="code" unique="true">
+      <column name="code" sql-type="varchar(250)" unique="true"/>
+    </property>
+    <property name="name">
+      <column name="name" sql-type="varchar(20)"/>
+    </property>
+    <property name="hostname">
+      <column name="hostname" sql-type="varchar(150)"/>
+    </property>
+    <property name="expiryUrl">
+      <column name="expiryUrl" sql-type="varchar(250)"/>
+    </property>
+    <property name="defaultLocale">
+      <column name="defaultLocale" sql-type="varchar(32)" />
+    </property>
+    <property name="nbSecurityQuestions"/>
+    <property name="licenseCodeFormat" >
+      <column name="licenseCodeFormat" sql-type="varchar(32)" not-null="true"/>
+    </property>
+    <property name="demoDuration"/>
+    <property name="passwordEncoder">
+      <column name="passwordEncoder" sql-type="varchar(250)" not-null="true"/>
+    </property>
+
+
+  </class>
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+    <query name="Reseller.all">
+    <![CDATA[
+     from Reseller
+     ]]>
+     </query>
+
+  <query name="Reseller.by.code">
+    <![CDATA[
+     from Reseller as reseller where reseller.code= :code
+     ]]>
+     </query>
+
+
+</hibernate-mapping>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="com.infowave.c4p.model.RCUsage" table="rcusage">
+
+    <id name="id" type="string" unsaved-value="null" >
+      <column name="id" length="32" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="did">
+      <column name="did" sql-type="varchar(128)" unique="true" not-null="true"/>
+    </property>
+    <property name="licenseSerialNumber">
+      <column name="licenseSerialNumber" sql-type="varchar(250)"/>
+    </property>
+    <property name="expiryDate"/>
+    <property name="windowExpiryDate"/>
+    <property name="bytes">
+      <column name="bytes" sql-type="bigint" not-null="true"/>
+    </property>
+    <property name="serverSeconds">
+      <column name="serverSeconds" sql-type="integer" not-null="true"/>
+    </property>
+    <property name="clientSeconds">
+      <column name="clientSeconds" sql-type="integer" not-null="true"/>
+    </property>
+    <property name="windowLimit">
+      <column name="windowlimit" sql-type="integer" not-null="true"/>
+    </property>
+  </class>
+
+
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+  <query name="RCUsage.by.did">
+    <![CDATA[
+     from RCUsage as rcusage where rcusage.did= :did
+     ]]>
+     </query>
+
+  <query name="RCUsage.like.code">
+    <![CDATA[
+     from RCUsage as rcusage where rcusage.licenseSerialNumber like :licenseSerialNumber
+     ]]>
+     </query>
+
+  <query name="RCUsage.count.like.code">
+    <![CDATA[
+     select count(rcusage) from RCUsage as rcusage where rcusage.licenseSerialNumber like :licenseSerialNumber
+     ]]>
+     </query>
+
+  <query name="RCUsage.by.code">
+    <![CDATA[
+     from RCUsage as rcusage where rcusage.licenseSerialNumber= :licenseSerialNumber
+     ]]>
+     </query>
+
+  <query name="RCUsage.by.codeanddid">
+    <![CDATA[
+     from RCUsage as rcusage where rcusage.licenseSerialNumber= :licenseSerialNumber and rcusage.did= :did
+     ]]>
+     </query>
+
+
+</hibernate-mapping>

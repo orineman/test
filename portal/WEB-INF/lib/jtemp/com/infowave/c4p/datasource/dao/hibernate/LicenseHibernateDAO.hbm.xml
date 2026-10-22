@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+
+<hibernate-mapping>
+
+  <class name="com.infowave.c4p.model.License" table="license"
+         proxy="com.infowave.c4p.model.License">
+
+    <id name="id" type="string" unsaved-value="null" >
+      <column name="id" length="32" not-null="true"/>
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="code">
+      <column name="code" sql-type="varchar(100)" />
+    </property>
+
+    <property name="duration"/>
+    <property name="numUses"/>
+    <property name="maxUses"/>
+    <property name="revoked"/>
+    <property name="regCode"/>
+    <property name="firstUseDate"/>
+    <property name="rc"/>
+    <property name="licenseType"/>
+
+
+    <!--          -->
+    <!-- Reseller -->
+    <!--          -->
+    <many-to-one name="reseller" column="resellerId" not-null="true" />
+
+    <!--          -->
+    <!-- Account -->
+    <!--          -->
+
+    <many-to-one name="account" column="accountId" not-null="false" />
+
+    <many-to-one name="rcusage" column="rcaccountId" not-null="false" />
+
+  </class>
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+  <query name="License.by.code">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and license.reseller.id= :resellerId
+    ]]>
+     </query>
+  
+  <query name="Licenses.by.code.and.userId">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and license.account.id= :userId
+                               and license.reseller.id= :resellerId
+                               and license.revoked=0
+					 and license.rc='N'
+     ]]>
+     </query>
+
+  <query name="Unused.licenses.by.code">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and ( (license.regCode=0 and license.account is NULL) or
+							        (license.regCode=1 and license.numUses < license.maxUses) )
+                               and license.reseller.id= :resellerId
+                               and license.revoked=0
+					 and license.rc='N'
+     ]]>
+     </query>
+
+  <query name="Licenses.by.code">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and license.reseller.id= :resellerId
+                               and license.revoked=0
+					 and license.rc='N'
+     ]]>
+     </query>
+
+    <query name="Count.licenses.by.code">
+    <![CDATA[
+     select count(license) from License as license where license.code= :code
+                               and license.reseller.id= :resellerId
+					 and license.rc='N'
+     ]]>
+     </query>
+
+    <query name="Unused.llg.licenses.by.code">
+    <![CDATA[
+     from License as license where license.code like :code
+					 and license.reseller.id= :resellerId
+                               and license.rcusage.id is NULL
+					 and license.revoked=0
+					 and license.rc='N'
+     ]]>
+     </query>
+
+  <query name="Licenses.by.code.and.userId.rc">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and license.rcusage.id= :userId
+                               and license.reseller.id= :resellerId
+                               and license.revoked=0
+					 and license.rc='Y'
+     ]]>
+     </query>
+
+  <query name="Unused.licenses.by.code.rc">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and ((license.rcusage is NULL and license.regCode=0) or
+							        (license.regCode=1 and license.numUses < license.maxUses) )
+                               and license.reseller.id= :resellerId
+                               and license.revoked=0
+					 and license.rc='Y'
+     ]]>
+     </query>
+
+  <query name="Licenses.by.code.rc">
+    <![CDATA[
+     from License as license where license.code= :code
+                               and license.reseller.id= :resellerId
+                               and license.revoked=0
+					 and license.rc='Y'
+     ]]>
+     </query>
+
+    <query name="Count.licenses.by.code.rc">
+    <![CDATA[
+     select count(license) from License as license where license.code= :code
+                               and license.reseller.id= :resellerId
+					 and license.rc='Y'
+     ]]>
+     </query>
+
+
+
+</hibernate-mapping>
