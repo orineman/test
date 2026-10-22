@@ -1,0 +1,30 @@
+2020-10-18 01:34:28 PortalRealm[Standalone]: ->Username: ibskin@cox.net  encoded password: _hs_9df7ed177c31 db password: _hs_9df7ed177c31
+2020-10-18 01:34:28 PortalRealm[Standalone]: PortalRealm success: ibskin@cox.net
+2020-10-18 01:34:28 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:28 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:30 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:30 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 01:34:31 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-18 13:02:34 PortalRealm[Standalone]: ->Username: Barney Remote  encoded password: _hs_088ce915db3d db password: _hs_088ce915db3d
+2020-10-18 13:02:34 PortalRealm[Standalone]: PortalRealm success: Barney Remote
+2020-10-18 13:02:35 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-18 13:02:35 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-18 13:02:36 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-18 13:02:36 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-18 16:00:06 PortalRealm[Standalone]: ->Username: ABCummings  encoded password: _hs_a76d77e266ed db password: _hs_a76d77e266ed
+2020-10-18 16:00:06 PortalRealm[Standalone]: PortalRealm success: ABCummings
+2020-10-18 16:00:06 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-18 16:00:06 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-18 16:00:06 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-18 16:00:06 PortalRealm[Standalone]: Username ABCummings has role user

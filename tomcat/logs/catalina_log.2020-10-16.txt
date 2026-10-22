@@ -1,0 +1,169 @@
+2020-10-16 00:09:26 PortalRealm[Standalone]: ->Username: ABCummings  encoded password: _hs_a76d77e266ed db password: _hs_a76d77e266ed
+2020-10-16 00:09:26 PortalRealm[Standalone]: PortalRealm success: ABCummings
+2020-10-16 00:09:26 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:09:27 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:09:27 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:09:27 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:19:42 PortalRealm[Standalone]: ->Username: ABCummings  encoded password: _hs_a76d77e266ed db password: _hs_a76d77e266ed
+2020-10-16 00:19:42 PortalRealm[Standalone]: PortalRealm success: ABCummings
+2020-10-16 00:19:42 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:19:42 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:19:42 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 00:19:42 PortalRealm[Standalone]: Username ABCummings has role user
+2020-10-16 03:46:25 PortalRealm[Standalone]: ->Username: ibskin@cox.net  encoded password: _hs_9df7ed177c31 db password: _hs_9df7ed177c31
+2020-10-16 03:46:25 PortalRealm[Standalone]: PortalRealm success: ibskin@cox.net
+2020-10-16 03:46:25 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:25 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:25 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:26 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 03:46:47 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-16 05:29:37 PortalRealm[Standalone]: ->Username: jackrunte  encoded password: _hs_ade53afa182c db password: _hs_ade53afa182c
+2020-10-16 05:29:37 PortalRealm[Standalone]: PortalRealm success: jackrunte
+2020-10-16 05:29:37 PortalRealm[Standalone]: Username jackrunte has role user
+2020-10-16 05:29:37 PortalRealm[Standalone]: Username jackrunte has role user
+2020-10-16 05:29:38 PortalRealm[Standalone]: Username jackrunte has role user
+2020-10-16 05:29:38 PortalRealm[Standalone]: Username jackrunte has role user
+2020-10-16 10:51:49 PortalRealm[Standalone]: ->Username: Barney Remote  encoded password: _hs_088ce915db3d db password: _hs_088ce915db3d
+2020-10-16 10:51:49 PortalRealm[Standalone]: PortalRealm success: Barney Remote
+2020-10-16 10:51:49 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-16 10:51:49 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-16 10:51:50 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-16 10:51:50 PortalRealm[Standalone]: Username Barney Remote has role user
+2020-10-16 13:54:36 PortalRealm[Standalone]: ->Username: SGS1958  encoded password: _hs_253faf656ca6 db password: _hs_253faf656ca6
+2020-10-16 13:54:36 PortalRealm[Standalone]: PortalRealm success: SGS1958
+2020-10-16 13:54:36 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 13:54:36 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 13:54:36 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 13:54:36 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 15:00:19 PortalRealm[Standalone]: ->Username: bighorn  encoded password: _hs_3ae49ed39520 db password: _hs_3ae49ed39520
+2020-10-16 15:00:19 PortalRealm[Standalone]: PortalRealm success: bighorn
+2020-10-16 15:00:19 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-16 15:00:19 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-16 15:00:20 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-16 15:00:20 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-16 15:20:59 PortalRealm[Standalone]: ->Username: SGS1958  encoded password: _hs_253faf656ca6 db password: _hs_253faf656ca6
+2020-10-16 15:20:59 PortalRealm[Standalone]: PortalRealm success: SGS1958
+2020-10-16 15:20:59 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 15:21:00 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 15:21:00 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 15:21:00 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-16 16:03:39 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:03:39 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:03:39 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:03:39 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:03:40 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:03:40 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:23 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:04:23 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:04:23 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:23 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:23 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:23 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:49 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:04:49 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:04:49 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:49 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:49 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:04:49 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:11 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:05:11 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:05:11 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:11 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:11 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:12 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:46 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:05:46 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:05:47 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:47 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:47 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:05:47 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:06:26 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:06:26 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:06:26 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:06:26 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:06:27 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:06:27 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:14 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:07:14 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:07:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:50 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 16:07:50 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 16:07:50 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:50 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:50 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 16:07:50 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 17:14:43 PortalRealm[Standalone]: ->Username: brianc  encoded password: _hs_2bdb765e169f db password: _hs_2bdb765e169f
+2020-10-16 17:14:43 PortalRealm[Standalone]: PortalRealm success: brianc
+2020-10-16 17:14:43 PortalRealm[Standalone]: Username brianc has role user
+2020-10-16 17:14:43 PortalRealm[Standalone]: Username brianc has role user
+2020-10-16 17:14:43 PortalRealm[Standalone]: Username brianc has role user
+2020-10-16 17:14:43 PortalRealm[Standalone]: Username brianc has role user
+2020-10-16 20:02:44 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 20:02:44 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 20:02:44 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:02:44 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:02:44 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:02:44 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:13 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 20:03:13 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 20:03:13 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:14 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:33 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 20:03:33 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 20:03:33 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:33 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:34 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:03:34 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:04:22 PortalRealm[Standalone]: ->Username: Ramey  encoded password: _hs_3d9da210816f db password: _hs_3d9da210816f
+2020-10-16 20:04:22 PortalRealm[Standalone]: PortalRealm success: Ramey
+2020-10-16 20:04:22 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:04:22 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:04:23 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:04:23 PortalRealm[Standalone]: Username Ramey has role user
+2020-10-16 20:49:29 PortalRealm[Standalone]: ->Username: jon.cassidy  encoded password: _hs_bf865a6ee334 db password: _hs_bf865a6ee334
+2020-10-16 20:49:29 PortalRealm[Standalone]: PortalRealm success: jon.cassidy
+2020-10-16 20:49:29 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:49:29 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:49:29 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:49:30 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:50:34 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:50:35 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:50:54 PortalRealm[Standalone]: ->Username: jon.cassidy  encoded password: _hs_bf865a6ee334 db password: _hs_bf865a6ee334
+2020-10-16 20:50:54 PortalRealm[Standalone]: PortalRealm success: jon.cassidy
+2020-10-16 20:50:54 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:50:55 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:50:55 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 20:50:55 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 22:00:27 PortalRealm[Standalone]: ->Username: jon.cassidy  encoded password: _hs_bf865a6ee334 db password: _hs_bf865a6ee334
+2020-10-16 22:00:27 PortalRealm[Standalone]: PortalRealm success: jon.cassidy
+2020-10-16 22:00:27 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 22:00:27 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 22:00:27 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-16 22:00:27 PortalRealm[Standalone]: Username jon.cassidy has role user

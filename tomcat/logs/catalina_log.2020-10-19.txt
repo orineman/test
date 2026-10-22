@@ -1,0 +1,174 @@
+2020-10-19 01:17:01 PortalRealm[Standalone]: ->Username: jon.cassidy  encoded password: _hs_bf865a6ee334 db password: _hs_bf865a6ee334
+2020-10-19 01:17:01 PortalRealm[Standalone]: PortalRealm success: jon.cassidy
+2020-10-19 01:17:01 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-19 01:17:01 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-19 01:17:01 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-19 01:17:01 PortalRealm[Standalone]: Username jon.cassidy has role user
+2020-10-19 03:57:54 PortalRealm[Standalone]: ->Username: Woodyrat  encoded password: _hs_8e95fcaac957 db password: _hs_8e95fcaac957
+2020-10-19 03:57:54 PortalRealm[Standalone]: PortalRealm success: Woodyrat
+2020-10-19 03:57:54 PortalRealm[Standalone]: Username Woodyrat has role user
+2020-10-19 03:57:54 PortalRealm[Standalone]: Username Woodyrat has role user
+2020-10-19 03:57:54 PortalRealm[Standalone]: Username Woodyrat has role user
+2020-10-19 03:57:54 PortalRealm[Standalone]: Username Woodyrat has role user
+2020-10-19 05:23:42 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_fd5bc3f951a4 db password: _hs_c9c182128aab
+2020-10-19 05:23:42 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:25:21 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_d4f78896c812 db password: _hs_c9c182128aab
+2020-10-19 05:25:21 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:26:15 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_fd5bc3f951a4 db password: _hs_c9c182128aab
+2020-10-19 05:26:15 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:26:38 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_fd5bc3f951a4 db password: _hs_c9c182128aab
+2020-10-19 05:26:38 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:26:53 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_d2f602cad4b9 db password: _hs_c9c182128aab
+2020-10-19 05:26:53 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:27:06 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_1f738d68af40 db password: _hs_c9c182128aab
+2020-10-19 05:27:06 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:27:17 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_b443b6a85932 db password: _hs_c9c182128aab
+2020-10-19 05:27:17 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:27:27 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_cf77703ab6b9 db password: _hs_c9c182128aab
+2020-10-19 05:27:27 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:27:41 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_fd5bc3f951a4 db password: _hs_c9c182128aab
+2020-10-19 05:27:41 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 05:36:12 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_b443b6a85932 db password: _hs_c9c182128aab
+2020-10-19 05:36:12 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 07:40:43 PortalRealm[Standalone]: ->Username: GRData  encoded password: _hs_55d5b6ce329d db password: _hs_55d5b6ce329d
+2020-10-19 07:40:43 PortalRealm[Standalone]: PortalRealm success: GRData
+2020-10-19 07:40:43 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:40:43 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:40:44 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:40:44 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:59:06 PortalRealm[Standalone]: ->Username: GRData  encoded password: _hs_55d5b6ce329d db password: _hs_55d5b6ce329d
+2020-10-19 07:59:06 PortalRealm[Standalone]: PortalRealm success: GRData
+2020-10-19 07:59:06 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:59:07 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:59:07 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 07:59:07 PortalRealm[Standalone]: Username GRData has role user
+2020-10-19 13:42:13 PortalRealm[Standalone]: ->Username: SGS1958  encoded password: _hs_253faf656ca6 db password: _hs_253faf656ca6
+2020-10-19 13:42:13 PortalRealm[Standalone]: PortalRealm success: SGS1958
+2020-10-19 13:42:13 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-19 13:42:14 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-19 13:42:14 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-19 13:42:14 PortalRealm[Standalone]: Username SGS1958 has role user
+2020-10-19 14:53:40 PortalRealm[Standalone]: ->Username: bighorn  encoded password: _hs_3ae49ed39520 db password: _hs_3ae49ed39520
+2020-10-19 14:53:40 PortalRealm[Standalone]: PortalRealm success: bighorn
+2020-10-19 14:53:40 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 14:53:41 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 14:53:41 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 14:53:41 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 21:39:19 PortalRealm[Standalone]: ->Username: bighorn  encoded password: _hs_3ae49ed39520 db password: _hs_3ae49ed39520
+2020-10-19 21:39:19 PortalRealm[Standalone]: PortalRealm success: bighorn
+2020-10-19 21:39:19 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 21:39:19 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 21:39:20 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 21:39:20 PortalRealm[Standalone]: Username bighorn has role user
+2020-10-19 21:46:33 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_b443b6a85932 db password: _hs_c9c182128aab
+2020-10-19 21:46:33 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 22:01:38 PortalRealm[Standalone]: ->Username: tsadmin  encoded password: _hs_57970a858cde db password: _hs_57970a858cde
+2020-10-19 22:01:38 PortalRealm[Standalone]: PortalRealm success: tsadmin
+2020-10-19 22:01:39 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:40 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:42 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:42 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:43 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:44 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:45 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:45 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:46 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:46 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:46 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:50 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:53 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:53 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:54 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:56 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:57 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:57 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:57 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:57 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:57 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:01:57 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:05 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:07 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:07 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:08 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:10 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:25 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:25 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:27 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:30 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:30 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:31 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:32 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:32 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:32 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:33 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:33 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:02:58 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:00 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:00 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:01 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:02 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:02 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:03 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:03 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:03 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:03 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:03 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:09 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:11 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:11 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:12 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:13 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:13 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:13 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:13 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:13 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:13 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:03:14 PortalRealm[Standalone]: Username tsadmin has role user
+2020-10-19 22:07:00 PortalRealm[Standalone]: ->Username: BRIANSKENNELS  encoded password: _hs_b443b6a85932 db password: _hs_c9c182128aab
+2020-10-19 22:07:00 PortalRealm[Standalone]: PortalRealm failure: BRIANSKENNELS
+2020-10-19 23:20:34 PortalRealm[Standalone]: ->Username: ibskin@cox.net  encoded password: _hs_9df7ed177c31 db password: _hs_9df7ed177c31
+2020-10-19 23:20:34 PortalRealm[Standalone]: PortalRealm success: ibskin@cox.net
+2020-10-19 23:20:34 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:34 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:34 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:20:35 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:42 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
+2020-10-19 23:22:49 PortalRealm[Standalone]: Username ibskin@cox.net has role user
