@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.infowave.c4p.model.Technician" table="Technician">
+
+		<id name="id" type="string" unsaved-value="null" >
+		  <column name="id" length="32" not-null="true"/>
+		  <generator class="uuid.hex"/>
+		</id>
+ 
+        <property name="companyid">
+           <column name="companyid" sql-type="varchar(64)" unique="true"  not-null="true" />
+         </property>
+
+        <property name="techid">
+           <column name="techid" sql-type="varchar(32)" not-null="true" />
+         </property>
+
+        <property name="techcid">
+            <column name="techcid" sql-type="char(4)" unique="true"  not-null="true" />
+        </property>
+
+        <property name="maxconns">
+            <column name="maxconns" sql-type="int unsigned" not-null="true" />
+        </property>
+
+        <property name="accesslevel">
+            <column name="accesslevel" sql-type="bigint" not-null="true" />
+        </property>
+
+        <property name="password">
+            <column name="password" sql-type="varchar(64)"  not-null="true"/>
+        </property>
+
+        <property name="email">
+            <column name="email"  sql-type="varchar(128)"/>
+        </property>
+
+        <property name="name">
+            <column name="name"  sql-type="varchar(64)"/>
+        </property>
+
+        <property name="phone">
+            <column name="phone" sql-type="varchar(32)" />
+        </property>
+
+        <property name="misc">
+            <column name="misc" sql-type="varchar(256)" />
+        </property>
+
+        <property name="createdatetime">
+            <column name="createdatetime" sql-type="timestamp" />
+        </property>
+
+<!--
+        <many-to-one
+            name="companyid"
+            column="companyid"
+            not-null="true"
+		/>
+-->
+
+
+    </class>
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="Technician.by.companyid">
+    <![CDATA[
+     from Technician where companyid = :companyid order by techid
+     ]]>
+     </query>
+
+  <query name="Technician.by.doubleid">
+    <![CDATA[
+     from Technician where  companyid = :companyid 
+						and techid = :techid
+     ]]>
+     </query>
+
+  <query name="Technician.by.companyid.techcid">
+    <![CDATA[
+     from Technician where  companyid = :companyid 
+						and techcid = :techcid
+     ]]>
+     </query>
+
+  <query name="Technician.by.techcid">
+    <![CDATA[
+     from Technician where  techcid = :techcid
+     ]]>
+     </query>
+
+  <query name="Technician.active.by.doubleid">
+    <![CDATA[
+     from Technician as tech where tech.companyid = :companyid 
+						and tech.techid = :techid
+						and bitwise_and(tech.accesslevel, 1) = 1
+						and tech.maxconns > 0
+     ]]>
+     </query>
+
+  <query name="Technician.activate.by.companyid">
+    <![CDATA[
+     update Technician as tech set tech.accesslevel = bitwise_or(tech.accesslevel, 1)
+						where tech.companyid = :companyid 
+     ]]>
+     </query>
+
+  <query name="Technician.inactivate.by.companyid">
+    <![CDATA[
+     update Technician as tech set tech.accesslevel = bitwise_and(tech.accesslevel, 4294967294)
+						where tech.companyid = :companyid 
+     ]]>
+     </query>
+
+  <query name="Technician.setaccesslevel.by.companyid">
+    <![CDATA[
+     update Technician as tech set tech.accesslevel = (bitwise_or(bitwise_and(tech.accesslevel, 1), :accesslevel))
+						where tech.companyid = :companyid 
+     ]]>
+     </query>
+
+  <query name="Technician.delete.by.companyid">
+    <![CDATA[
+     delete Technician as tech where tech.companyid = :companyid 
+     ]]>
+     </query>
+
+  <query name="Technicians.like.techid">
+    <![CDATA[
+     from Technician where companyid = :companyid 
+						and techid like :techid order by techid
+     ]]>
+     </query>
+
+  <query name="Technicians.like.companyid.techcid">
+    <![CDATA[
+     from Technician where companyid = :companyid 
+						and techcid like :techcid order by techid
+     ]]>
+     </query>
+
+  <query name="Technicians.like.name">
+    <![CDATA[
+     from Technician where companyid = :companyid 
+						and name like :name order by techid
+     ]]>
+     </query>
+
+  <query name="Technicians.like.email">
+    <![CDATA[
+     from Technician where companyid = :companyid 
+						and email like :email order by techid
+     ]]>
+     </query>
+
+  <query name="Technicians.like.companyid.email">
+    <![CDATA[
+     from Technician where companyid like :companyid 
+						and email like :email order by companyid, techid
+     ]]>
+     </query>
+
+  <query name="Technicians.like.techcid">
+    <![CDATA[
+     from Technician where techcid like :techcid order by techid
+     ]]>
+     </query>
+
+  <query name="Technician.Count.like.techid">
+    <![CDATA[
+     select count(tech) from Technician as tech where tech.companyid = :companyid
+						and tech.techid like :techid
+     ]]>
+     </query>
+
+  <query name="Technician.Count.like.email">
+    <![CDATA[
+     select count(tech) from Technician as tech where tech.companyid = :companyid
+						and tech.email like :email
+     ]]>
+     </query>
+
+  <query name="Technician.Count.like.techcid">
+    <![CDATA[
+     select count(tech) from Technician as tech where tech.techcid like :techcid
+     ]]>
+     </query>
+
+  <query name="Technician.Count.like.name">
+    <![CDATA[
+     select count(tech) from Technician as tech where tech.companyid = :companyid
+						and tech.name like :name
+     ]]>
+     </query>
+
+  <query name="Technician.Count.like.companyid.techcid">
+    <![CDATA[
+     select count(tech) from Technician as tech where tech.companyid = :companyid
+						and tech.techcid like :techcid
+     ]]>
+     </query>
+
+  <query name="Technician.Count.like.companyid.email">
+    <![CDATA[
+     select count(tech) from Technician as tech where tech.companyid like :companyid
+						and tech.email like :email
+     ]]>
+     </query>
+
+  <query name="Technician.Count.active.by.companyid">
+    <![CDATA[
+     select count(tech) from Technician as tech where companyid = :companyid
+						and bitwise_and(tech.accesslevel, 1) = 1
+						and tech.maxconns > 0
+     ]]>
+     </query>
+
+
+</hibernate-mapping>

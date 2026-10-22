@@ -1,0 +1,13 @@
+# ! /bin/bash
+# Report and remove unused dids, timeout dids
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-rpt-unused-dids.sql > /root/db-ra/cron/reports/hds-unused-dids.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-rpt-timeout-dids.sql > /root/db-ra/cron/reports/hds-timeout-dids.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-del-unused-dids.sql
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-to-timeout-dids.sql
+
+# Table maintenance
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaint2.sql > /root/db-ra/cron/output/dbMaint2.txt
+
+# compress and remove reports older than 90 days
+/bin/gzip -f /root/db-ra/cron/reports/*.rpt
+rm -f `find /root/db-ra/cron/reports -ctime +90 | grep .rpt.gz`

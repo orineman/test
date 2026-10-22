@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+-->
+
+
+<struts-config>
+
+  <!-- ==================================================================== -->
+  <!-- ========== Form Bean Definitions =================================== -->
+  <!-- ==================================================================== -->
+  <form-beans>
+    <form-bean      name="DummyForm"
+                    type="com.infowave.c4p.web.util.DummyForm"/>
+    <form-bean      name="CreateAccountForm"
+                    type="com.infowave.c4p.web.actions.CreateAccountForm"/>
+
+    <form-bean      name="AttachDesktopToAccountForm"
+      type="com.infowave.c4p.web.actions.AttachDesktopToAccountForm"/>
+       <form-bean      name="ChangeIdentityForm"
+      type="com.infowave.c4p.web.actions.ChangeIdentityForm"/>
+    <form-bean      name="AccountForm"
+      type="com.infowave.c4p.web.actions.AccountForm"/>
+    <form-bean      name="RCLicenseForm"
+      type="com.infowave.c4p.web.actions.RCLicenseForm"/>
+    <form-bean      name="RCUnLicenseForm"
+      type="com.infowave.c4p.web.actions.RCUnLicenseForm"/>
+    <form-bean      name="LicenseForm"
+      type="com.infowave.c4p.web.actions.LicenseForm"/>
+    <form-bean      name="UserForm"
+      type="com.infowave.c4p.web.actions.teksupport.UserForm"/>
+    <form-bean      name="DesktopForm"
+      type="com.infowave.c4p.web.actions.teksupport.DesktopForm"/>
+    <form-bean      name="TSLicenseForm"
+      type="com.infowave.c4p.web.actions.teksupport.LicenseForm"/>
+    <form-bean      name="TSLicenseGenerateForm"
+      type="com.infowave.c4p.web.actions.teksupport.LicenseGeneratorForm"/>
+    <form-bean      name="RDPForm"
+      type="com.infowave.c4p.web.actions.RDPForm"/>
+
+  </form-beans>
+
+  <!-- ==================================================================== -->
+  <!-- ========== Global Forward Definitions ============================== -->
+  <!-- ==================================================================== -->
+  <global-forwards>
+    <!--
+    <forward   name="showApplicationPage"  path="/showAplicationPage.do"/>
+    <forward   name="showMailApplication"  path="/showMailAplication.do"/>
+    -->
+    <forward   name="showDesktopPage"  path="/protected/showDesktopPage.do"/>
+    <forward   name="mainPage"  path="/protected/showMainPage.do"/>
+    <forward   name="/mainPage"  path="/protected/showMainPage.do"/>
+    <forward   name="/showDevices"  path="/protected/showDevices.do"/>
+    <forward   name="showDevices"  path="/protected/showDevices.do"/>
+    <forward   name="dummyPage"  path="/jsp/DummyPage.jsp"/>
+    <forward   name="newAccountPage"  path="/showCreateAccountPage.do"/>
+    <forward   name="loginProxy"  path="/protected/loginProxy.do" redirect="true"/>
+    <forward   name="/loginRouter"  path="/loginRouter.do"/>
+    <forward   name="login"  path="/showLoginPage.do"/>
+    <forward   name="std_login"  path="/showStdLoginPage.do"/>
+    <forward   name="showCreateAccountPage"  path="/showCreateAccountPage.do"/>
+    <forward   name="showAccountManagementPage" path="/protected/showAccountManagementPage.do"/>
+    <forward   name="showChangePasswordPage" path="/protected/showAccountManagementPage.do?section=password"/>
+    <forward   name="showChangeSecurityQuestionPage" path="/protected/showAccountManagementPage.do?section=security"/>
+    <forward   name="createAccount"  path="/createAccount.do"/>
+    <forward   name="showEnterUsernamePage" path="/showPasswordRecoverypage.do"/>
+    <forward   name="showEnterSecurityAnswerPage" path="/showPasswordRecoverypage.do?step=security"/>
+    <forward   name="showResetPasswordPage" path="/showPasswordRecoverypage.do?step=password"/>
+    <forward   name="showRdpServicePage"  path="/protected/showRdpServicePage.do"/>
+    <forward   name="/rdpServicePage"  path="/protected/rdpServicePage.do"/>
+    <forward   name="/winshadowServicePage"  path="/protected/winshadowServicePage.do"/>
+    <forward   name="/vncServicePage"  path="/protected/vncServicePage.do"/>
+    <!-- <forward   name="changePassword"  path="/protected/changePasword.do"/> -->
+
+    <forward   name="showAttachDesktopToAccountPage" path="/showAttachDesktopToAccountPage.do"/>
+   <!--  <forward   name="changeIdentity" path="changeIdentity.do"/> -->
+
+    <forward name="editDesktop.pc" path="pc.editDesktop"/>
+    <forward name="unlicenseDesktop.pc" path="pc.unlicenseDesktop"/>
+    <forward name="enterLicenseCode.pc" path="pc.enterLicenseCode"/>
+    <forward name="rcunlicenseDesktop.pc" path="pc.rcunlicenseDesktop"/>
+    <forward name="enterRCLicenseCode.pc" path="pc.enterRCLicenseCode"/>
+    <forward name="licenseChangeConfirmation.pc" path="pc.licenseChangeConfirmation"/>
+    <forward name="askLicenseExtensionQuestion.pc" path="pc.licenseChangeConfirmation"/>
+    <forward name="rclicenseChangeConfirmation.pc" path="pc.rclicenseChangeConfirmation"/>
+    <forward name="askRCLicenseExtensionQuestion.pc" path="pc.rclicenseChangeConfirmation"/>
+    <forward name="rclicenseChangeConfirmation.pc" path="pc.rclicenseChangeConfirmation"/>
+
+    
+
+  </global-forwards>
+
+  <!-- ==================================================================== -->
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <!-- ==================================================================== -->
+  <action-mappings>
+    <!-- ================================================================== -->
+    <!--                                                              Login -->
+    <!-- ================================================================== -->
+
+   <!-- Show Login Page =================================================== -->
+    <action    path="/showLoginPage"
+               type="com.infowave.c4p.web.actions.login.ShowLoginPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.protected.pc" path="pc.loginPage"/>
+      <forward name="success.error.pc"  path="pc.loginPage"/>
+      <forward name="success.logout.pc"  path="pc.loginPage"/>
+      <forward name="success.protected.pda" path="pda.loginPage"/>
+      <forward name="success.error.pda"  path="pda.loginPage"/>
+      <forward name="success.logout.pda"  path="pda.loginPage"/>
+
+      <forward name="success.http.protected.pc" path="pc.stdLoginPage"/>
+      <forward name="success.http.error.pc"  path="pc.stdLoginPage"/>
+      <forward name="success.http.logout.pc"  path="pc.stdLoginPage"/>
+      <forward name="success.http.protected.pda" path="pda.stdLoginPage"/>
+      <forward name="success.http.error.pda"  path="pda.stdLoginPage"/>
+      <forward name="success.http.logout.pda"  path="pda.stdLoginPage"/>
+
+
+      <forward name="success.phone"  path="phone.desktopList"/>
+      <forward name="success.logout.phone"  path="phone.loggedOut"/>
+      <forward name="success.http.phone"  path="phone.desktopList"/>
+      <forward name="success.http.logout.phone"  path="phone.loggedOut"/>
+
+      <forward name="success.xml"  path="xml.desktopListXml"/>
+      <forward name="success.http.xml"  path="xml.desktopListXml"/>
+      <forward name="success.http.logout.xml"  path="phone.loggedOut"/>
+      <forward name="success.logout.xml"  path="phone.loggedOut"/>
+
+
+   </action>
+   <!-- Show Login Page =================================================== -->
+    <action    path="/showStdLoginPage"
+               type="com.infowave.c4p.web.actions.login.ShowLoginPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.protected.pc" path="pc.stdLoginPage"/>
+      <forward name="success.error.pc"  path="pc.stdLoginPage"/>
+      <forward name="success.logout.pc"  path="pc.stdLoginPage"/>
+      <forward name="success.protected.pda" path="pda.stdLoginPage"/>
+      <forward name="success.error.pda"  path="pda.stdLoginPage"/>
+      <forward name="success.logout.pda"  path="pda.stdLoginPage"/>
+      <forward name="success.phone"  path="/protected/showMainPage.do"/>
+      <forward name="success.logout.phone"  path="phone.loggedOut"/>
+
+      <forward name="success.http.protected.pc" path="pc.stdLoginPage"/>
+      <forward name="success.http.error.pc"  path="pc.stdLoginPage"/>
+      <forward name="success.http.logout.pc"  path="pc.stdLoginPage"/>
+      <forward name="success.http.protected.pda" path="pda.stdLoginPage"/>
+      <forward name="success.http.error.pda"  path="pda.stdLoginPage"/>
+      <forward name="success.http.logout.pda"  path="pda.stdLoginPage"/>
+
+
+
+    </action>
+   <!-- Login Proxy ======================================================= -->
+    <action    path="/protected/loginProxy"
+               type="com.infowave.c4p.web.actions.login.Proxy"
+          attribute="dummyForm"
+              scope="request"
+           validate="false">
+    </action>
+   <!-- Login Router ======================================================= -->
+    <action    path="/loginRouter"
+               type="com.infowave.c4p.web.actions.login.LoginRouter"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+    </action>
+   <!-- Logout       ======================================================= -->
+    <action    path="/logout"
+               type="com.infowave.c4p.web.actions.login.Logout"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.loginPage"/>
+      <forward name="success.pda" path="pda.loginPage"/>
+      <forward name="success.phone"  path="phone.loggedOut"/>
+   </action>
+
+   <!-- TekSupport       ======================================================= -->
+    <action    path="/tekSupport"
+               type="com.infowave.c4p.web.actions.teksupport.Login"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success" path="pc.tekSupport"/>
+      <forward name="success.pc" path="pc.tekSupport"/>
+   </action>
+    <action    path="/tsAdminGetExpiryInfoRC"
+               type="com.infowave.c4p.web.actions.teksupport.SearchForDesktop"
+               name="DesktopForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.expiryUpdateRC"/>
+   </action>
+    <action    path="/tsAdminGetExpiryInfo"
+               type="com.infowave.c4p.web.actions.teksupport.SearchForDesktop"
+               name="DesktopForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.expiryUpdate"/>
+   </action>
+    <action    path="/tsAdminUpdateExpiryRC"
+               type="com.infowave.c4p.web.actions.teksupport.UpdateRCUsage"
+               name="DesktopForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.desktopResults"/>
+   </action>
+    <action    path="/tsAdminUpdateExpiry"
+               type="com.infowave.c4p.web.actions.teksupport.UpdateDesktop"
+               name="DesktopForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.desktopResults"/>
+   </action>
+    <action    path="/tsAdminSearchUser"
+               type="com.infowave.c4p.web.actions.teksupport.SearchForUser"
+               name="UserForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.userResults"/>
+   </action>
+    <action    path="/tsAdminSearchLicense"
+               type="com.infowave.c4p.web.actions.teksupport.SearchForLicense"
+               name="TSLicenseForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.licenseResults"/>
+   </action>
+    <action    path="/tsAdminSearchDesktop"
+               type="com.infowave.c4p.web.actions.teksupport.SearchForDesktop"
+               name="DesktopForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.desktopResults"/>
+   </action>
+    <action    path="/tsAdminSetType"
+               type="com.infowave.c4p.web.actions.teksupport.SetType"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="user"  path="pc.userLocate"/>
+      <forward name="licenselocate"  path="pc.licenseLocate"/>
+      <forward name="licenserevoke"  path="pc.licenseRevoke"/>
+      <forward name="licensecancel"  path="pc.licenseCancel"/>
+      <forward name="licenserevive"  path="pc.licenseRevive"/>
+      <forward name="desktop"  path="pc.desktopLocate"/>
+      <forward name="licensecreate"  path="pc.licenseGenerate"/>
+      <forward name="passwordreset"  path="pc.passwordReset"/>
+   </action>
+    <action    path="/tsAdminResetPassword"
+               type="com.infowave.c4p.web.actions.teksupport.UpdateUser"
+               name="UserForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.tekSupport"/>
+      <forward name="error.pc"  path="pc.generalErrorPage"/>
+   </action>
+    <action    path="/tsAdminCancelLicense"
+               type="com.infowave.c4p.web.actions.teksupport.RevokeLicense"
+               name="TSLicenseForm"
+              scope="request"
+           validate="false">
+      <forward name="confirm"  path="pc.licenseConfirmCancel"/>
+      <forward name="cancel"  path="pc.licenseCancel"/>
+      <forward name="status"  path="pc.licenseStatusRevoke"/>
+      <forward name="statusc"  path="pc.licenseStatusCancel"/>
+      <forward name="statusr"  path="pc.licenseStatusCancel"/>
+      <forward name="statusv"  path="pc.licenseStatusRevive"/>
+   </action>
+    <action    path="/tsAdminRevokeLicense"
+               type="com.infowave.c4p.web.actions.teksupport.RevokeLicense"
+               name="TSLicenseForm"
+              scope="request"
+           validate="false">
+      <forward name="confirm"  path="pc.licenseConfirmRevoke"/>
+      <forward name="revoke"  path="pc.licenseRevoke"/>
+      <forward name="status"  path="pc.licenseStatusRevoke"/>
+      <forward name="statusc"  path="pc.licenseStatusCancel"/>
+      <forward name="statusr"  path="pc.licenseStatusCancel"/>
+      <forward name="statusv"  path="pc.licenseStatusRevive"/>
+   </action>
+    <action    path="/tsAdminCreateLicense"
+               type="com.infowave.c4p.web.actions.teksupport.LicenseGenerate"
+               name="TSLicenseGenerateForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"  path="pc.tekSupport"/>
+   </action>
+
+
+    <!-- ================================================================== -->
+    <!--                                                      Desktop pages -->
+    <!-- ================================================================== -->
+
+   <!-- Show Main Page ==================================================== -->
+    <action    path="/protected/showMainPage"
+               type="com.infowave.c4p.web.actions.ShowMainPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.welcomePage"/>
+      <forward name="success.pda" path="pda.welcomePage"/>
+      <forward name="success.phone"  path="phone.desktopList"/>
+      <forward name="success.xml"  path="xml.desktopListXml"/>
+    </action>
+
+   <!-- Show Main Page ==================================================== -->
+    <action    path="/protected/showMainPageInPopup"
+               type="com.infowave.c4p.web.actions.ShowMainPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.welcomePagePopup"/>
+    </action>
+
+   <!-- Show Devices for LLE ================================================== -->
+    <action    path="/protected/showDeviceList"
+      	       type="com.infowave.c4p.web.actions.Forward"
+               name="DummyForm"
+               scope="request"
+               validate="false">
+      <forward name="success.pc" path="cerdp.desktopList"/>
+      <forward name="success.pda" path="cerdp.desktopList"/>
+      <forward name="success.phone"  path="cerdp.desktopList"/>
+    </action>
+
+  <!-- Show Devices for PDA ================================================== -->
+    <!-- todo define an input -->
+    <action    path="/protected/status"
+      	       type="com.infowave.c4p.web.actions.Forward"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="cerdp.status"/>
+      <forward name="success.pda" path="cerdp.status"/>
+      <forward name="success.phone"  path="cerdp.status"/>
+    </action>
+
+ <!-- Show Devices for PDA ================================================== -->
+    <!-- todo define an input -->
+    <action    path="/protected/showDevices"
+               type="com.infowave.c4p.web.actions.ShowMainPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pda" path="pda.desktopList"/>
+    </action>
+
+   <!-- Show Desktop Page ================================================== -->
+    <!-- todo define an input -->
+    <action    path="/protected/showDesktopPage"
+               type="com.infowave.c4p.web.actions.ShowDesktop"
+              input="tdb"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.desktopPage"/>
+      <forward name="success.pda" path="pda.desktopPage"/>
+      <forward name="success.phone"  path="phone.desktopPage"/>
+    </action>
+
+    <!-- Show Desktop Application ========================================== -->
+    <!-- todo define an input -->
+    <action    path="/protected/showDesktopApplication"
+               type="com.infowave.c4p.web.actions.ShowDesktopApplication"
+              input="tdb"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.desktopPage"/>
+      <forward name="success.pda" path="pda.desktopPage"/>
+      <forward name="success.phone" path="phone.desktopPage"/>
+    </action>
+
+   <!-- Show VNC Service Page ==================================================== -->
+    <action    path="/protected/showVncServicePage"
+               type="com.infowave.c4p.web.actions.ShowRDPApplication"
+               name="RDPForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.vncServicePage"/>
+      <forward name="error.pc" path="pc.generalError"/>
+    </action>
+
+    <action    path="/protected/vncServicePage"
+               type="com.infowave.c4p.web.actions.ShowRDPApplication"
+               name="RDPForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.vncServiceStart"/>
+      <forward name="error.pc" path="pc.generalError"/>
+    </action>
+
+   <!-- Show WinShadow Service Page ==================================================== -->
+    <action    path="/protected/showWinshadowServicePage"
+               type="com.infowave.c4p.web.actions.ShowRDPApplication"
+               name="RDPForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.winshadowServicePage"/>
+      <forward name="error.pc" path="pc.generalError"/>
+    </action>
+
+    <action    path="/protected/winshadowServicePage"
+               type="com.infowave.c4p.web.actions.ShowRDPApplication"
+               name="RDPForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.winshadowServiceStart"/>
+      <forward name="error.pc" path="pc.generalError"/>
+    </action>
+
+   <!-- Show RDP Service Page ==================================================== -->
+    <action    path="/protected/showRdpServicePage"
+               type="com.infowave.c4p.web.actions.ShowRDPApplication"
+               name="RDPForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.rdpServicePage"/>
+      <forward name="error.pc" path="pc.generalError"/>
+    </action>
+
+    <action    path="/protected/rdpServicePage"
+               type="com.infowave.c4p.web.actions.ShowRDPApplication"
+               name="RDPForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.rdpServiceStart"/>
+      <forward name="error.pc" path="pc.generalError"/>
+    </action>
+
+    <!-- ================================================================== -->
+    <!--                                                          resources -->
+    <!-- ================================================================== -->
+
+   <!-- Get Desktop Icon ================================================== -->
+    <action    path="/protected/getDesktopIcon"
+               type="com.infowave.c4p.web.actions.GetDesktopIcon"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+    </action>
+    <action    path="/x-devicon"
+               type="com.infowave.c4p.web.actions.GetDesktopIcon"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+    </action>
+
+   <!-- Get Desktop Icon ================================================== -->
+    <action    path="/x-devicon"
+               type="com.infowave.c4p.web.actions.GetDesktopIcon"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+    </action>
+   <!-- Change the display mode ============================================ -->
+    <action    path="/changeDisplayMode"
+               type="com.infowave.c4p.web.actions.ChangeDisplayMode"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.user.pc" path="pc.welcomePage"/>
+      <forward name="success.noUser.pc" path="pc.loginPage"/>
+			<!-- if we switch to pda and he's already logged in, we don't want to see the welcome page again -->
+     <forward name="success.pda" path="pda.desktopList"/>
+     <forward name="success.xml" path="xml.desktopListXml"/>
+      <forward name="success.noUser.pda" path="pda.loginPage"/>
+      <forward name="success.phone" path="phone.desktopList"/>
+      <forward name="success.noUser.phone" path="/protected/showMainPage.do?auth=basic" redirect="true" />
+
+    </action>
+    <!-- ================================================================== -->
+    <!--                                    Account creation, adding devices -->
+    <!-- ================================================================== -->
+
+    <!-- Show the prelude to the Create Account page  ===================================== -->
+    <action    path="/showCreateAccountPage"
+      type="com.infowave.c4p.web.actions.ShowCreateAccountPage"
+      name="DummyForm"
+      scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.registerPCPage"/>
+    </action>
+
+    <!-- Show the Create Account page  ===================================== -->
+    <action    path="/showCreateAccountPage1"
+      type="com.infowave.c4p.web.actions.ShowCreateAccountPage"
+      name="DummyForm"
+      scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.createAccountPage"/>
+    </action>
+
+    <!--  Create an Account ============================================== -->
+    <action    path="/createAccount"
+               type="com.infowave.c4p.web.actions.CreateAccount"
+               name="CreateAccountForm"
+              scope="session"
+           validate="true"
+              input="showCreateAccountPage">
+      <forward name="success.pc" path="pc.accountCreationSuccessPage"/>
+      <forward name="successWithDesktop.pc" path="pc.accountCreationWithDesktopSuccessPage"/>
+      <forward name="success.licenseexception.pc" path="pc.accountCreationWithDesktopSuccessLicenseException"/>
+    </action>
+
+   <!-- Show the Attach Desktop to Account page  ========================== -->
+    <action    path="/showAttachDesktopToAccountPage"
+               type="com.infowave.c4p.web.actions.ShowAttachDesktopPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.attachDesktopToAccount"/>
+    </action>
+
+    <!-- Attach a desktop to an existing account ========================== -->
+    <action    path="/attachDesktopToAccount"
+               type="com.infowave.c4p.web.actions.AttachDesktopToAccount"
+               name="AttachDesktopToAccountForm"
+              scope="request"
+           validate="false"
+            input="showAttachDesktopToAccountPage">
+      <forward name="success.pc" path="pc.attachDesktopToAccountSuccess"/>
+      <forward name="success.licenseexception.pc" path="pc.attachDesktopToAccountSuccessLicenseException"/>
+    </action>
+
+    <!-- Remove a desktop                        ========================== -->
+    <action    path="/protected/removeDesktop"
+               type="com.infowave.c4p.web.actions.RemoveDesktop"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.popupCloser"/>
+    </action>
+
+    <!-- ================================================================= -->
+    <!--                                                Account Management -->
+    <!-- ================================================================= -->
+
+    <!-- Show the Account management page  =============================== -->
+    <action    path="/protected/showAccountManagementPage"
+               type="com.infowave.c4p.web.actions.ShowAccountManagementPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.changeIdentity"/>
+      <forward name="success.password.pc" path="pc.changePassword"/>
+      <forward name="success.security.pc" path="pc.changeSecurityQuestion"/>
+    </action>
+
+    <!-- Change the user's identity ====================================== -->
+    <action    path="/changeIdentity"
+               type="com.infowave.c4p.web.actions.ChangeIdentity"
+               name="ChangeIdentityForm"
+              scope="request"
+              input="showAccountManagementPage"
+           validate="false">
+      <forward name="success.pc" path="pc.changeIdentity"/>
+    </action>
+    <!-- Change the user's password ====================================== -->
+    <action    path="/protected/changePassword"
+               type="com.infowave.c4p.web.actions.ChangePassword"
+               name="AccountForm"
+              scope="request"
+              input="showChangePasswordPage"
+           validate="false">
+      <forward name="success.pc" path="pc.accountChangeConfirmation"/>
+    </action>
+
+    <!-- Change the user's security question =============================== -->
+    <action    path="/protected/changeSecurityQuestion"
+               type="com.infowave.c4p.web.actions.ChangeSecurityQuestion"
+               name="AccountForm"
+              scope="request"
+              input="showChangeSecurityQuestionPage"
+           validate="false">
+      <forward name="success.pc" path="pc.accountChangeConfirmation"/>
+    </action>
+
+    <!-- Change the desktop's properties =================================== -->
+    <action    path="/protected/editDesktop"
+               type="com.infowave.c4p.web.actions.EditDesktop"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.popupCloser"/>
+      <forward name="confirmRemoveDesktop.pc" path="pc.removeDesktopConfirmation"/>
+
+    </action>
+
+    <!-- =================================================================  -->
+    <!--                                                License Management  -->
+    <!--                                                                    -->
+    <!-- Note : it is assumed this functionality is available only through  -->
+    <!--        pc interface. If that were to change, the input for each    -->
+    <!--        should be set to an action (much like the Forgot Your       -->
+    <!--        Password screens).                                          -->
+    <!-- =================================================================  -->
+
+    <!-- Show the page to enter the license code  ========================== -->
+
+    <action    path="/protected/showEnterLicenseCodePage"
+               type="com.infowave.c4p.web.actions.ShowEnterLicenseCodePage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+       <forward name="success.pc" path="pc.enterLicenseCode"/>
+     </action>
+
+
+    <!-- Show the page to enter the rc license code  ========================== -->
+
+    <action    path="/protected/showEnterRCLicenseCodePage"
+               type="com.infowave.c4p.web.actions.ShowEnterRCLicenseCodePage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+       <forward name="success.pc" path="pc.enterRCLicenseCode"/>
+     </action>
+
+
+    <!-- Enter the RC license code  =========================================== -->
+         <action    path="/protected/getRCLicenseCode"
+               type="com.infowave.c4p.web.actions.SetRCLicenseCode"
+               name="RCLicenseForm"
+              scope="request"
+              input="enterRCLicenseCode.pc"
+           validate="false">
+       <forward name="success.askAboutExtension.pc" path="pc.askRCLicenseExtensionQuestion"/>
+       <forward name="success.confirmation.pc" path="/forward.do?page=rclicenseChangeConfirmation"/>
+
+     </action>
+
+    <!-- Enter the license code  =========================================== -->
+         <action    path="/protected/getLicenseCode"
+               type="com.infowave.c4p.web.actions.SetLicenseCode"
+               name="LicenseForm"
+              scope="request"
+              input="enterLicenseCode.pc"
+           validate="false">
+       <forward name="success.askAboutExtension.pc" path="pc.askLicenseExtensionQuestion"/>
+       <forward name="success.confirmation.pc" path="/forward.do?page=licenseChangeConfirmation"/>
+
+     </action>
+
+
+    <!-- RC Extension question  ============================================== -->
+    <action    path="/protected/getRCExtensionAnswer"
+               type="com.infowave.c4p.web.actions.SetRCLicenseCode"
+               name="RCLicenseForm"
+              scope="request"
+              input="pc.askRCLicenseExtensionQuestion"
+           validate="false">
+       <forward name="success.askAboutExtension.pc" path="pc.askRCLicenseExtensionQuestion"/>
+       <forward name="success.confirmation.pc" path="pc.rclicenseChangeConfirmation"/>
+
+     </action>
+
+    <!-- Extension question  ============================================== -->
+    <action    path="/protected/getExtensionAnswer"
+               type="com.infowave.c4p.web.actions.SetLicenseCode"
+               name="LicenseForm"
+              scope="request"
+              input="pc.askLicenseExtensionQuestion"
+           validate="false">
+       <forward name="success.askAboutExtension.pc" path="pc.askLicenseExtensionQuestion"/>
+       <forward name="success.confirmation.pc" path="pc.licenseChangeConfirmation"/>
+
+     </action>
+
+    <!-- Save the changes ============================================ -->
+    <action    path="/protected/changeRCLicense"
+               type="com.infowave.c4p.web.actions.SetRCLicenseCode"
+               name="RCLicenseForm"
+              scope="request"
+              input="enterRCLicenseCode.pc"
+           validate="false">
+       <forward name="success.askAboutExtension.pc" path="pc.askRCLicenseExtensionQuestion"/>
+       <forward name="success.confirmation.pc" path="pc.rclicenseChangeConfirmation"/>
+       <forward name="success.pc" path="pc.rclicenseChangeSuccess"/>
+     </action>
+
+    <!-- Save the changes ============================================ -->
+    <action    path="/protected/changeLicense"
+               type="com.infowave.c4p.web.actions.SetLicenseCode"
+               name="LicenseForm"
+              scope="request"
+              input="enterLicenseCode.pc"
+           validate="false">
+       <forward name="success.askAboutExtension.pc" path="pc.askLicenseExtensionQuestion"/>
+       <forward name="success.confirmation.pc" path="pc.licenseChangeConfirmation"/>
+       <forward name="success.pc" path="pc.licenseChangeSuccess"/>
+     </action>
+
+    <!-- Unlicense a desktop ============================================== -->
+
+    <action    path="/protected/unlicenseDesktop"
+               type="com.infowave.c4p.web.actions.UnlicenseDesktop"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.licenseChangeSuccess"/>
+     </action>
+
+
+    <!-- Unlicense an rc for a desktop ============================================== -->
+
+    <action    path="/protected/rcunlicenseDesktop"
+               type="com.infowave.c4p.web.actions.RCUnlicenseDesktop"
+               name="RCUnLicenseForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.rclicenseChangeSuccess"/>
+     </action>
+
+
+    <!-- =================================================================== -->
+    <!--                                                   Password Recovery -->
+    <!-- =================================================================== -->
+
+    <!-- Show one of the password recovery pages =========================== -->
+    <action    path="/showPasswordRecoverypage"
+               type="com.infowave.c4p.web.actions.ShowPasswordRecoveryPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.passwordRecoveryEnterUsername"/>
+      <forward name="success.security.pc" path="pc.passwordRecoveryEnterAnswer"/>
+      <forward name="success.password.pc" path="pc.passwordRecoveryEnterNewPassword"/>
+      <forward name="success.pda" path="pda.passwordRecoveryEnterUsername"/>
+      <forward name="success.security.pda" path="pda.passwordRecoveryEnterAnswer"/>
+      <forward name="success.password.pda" path="pda.passwordRecoveryEnterNewPassword"/>
+    </action>
+
+    <!-- Retrieve the security Question ==================================== -->
+    <action    path="/getSecurityQuestion"
+               type="com.infowave.c4p.web.actions.PasswordRecoveryGetQuestion"
+               name="AccountForm"
+              scope="request"
+              input="showEnterUsernamePage"
+           validate="false">
+      <forward name="success.pc" path="pc.passwordRecoveryEnterAnswer"/>
+      <forward name="success.pda" path="pda.passwordRecoveryEnterAnswer"/>
+    </action>
+
+    <!-- Validate the security answer ====================================== -->
+    <action    path="/checkSecurityAnswer"
+               type="com.infowave.c4p.web.actions.PasswordRecoveryCheckAnswer"
+               name="AccountForm"
+              scope="request"
+              input="showEnterSecurityAnswerPage"
+           validate="false">
+      <forward name="success.pc" path="pc.passwordRecoveryEnterNewPassword"/>
+      <forward name="success.pda" path="pda.passwordRecoveryEnterNewPassword"/>
+    </action>
+
+    <!-- Reset the password ================================================ -->
+    <action    path="/resetPassword"
+               type="com.infowave.c4p.web.actions.PasswordRecoveryResetPassword"
+               name="AccountForm"
+              scope="request"
+              input="showResetPasswordPage"
+           validate="false">
+      <forward name="success.pc" path="pc.passwordRecoveryConfirmation"/>
+      <forward name="success.pda" path="pda.passwordRecoveryConfirmation"/>
+    </action>
+
+    <!-- =================================================================== -->
+    <!-- ======================================================= Error pages -->
+    <!-- =================================================================== -->
+  <!-- Show 404 Page -->
+    <!-- todo wml mapping -->
+    <action    path="/showError404Page"
+               type="com.infowave.c4p.web.actions.Process404Error"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+        <forward name="success.pc"              path="pc.error404"/>
+        <forward name="success.pda"              path="pda.error404"/>
+        <forward name="success.phone"              path="phone.error404"/>
+    </action>
+  <!-- Show General Error Page -->
+    <!-- todo wml mapping -->
+    <action    path="/showGeneralErrorPage"
+               type="com.infowave.c4p.web.actions.ShowGeneralErrorPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+        <forward name="success.pc"              path="pc.generalError"/>
+        <forward name="success.pda"              path="pda.generalError"/>
+        <forward name="success.phone"              path="phone.generalError"/>
+    </action>
+    <!-- ================================================================== -->
+    <!--                                                               Help -->
+    <!-- ================================================================== -->
+
+    <!-- Show a Help page ================================================== -->
+    <action    path="/help"
+               type="com.infowave.c4p.web.actions.ShowHelpPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc" path="pc.helpPage"/>
+    </action>
+
+    <!-- ================================================================== -->
+    <!--                                                              Utils -->
+    <!-- ================================================================== -->
+
+
+    <!-- Show a page ====================================================== -->
+    <action    path="/forward"
+      type="com.infowave.c4p.web.actions.Forward"
+      name="DummyForm"
+      scope="request"
+      validate="false">
+    </action>
+    <action    path="/protected/forward"
+      type="com.infowave.c4p.web.actions.Forward"
+      name="DummyForm"
+      scope="request"
+      validate="false">
+
+    </action>
+
+    <!-- ================================================================== -->
+    <!--                                                       Web Services -->
+    <!-- ================================================================== -->
+    <action    path="/setusers"
+      type="com.infowave.c4p.web.actions.service.ResetForeignAccounts"
+      name="DummyForm"
+      scope="request"
+      validate="false">
+    </action>
+
+    <action    path="/getowner"
+      type="com.infowave.c4p.web.actions.service.GetDesktopOwner"
+      name="DummyForm"
+      scope="request"
+      validate="false">
+    </action>
+
+    <action    path="/getdid"
+      type="com.infowave.c4p.web.actions.service.GetDid"
+      name="DummyForm"
+      scope="request"
+      validate="false">
+    </action>
+
+    <action    path="/setversion"
+      type="com.infowave.c4p.web.actions.service.SetSoftwareVersion"
+      name="DummyForm"
+      scope="request"
+      validate="false">
+    </action>
+
+
+    <!-- ====================================================== Test Actions -->
+    <action    path="/simulateICM"
+               type="com.infowave.c4p.web.actions.test.SimulateICM"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.pc"              path="pc.welcomePage"/>
+    </action>
+
+    <action    path="/testAction"
+               type="com.infowave.c4p.web.actions.test.TestAction"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+    </action>
+
+
+  </action-mappings>
+
+
+  <!-- ========== Controller Configuration ================================ -->
+
+  <controller>
+    <!-- The "input" parameter on "action" elements is the name of a
+         local or global "forward" rather than a module-relative path -->
+    <set-property property="inputForward" value="true"/>
+  </controller>
+
+
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources
+    parameter="org.apache.struts.webapp.example.ApplicationResources"/>
+
+  <message-resources
+    parameter="org.apache.struts.webapp.example.AlternateApplicationResources"
+    key="alternate">
+  </message-resources>
+
+
+  <!-- ========== Plug Ins Configuration ================================== -->
+<!--
+  <plug-in className="org.apache.struts.plugins.ModuleConfigVerifier"/>
+
+  <plug-in className="org.apache.struts.webapp.example.memory.MemoryDatabasePlugIn">
+    <set-property property="pathname" value="/WEB-INF/database.xml"/>
+  </plug-in>
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property property="pathnames"
+                     value="/WEB-INF/validator-rules.xml,
+                            /WEB-INF/validation.xml"/>
+  </plug-in>
+
+-->
+  <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+    <set-property property="definitions-config"
+	                 value="/WEB-INF/tiles-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+    <set-property property="definitions-parser-validate" value="true" />
+  </plug-in>
+
+  <plug-in className="com.infowave.c4p.web.config.Configurator" >
+    <!--
+    <set-property property="uploadpDirectoryName" value="tmp"/>
+    <set-property property="smtpServer" value="mail.uniserve.com"/>
+    -->
+  </plug-in>
+
+
+
+</struts-config>

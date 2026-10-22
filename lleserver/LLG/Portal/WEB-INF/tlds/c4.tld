@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>C4 Tag Library</shortname>
+
+  <!--                -->
+  <!-- Resource -->
+  <!--                -->
+  <tag>
+    <name>Resource</name>
+    <tagclass>com.infowave.c4p.web.tags.ResourceTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>localized</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!--          -->
+  <!-- Desktop -->
+  <!--          -->
+
+  <tag>
+    <name>Desktop</name>
+    <tagclass>com.infowave.c4p.web.tags.DesktopTag</tagclass>
+    <bodycontent>empty</bodycontent>
+  </tag>
+
+
+  <!--                     -->
+  <!-- LicenseCodeEntryTag -->
+  <!--                     -->
+  <tag>
+    <name>LicenseCodeEntry</name>
+    <tagclass>com.infowave.c4p.web.tags.LicenseCodeEntryTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>code</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>displayClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>namePrefix</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+
+  <!--                     -->
+  <!-- LicenseCodeDisplayTag -->
+  <!--                     -->
+  <tag>
+    <name>LicenseCodeDisplay</name>
+    <tagclass>com.infowave.c4p.web.tags.LicenseCodeDisplayTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <attribute>
+      <name>code</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+      <name>displayClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+</taglib>

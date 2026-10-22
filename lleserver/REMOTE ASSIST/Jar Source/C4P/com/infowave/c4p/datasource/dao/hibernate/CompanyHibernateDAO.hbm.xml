@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.infowave.c4p.model.Company" table="Company">
+
+		<id name="id" type="string" unsaved-value="null" >
+		  <column name="id" length="32" not-null="true"/>
+		  <generator class="uuid.hex"/>
+		</id>
+ 
+        <property name="companyid">
+           <column name="companyid" unique="true"  sql-type="varchar(64)" not-null="true"/>
+         </property>
+
+        <property name="name">
+           <column name="name" sql-type="varchar(256)"/>
+         </property>
+
+        <property name="licensetype">
+            <column name="licensetype" sql-type="bigint" not-null="true" />
+        </property>
+
+        <property name="maxconns">
+            <column name="maxconns" sql-type="integer unsigned" not-null="true" />
+        </property>
+
+        <property name="activeflags">
+            <column name="activeflags" sql-type="bigint" not-null="true"/>
+        </property>
+
+        <property name="miscflags">
+            <column name="miscflags" sql-type="bigint" not-null="true" />
+        </property>
+
+        <property name="createdatetime">
+            <column name="createdatetime" sql-type="timestamp" />
+        </property>
+
+        <property name="locale">
+            <column name="locale" sql-type="varchar(32)" />
+        </property>
+
+        <property name="miscinfo1">
+            <column name="miscinfo1" sql-type="varchar(256)" />
+        </property>
+
+        <property name="miscinfo2">
+            <column name="miscinfo2" sql-type="varchar(256)" />
+        </property>
+
+        <property name="xref">
+            <column name="xref" sql-type="varchar(256)" />
+        </property>
+
+    </class>
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="Company.by.companyid">
+    <![CDATA[
+     from Company where companyid= :companyid
+     ]]>
+     </query>
+
+  <query name="Companies.like.name">
+    <![CDATA[
+     from Company where name like :name order by companyid
+     ]]>
+     </query>
+
+  <query name="Companies.like.companyid">
+    <![CDATA[
+     from Company where companyid like :companyid order by companyid
+     ]]>
+     </query>
+
+  <query name="Companies.like.xref">
+    <![CDATA[
+     from Company where xref like :xref order by xref
+     ]]>
+     </query>
+
+  <query name="Company.Count.like.name">
+    <![CDATA[
+     select count(comp) from Company as comp where comp.name like :name
+     ]]>
+     </query>
+
+  <query name="Company.Count.like.companyid">
+    <![CDATA[
+     select count(comp) from Company as comp where comp.companyid like :companyid
+     ]]>
+     </query>
+
+  <query name="Company.Count.like.xref">
+    <![CDATA[
+     select count(comp) from Company as comp where comp.xref like :xref
+     ]]>
+     </query>
+
+  <query name="Company.Cancel.by.xref">
+    <![CDATA[
+     update Company as comp set comp.activeflags = 0
+						where comp.xref = :xref 
+     ]]>
+     </query>
+
+  <query name="Company.active.recent">
+    <![CDATA[
+     from Company as comp where comp.activeflags = 1 
+          and :days >= (TO_DAYS(NOW()) - TO_DAYS(comp.createdatetime)) 
+          order by comp.createdatetime
+     ]]>
+  </query>
+
+</hibernate-mapping>

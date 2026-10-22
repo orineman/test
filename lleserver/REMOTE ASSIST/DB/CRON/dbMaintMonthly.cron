@@ -1,0 +1,12 @@
+# ! /bin/bash 
+# Report and delete closed HDSessions, closed Techlogins, and used dids
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-rpt-closed-sess.sql > /root/db-ra/cron/reports/hds-closed-sess.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintTL-rpt-closed.sql > /root/db-ra/cron/reports/tl-closed.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-rpt-used-dids.sql > /root/db-ra/cron/reports/hds-used-dids.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-del-closed-sess.sql
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintTL-del-closed.sql
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-del-used-dids.sql
+
+# compress and delete any reports older than 90 days
+/bin/gzip -f /root/db-ra/cron/reports/*.rpt
+rm -f `find /root/db-ra/cron/reports -ctime +90 | grep .rpt.gz`

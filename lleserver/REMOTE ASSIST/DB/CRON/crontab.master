@@ -1,0 +1,4 @@
+5 * * * *       /root/db-ra/cron/dbMaint.cron
+09 1 * * *      /root/db-ra/cron/dbMaintDaily.cron
+09 3 * * 5      /root/db-ra/cron/dbMaintWeekly.cron
+09 2 1 * *	/root/db-ra/cron/dbMaintMonthly.cron

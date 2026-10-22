@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+								   
+<hibernate-mapping>
+
+    <class name="com.infowave.c4p.model.HDSession" table="HDSession">
+
+		<id name="id" type="string" unsaved-value="null" >
+		  <column name="id" length="32" not-null="true"/>
+		  <generator class="uuid.hex"/>
+		</id>
+ 
+        <property name="companyid">
+           <column name="companyid" unique="true"  sql-type="varchar(64)" not-null="true" />
+         </property>
+
+        <property name="techcid">
+            <column name="techcid" sql-type="varchar(32)" not-null="true" />
+        </property>
+
+        <property name="did">
+            <column name="did" sql-type="varchar(12)" not-null="true" />
+        </property>
+
+        <property name="name">
+            <column name="name" sql-type="varchar(32)" />
+        </property>
+
+        <property name="createdatetime">
+            <column name="createdatetime" sql-type="timestamp" />
+        </property>
+
+        <property name="startdatetime">
+            <column name="startdatetime"  sql-type="timestamp" />
+        </property>
+
+        <property name="enddatetime">
+            <column name="enddatetime"  sql-type="timestamp" />
+        </property>
+
+        <property name="numuses">
+            <column name="numuses" sql-type="int" not-null="true" />
+        </property>
+
+    </class>
+
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="Session.by.companyid">
+    <![CDATA[
+     from HDSession where companyid = :companyid
+     ]]>
+     </query>
+  
+  <query name="Session.by.did">
+    <![CDATA[
+     from HDSession where did = :did
+     ]]>
+     </query>
+  
+  <query name="Session.by.tripleid">
+    <![CDATA[
+     from HDSession where   companyid = :companyid 
+						and techcid = :techcid 
+						and did = :did
+     ]]>
+     </query>
+  
+  <query name="Session.active.by.doubleid">
+    <![CDATA[
+     from HDSession where   companyid = :companyid 
+						and techcid = :techcid 
+						and startdatetime > '1970-02-01 00:00:00'
+						and enddatetime = '1970-02-01 00:00:00'
+     ]]>
+     </query>
+  
+  <query name="Session.available.by.tripleid">
+    <![CDATA[
+     from HDSession where   companyid = :companyid 
+						and techcid = :techcid 
+						and did = :did
+						and enddatetime = '1970-02-01 00:00:00'
+     ]]>
+     </query>
+  
+  <query name="Count.sessions.by.did">
+    <![CDATA[
+     select count(hdsession) from HDSession as hdsession where hdsession.did= :did
+     ]]>
+     </query>
+
+</hibernate-mapping>

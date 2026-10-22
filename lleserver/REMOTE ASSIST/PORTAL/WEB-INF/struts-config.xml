@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<struts-config>
+
+ <form-beans>
+   <form-bean      name="DummyForm"
+                   type="com.infowave.c4p.web.util.DummyForm"/>
+   <form-bean      name="CompanyForm"
+                   type="com.infowave.c4p.web.actions.CompanyForm"/>
+   <form-bean      name="TechnicianForm"
+                   type="com.infowave.c4p.web.actions.TechnicianForm"/>
+   <form-bean      name="PasswordForm"
+                   type="com.infowave.c4p.web.actions.PasswordForm"/>
+   <form-bean      name="OnyxForm"
+                   type="com.infowave.c4p.web.actions.onyx.OnyxForm"/>
+ </form-beans>
+
+
+ <global-forwards>
+    <forward   name="loginProxy"  path="/protected/loginProxy.do" redirect="true"/>
+    <forward   name="loginRouter"  path="/loginRouter.do"/>
+    <forward   name="login"  path="/showLoginPage.do"/>
+    <forward   name="std_login"  path="/showStdLoginPage.do"/>
+    <forward   name="mainPage"  path="/protected/showMainPage.do"/>
+    <forward   name="SearchForCompany"  path="/protected/SearchForCompany.do"/>
+    <forward   name="editCompany"  path="/protected/editCompany.do"/>
+    <forward   name="SearchForTechnician"  path="/protected/SearchForTechncian.do"/>
+    <forward   name="editTechnician"  path="/protected/editTechncian.do"/>
+    <forward   name="showPasswordRecoverypage"  path="/showPasswordRecoverypage.do"/>
+    <forward   name="Onyx"  path="/Onyx.do"/>
+ </global-forwards>
+
+ <action-mappings>
+    <action    path="/Onyx"
+               type="com.infowave.c4p.web.actions.onyx.CustomerInfo"
+               name="OnyxForm"
+              scope="request"
+           validate="false">
+      <forward name="success" path="null"/>
+      <forward name="error" path="null"/>
+    </action>
+
+    <action    path="/showPasswordRecoverypage"
+               type="com.infowave.c4p.web.actions.ForgotPassword"
+               name="PasswordForm"
+              scope="request"
+           validate="false">
+      <forward name="success" path="passwordResetPageSuccess"/>
+      <forward name="error" path="passwordResetPage"/>
+    </action>
+
+    <action    path="/showLoginPage"
+               type="com.infowave.c4p.web.actions.login.ShowLoginPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.protected" path="loginPage"/>
+      <forward name="success.error"  path="loginPage"/>
+      <forward name="success.logout"  path="loginPage"/>
+      <forward name="success.http.protected" path="stdLoginPage"/>
+      <forward name="success.http.error"  path="stdLoginPage"/>
+      <forward name="success.http.logout"  path="stdLoginPage"/>
+   </action>
+
+    <action    path="/showStdLoginPage"
+               type="com.infowave.c4p.web.actions.login.ShowLoginPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success.protected" path="stdLoginPage"/>
+      <forward name="success.error"  path="stdLoginPage"/>
+      <forward name="success.logout"  path="stdLoginPage"/>
+      <forward name="success.http.protected" path="stdLoginPage"/>
+      <forward name="success.http.error"  path="stdLoginPage"/>
+      <forward name="success.http.logout"  path="stdLoginPage"/>
+    </action>
+
+    <action    path="/protected/loginProxy"
+               type="com.infowave.c4p.web.actions.login.Proxy"
+          attribute="dummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success" path="welcomePage"/>
+    </action>
+   
+    <action    path="/loginRouter"
+               type="com.infowave.c4p.web.actions.login.LoginRouter"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+    </action>
+  
+    <action    path="/logout"
+               type="com.infowave.c4p.web.actions.login.Logout"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success" path="loginPage"/>
+    </action>
+
+    <action    path="/protected/showMainPage"
+               type="com.infowave.c4p.web.actions.ShowMainPage"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="success" path="welcomePage"/>
+    </action>
+
+    <action    path="/protected/SearchForCompany"
+               type="com.infowave.c4p.web.actions.SearchForCompany"
+               name="CompanyForm"
+              scope="request"
+           validate="false">
+      <forward name="locate"  path="companyResultsLocate"/>
+      <forward name="edit"  path="companyResultsToEdit"/>
+      <forward name="delete"  path="companyResultsToDelete"/>
+      <forward name="listallcompanies"  path="companyResultsLocate"/>
+      <forward name="technician"  path="companyResultsToTechnician"/>
+      <forward name="locatetechnician"  path="companyResultsToTechnician"/>
+      <forward name="listalltechnicians"  path="companyResultsToTechnician"/>
+      <forward name="edittechnician"  path="companyResultsToTechnician"/>
+      <forward name="addtechnician"  path="companyResultsToTechnician"/>
+      <forward name="deletetechnician"  path="companyResultsToTechnician"/>
+    </action>
+
+    <action    path="/protected/updateCompany"
+               type="com.infowave.c4p.web.actions.UpdateCompany"
+               name="CompanyForm"
+              scope="request"
+           validate="false">
+      <forward name="success"  path="companyChangeOrAddSuccess"/>
+      <forward name="error.add"  path="companyResultsToAdd"/>
+      <forward name="error.update"  path="companyResultsToEdit"/>
+      <forward name="error.delete"  path="companyResultsToDelete"/>
+    </action>
+
+    <action    path="/protected/editCompany"
+               type="com.infowave.c4p.web.actions.SearchForCompany"
+               name="CompanyForm"
+              scope="request"
+           validate="false">
+      <forward name="editcompany"  path="companyResultsToEdit"/>
+    </action>
+
+    <action    path="/protected/SearchForTechnician"
+               type="com.infowave.c4p.web.actions.SearchForTechnician"
+               name="TechnicianForm"
+              scope="request"
+           validate="false">
+      <forward name="locate"  path="technicianResultsLocate"/>
+      <forward name="locatetechnician"  path="technicianResultsLocate"/>
+      <forward name="locatetechnicianbyemail"  path="technicianResultsLocate"/>
+      <forward name="edit"  path="technicianResultsToEdit"/>
+      <forward name="edittechnician"  path="technicianResultsToEdit"/>
+      <forward name="delete"  path="technicianResultsToDelete"/>
+      <forward name="deletetechnician"  path="technicianResultsToDelete"/>
+      <forward name="listalltechnicians"  path="technicianResultsLocate"/>
+      <forward name="pwd"  path="technicianPasswordChange"/>
+    </action>
+
+    <action    path="/protected/updateTechnician"
+               type="com.infowave.c4p.web.actions.UpdateTechnician"
+               name="TechnicianForm"
+              scope="request"
+           validate="false">
+      <forward name="success"  path="technicianChangeOrAddSuccess"/>
+      <forward name="error.add"  path="technicianResultsToAdd"/>
+      <forward name="error.update"  path="technicianResultsToEdit"/>
+      <forward name="error.delete"  path="technicianResultsToDelete"/>
+      <forward name="error.pwd"  path="technicianPasswordChange"/>
+    </action>
+
+    <action    path="/protected/editTechnician"
+               type="com.infowave.c4p.web.actions.UpdateTechnician"
+               name="TechnicianForm"
+              scope="request"
+           validate="false">
+      <forward name="editcompany"  path="technicianResultsToEdit"/>
+    </action>
+
+
+
+    <action    path="/SetType"
+               type="com.infowave.c4p.web.actions.SetType"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="resetpassword"  path="resetPassword"/>
+    </action>
+
+
+    <action    path="/protected/SetType"
+               type="com.infowave.c4p.web.actions.SetType"
+               name="DummyForm"
+              scope="request"
+           validate="false">
+      <forward name="locatecompany"  path="companyLocate"/>
+      <forward name="editcompany"  path="companyEdit"/>
+      <forward name="addcompany"  path="companyAdd"/>
+      <forward name="deletecompany"  path="companyDelete"/>
+      <forward name="locatetechnician"  path="technicianLocate"/>
+      <forward name="edittechnician"  path="technicianEdit"/>
+      <forward name="addtechnician"  path="technicianAdd"/>
+      <forward name="deletetechnician"  path="technicianDelete"/>
+    </action>
+
+
+ </action-mappings>
+
+ <controller>
+    <!-- The "input" parameter on "action" elements is the name of a
+         local or global "forward" rather than a module-relative path -->
+    <set-property property="inputForward" value="true"/>
+ </controller>
+
+ <message-resources
+    parameter="org.apache.struts.webapp.example.ApplicationResources"/>
+
+ <message-resources
+    parameter="org.apache.struts.webapp.example.AlternateApplicationResources"
+    key="alternate">
+ </message-resources>
+
+ <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+   <set-property property="definitions-config"
+                         value="/WEB-INF/tiles-defs.xml" />
+   <set-property property="moduleAware" value="true" />
+   <set-property property="definitions-parser-validate" value="true" />
+ </plug-in>
+
+  <plug-in className="com.infowave.c4p.web.config.Configurator" >
+  </plug-in>
+
+
+
+</struts-config>
+

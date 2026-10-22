@@ -1,0 +1,263 @@
+		.basicpage {
+			background-color: white;
+			color:black;
+		 	BORDER-RIGHT: black 1px solid; 
+    	BORDER-TOP: black 1px solid; 
+    	BORDER-LEFT: black 1px solid; 
+    	BORDER-BOTTOM: black 1px solid; 
+		}
+    .header_heading { font-family: verdana; font-size: 11px; font-weight: bold; color: white }
+    .header_body { font-family: verdana; font-size: 11px; color: white }
+    .toolbar_heading { font-family: verdana; font-size: 11px; font-weight: bold; color: #464646 }
+    .device_warning { font-family: verdana; font-size: 11px; color: red }
+    .footer_bar { text-align: center; font-family: verdana; font-size: 11px; color: white; background-color: black }
+    .header_bar {
+    	background-color: white; 
+    	text-align: center;
+    }
+    .header_bar_light { background-color: #FF9933 }
+    .header_bar_dark { background-color: #FF9933 }
+    .body_bar {width: 161px; background-color: #E0E0E0}
+    .basic_section {width: 100%; background-color: white; border-width: 0; padding: 0;}
+
+    .tabstrip{
+        vertical-align: bottom;
+    }
+		.tabstrip:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 10px;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.tabstrip:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 10px;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.tabstrip:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 10px;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.header_heading:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #FFFFFF;
+			text-decoration: underline;
+		}
+		
+		.header_heading:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #FFFFFF;
+			text-decoration: underline;
+		}
+		
+		.header_heading:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #FFFFFF;
+			text-decoration: underline;
+		}
+
+    .toolbar_text { font-family: verdana; font-size: 11px; color: #000063 }
+		.toolbar_text:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #294A80;
+			text-decoration: underline;
+		}
+		
+		.toolbar_text:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #294A80;
+			text-decoration: underline;
+		}
+		
+		.toolbar_text:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #294A80;
+			text-decoration: underline;
+		}
+
+    		.left_body { font-family: verdana; font-size: 11px; color: #666666 }
+		.left_body:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #666666;
+			text-decoration: underline;
+		}
+		
+		.left_body:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #666666;
+			text-decoration: underline;
+		}
+		
+		.left_body:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			color: #666666;
+			text-decoration: underline;
+		}
+
+    .tabstrip_sel {
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 10px; 
+        font-weight: bold; 
+        color: black; 
+        text-align: center;
+        vertical-align: middle;
+        padding: 0;
+        border-top-color: black;
+        border-top-width: 1;
+        border-top-style: solid;
+        background-color: #EFEFEF;
+        height: 16px;
+        width: 100px
+    }
+    .tabstrip_unsel {
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 10px; 
+        font-weight: bold; 
+        color: black; 
+        text-align: center;
+        vertical-align: middle;
+        padding: 0;
+        border-top-color: black;
+        border-top-width: 1;
+        border-top-style: solid;
+        background-color: #D6D6D6;
+        height: 16px;
+        width: 100px
+    }
+    .content_title { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 13px; 
+        font-weight: bold; 
+        color: black; 
+        padding-top: 3;
+        padding-bottom: 3
+    }
+    .content_heading1 {
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        margin-top: 0.40em
+    }
+    .content_heading2 { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: bold
+    }
+    .content_text { 
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 12px
+    }
+		.content_text:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 12px
+			text-decoration: underline;
+		}
+		
+		.content_text:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 12px
+			text-decoration: underline;
+		}
+		
+		.content_text:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size: 11px
+			text-decoration: underline;
+		}
+    .content_error_heading {
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 12px; 
+        font-weight: bold; 
+        color: red
+    }
+    .content_error_text {
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 12px; 
+    }
+    .shaded_header { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 12px; 
+        font-weight: bold; 
+        color: white; 
+        background-color: #666666;
+        border-left-color: #C4D2E8; 
+        border-top-color: #C4D2E8; 
+        border-right-color: #2B394F; 
+        border-bottom-color: #2B394F;
+        border-style: solid; 
+        border-width: 1;
+        padding: 3;
+        padding-left: 10
+    }
+    .shaded_caption { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        color: black;
+        background-color: #e0e0e0;
+        padding: 3;
+        padding-left: 10
+    }
+    .shaded_heading { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        color: black;
+        background-color: #e0e0e0;
+        padding: 3
+    }
+    .shaded_text { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: normal; 
+        color: black; 
+        background-color: #e0e0e0;
+        padding: 3;
+    }
+    .content_note { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: normal; 
+        font-style: italic; 
+        color: black; 
+        padding: 3;
+        padding-left: 10
+    }
+    .content_warning { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: normal; 
+        font-style: italic; 
+        color: red; 
+        padding: 3;
+        padding-left: 10
+    }
+    .content_input { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: normal; 
+        color: black
+    }
+    .content_link { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: normal; 
+    }

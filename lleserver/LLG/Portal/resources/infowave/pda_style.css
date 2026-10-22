@@ -1,0 +1,258 @@
+		.window {
+    	background-color: white;
+    	color: black; 
+		}
+    .footer_bar {
+    	text-align: center;
+    	font-family: verdana; 
+    	font-size: 11px; 
+    	color: #ffffff; 
+    	background-color: #000000;
+    }
+    	
+    .header_bar {
+			background-color: grey;
+    	text-align: center;
+    }
+
+    .device_col {
+    }
+
+		.device_button {
+			border: 1px;
+			width: 24px;
+		}
+		.device_text {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+		}
+		.device_text:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.device_text:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.device_text:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+			text-decoration: underline;
+		}
+		.device_warning {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: red;
+		}
+    .content_input { 
+        font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 11px;
+        font-weight: normal; 
+        color: black
+    }
+		.body_text {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #000000;
+		}
+		.body_warning {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: red;
+		}
+		.body_warning:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: black;
+			text-decoration: underline;
+		}
+		
+		.body_warning:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: black;
+			text-decoration: underline;
+		}
+		
+		.body_warning:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: black;
+			text-decoration: underline;
+		}
+		.body_title {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 12px;
+			font-weight: bold;
+			color: #000000;
+		}
+		.body_heading {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+		}
+		
+    .header_heading {
+    	font-family: verdana; 
+    	font-size: 11px; 
+			font-weight: bold; }
+    	
+		.header_heading:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.header_heading:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.header_heading:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #000000;
+			text-decoration: underline;
+		}
+
+    .header_text {
+    	font-family: verdana; 
+    	font-size: 11px; 
+			font-weight: normal; }
+    	
+		.header_text:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.header_text:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #000000;
+			text-decoration: underline;
+		}
+		
+		.header_text:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #000000;
+			text-decoration: underline;
+		}
+
+    .footer_heading {
+    	text-align: center;
+    	font-family: verdana; 
+    	font-size: 11px; 
+			font-weight: bold;
+    	color: #ffffff; 
+    	background-color: #000000 }
+    	
+		.footer_heading:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #ffffff;
+			text-decoration: underline;
+		}
+		
+		.footer_heading:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #ffffff;
+			text-decoration: underline;
+		}
+		
+		.footer_heading:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: #ffffff;
+			text-decoration: underline;
+		}
+
+    .footer_text {
+    	text-align: center;
+    	font-family: verdana; 
+    	font-size: 11px; 
+			font-weight: normal;
+    	color: #ffffff; 
+    	background-color: #000000 }
+    	
+		.footer_text:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #ffffff;
+			text-decoration: underline;
+		}
+		
+		.footer_text:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #ffffff;
+			text-decoration: underline;
+		}
+		
+		.footer_text:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: #ffffff;
+			text-decoration: underline;
+		}
+
+		.app_select:Link {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: black;
+			text-decoration: underline;
+		}
+		
+		.app_select:Active {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: bold;
+			color: black;
+			text-decoration: underline;
+		}
+		
+		.app_select:Visited {
+			font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			font-weight: normal;
+			color: black;
+			text-decoration: underline;
+		}

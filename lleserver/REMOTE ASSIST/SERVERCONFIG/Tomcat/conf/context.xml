@@ -1,0 +1,13 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="" docBase="/remasst/dist/tomcat/webapps/RAssist"
+        debug="5" reloadable="true" crossContext="true">
+
+  <!-- Authentication valves -->
+  <Valve className="com.infowave.c4p.web.security.C4PBasicAuthenticator" debug="2" />
+  <Valve className="com.infowave.c4p.web.security.C4PFormAuthenticator" debug="2" />
+
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+   
+</Context>
+   

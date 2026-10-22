@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context docBase="/remasst/dist/tomcat/webapps/RAssist" path="/RAssist" reloadable="true">
+
+ <!--  Authentication valves -->
+  <Valve className="com.infowave.c4p.web.security.C4PBasicAuthenticator" debug="2" />
+  <Valve className="com.infowave.c4p.web.security.C4PFormAuthenticator" debug="2" />
+
+
+<!--  DBCP configuration -->
+  <Resource name="jdbc/connectionPool" auth="Container" type="javax.sql.DataSource" />
+  <ResourceParams name="jdbc/connectionPool">
+  <parameter>
+    <name>factory</name>
+    <value>org.apache.commons.dbcp.BasicDataSourceFactory</value>
+  </parameter>
+
+ <!--
+ Maximum number of dB connections in pool. Make sure you
+                   configure your mysqld max_connections large enough to handle
+                   all of your db connections. Set to 0 for no limit.
+
+
+  -->
+ <parameter>
+   <name>maxActive</name>
+   <value>100</value>
+ </parameter>
+
+ <!--
+ Maximum number of idle dB connections to retain in pool.
+                   Set to 0 for no limit.
+
+
+  -->
+ <parameter>
+   <name>maxIdle</name>
+   <value>30</value>
+ </parameter>
+
+ <!--
+ Maximum time to wait for a dB connection to become available
+                   in ms, in this example 10 seconds. An Exception is thrown if
+                   this timeout is exceeded.  Set to -1 to wait indefinitely.
+
+  -->
+ <parameter>
+  <name>maxWait</name>
+  <value>10000</value>
+ </parameter>
+
+ <!--  MySQL dB username and password for dB connections
+  -->
+ <parameter>
+  <name>username</name>
+  <value>wally</value>
+  </parameter>
+ <parameter>
+  <name>password</name>
+  <value>to00ols</value>
+  </parameter>
+
+ <!--  Class name for mm.mysql JDBC driver
+  -->
+ <parameter>
+  <name>driverClassName</name>
+  <value>com.mysql.jdbc.Driver</value>
+  </parameter>
+ <!--
+ The JDBC connection url for connecting to your MySQL dB.
+                   The autoReconnect=true argument to the url makes sure that the
+                   mm.mysql JDBC Driver will automatically reconnect if mysqld closed the
+                   connection.  mysqld by default closes idle connections after 8 hours.
+
+
+  -->
+ <parameter>
+   <name>url</name>
+   <value>jdbc:mysql://ra-sql:3306/rassist?autoReconnect=true</value>
+ </parameter>
+ </ResourceParams>
+
+
+  <Resource name="bean/ApplicationParametersFactory" auth="Container" type="com.infowave.c4p.util.ApplicationParameters" />
+ <ResourceParams name="bean/ApplicationParametersFactory">
+ <parameter>
+  <name>factory</name>
+  <value>org.apache.naming.factory.BeanFactory</value>
+  </parameter>
+ <parameter>
+  <name>maxWebCount</name>
+  <value>500</value>
+  </parameter>
+ <parameter>
+  <name>smtpServer</name>
+  <value>localhost</value>
+  </parameter>
+ </ResourceParams>
+
+
+
+</Context>
+
+

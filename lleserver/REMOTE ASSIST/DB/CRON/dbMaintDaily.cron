@@ -1,0 +1,20 @@
+# ! /bin/bash
+#
+# Database backup
+/usr/bin/mysqldump rassist --password=gl0b3tr0tt3r > /root/db-ra/cron/dbbackups/ra.dbbackup.`date +%m%d%y`.sql
+
+# compress backups and remove any that are older than 90 days
+/bin/gzip -f /root/db-ra/cron/dbbackups/ra.dbbackup.*.sql
+rm -f `find /root/db-ra/cron/dbbackups -ctime +90 | grep .sql.gz`
+
+# report & timeout HDSessions
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-rpt-timeout-sess.sql > /root/db-ra/cron/reports/hds-timeout-sess.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintHDS-to-timeout-sess.sql
+
+# report & timeout Techlogins
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintTL-rpt-timeout.sql > /root/db-ra/cron/reports/tl-timeout.`date +%m%d%y`.rpt
+/usr/bin/mysql rassist --password=gl0b3tr0tt3r < /root/db-ra/cron/sql-scripts/dbMaintTL-to-timeout.sql
+
+# compress reports and remove any that are older than 90 days
+/bin/gzip -f /root/db-ra/cron/reports/*.rpt
+rm -f `find /root/db-ra/cron/reports -ctime +90 | grep .rpt.gz`

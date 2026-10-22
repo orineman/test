@@ -1,0 +1,164 @@
+ <!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration//EN"
+       "http://jakarta.apache.org/struts/dtds/tiles-config.dtd">
+
+<!-- Definitions for Tiles documentation   -->
+
+<tiles-definitions>
+  <definition name="pageWithNoMenu" path="/WEB-INF/web/jsp/layouts/siteLayout.jsp">
+    <put name="title"  value="Portal" />
+    <put name="pageErrors" value="/WEB-INF/web/jsp/tiles/pageErrors.jsp" />
+    <put name="header" value="/WEB-INF/web/jsp/tiles/header.jsp" />
+    <put name="footer" value="/WEB-INF/web/jsp/tiles/footer.jsp" />
+  </definition>
+
+
+  <definition name="loginPage" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/login.jsp" />
+  </definition>
+
+  <definition name="stdLoginPage" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/std_login.jsp" />
+  </definition>
+
+  <definition name="welcomePage" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/welcome.jsp" />
+  </definition>
+
+  <definition name="companyLocate" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyLocate.jsp" />
+  </definition>
+
+  <definition name="companyResultsLocate" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyResultsLocate.jsp" />
+  </definition>
+
+  <definition name="companyEdit" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyEdit.jsp" />
+  </definition>
+
+  <definition name="companyAdd" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyAdd.jsp" />
+  </definition>
+
+  <definition name="companyDelete" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyDelete.jsp" />
+  </definition>
+
+  <definition name="companyResultsToDelete" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyResultsDelete.jsp" />
+  </definition>
+
+  <definition name="companyResultsToAdd" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyAdd.jsp" />
+  </definition>
+
+  <definition name="companyResultsToEdit" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyResultsEdit.jsp" />
+  </definition>
+
+  <definition name="companyResultsToDelete" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyResultsDelete.jsp" />
+  </definition>
+
+  <definition name="companyChangeOrAddSuccess" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyChangeOrAddSuccess.jsp" />
+  </definition>
+
+
+  <definition name="technicianLocate" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianLocate.jsp" />
+  </definition>
+
+  <definition name="technicianResultsLocate" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianResultsLocate.jsp" />
+  </definition>
+   
+  <definition name="technicianEdit" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianEdit.jsp" />
+  </definition>
+
+  <definition name="technicianAdd" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianAdd.jsp" />
+  </definition>
+
+  <definition name="technicianDelete" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianDelete.jsp" />
+  </definition>
+
+  <definition name="technicianResultsToDelete" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianResultsDelete.jsp" />
+  </definition>
+
+  <definition name="technicianResultsToAdd" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianAdd.jsp" />
+  </definition>
+
+  <definition name="technicianResultsToEdit" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianResultsEdit.jsp" />
+  </definition>
+
+  <definition name="technicianResultsToDelete" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianResultsDelete.jsp" />
+  </definition>
+
+  <definition name="technicianChangeOrAddSuccess" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianChangeOrAddSuccess.jsp" />
+  </definition>
+
+  <definition name="technicianPasswordChange" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/technician/technicianPasswordChange.jsp" />
+  </definition>
+
+  <definition name="companyResultsToTechnician" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/company/companyResultsToTechnician.jsp" />
+  </definition>
+
+  <definition name="resetPassword" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/resetPassword.jsp" />
+  </definition>
+
+  <definition name="passwordResetPage" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/resetPassword.jsp" />
+  </definition>
+
+  <definition name="passwordResetPageSuccess" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/resetPasswordSuccess.jsp" />
+  </definition>
+
+  <definition name="null" extends="pageWithNoMenu" >
+    <put name="title"  value="" />
+    <put name="body"   value="/WEB-INF/web/jsp/tiles/null.jsp" />
+  </definition>
+
+  
+</tiles-definitions>
+

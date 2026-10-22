@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.infowave.c4p.model.Techlogin" table="Techlogin">
+
+		<id name="id" type="string" unsaved-value="null" >
+		  <column name="id" length="32" not-null="true"/>
+		  <generator class="uuid.hex"/>
+		</id>
+
+        <property name="companyid">
+           <column name="companyid" sql-type="varchar(64)" unique="true" not-null="true" />
+         </property>
+
+        <property name="techcid">
+            <column name="techcid" sql-type="varchar(16)" not-null="true" />
+        </property>
+
+        <property name="logindatetime">
+            <column name="logindatetime" sql-type="timestamp" />
+        </property>
+
+        <property name="enddatetime">
+            <column name="enddatetime" sql-type="timestamp" />
+        </property>
+
+        <property name="flags">
+            <column name="flags" sql-type="bigint" not-null="true" />
+        </property>
+
+        <property name="loginid">
+            <column name="loginid"  sql-type="bigint" unique="true" />
+        </property>
+
+    </class>
+
+
+  <!--                                                        -->
+  <!--                          Queries                       -->
+  <!--                                                        -->
+
+  <query name="TechLogin.by.companyid">
+    <![CDATA[
+     from Techlogin where companyid = :companyid
+     ]]>
+     </query>
+
+  <query name="TechLogin.active.by.doubleid">
+    <![CDATA[
+     from Techlogin where   companyid = :companyid 
+						and techcid = :techcid 
+						and enddatetime = '1970-02-01 00:00:00'
+     ]]>
+     </query>
+
+  <query name="TechLogin.active.by.techcid">
+    <![CDATA[
+     from Techlogin where  techcid = :techcid 
+						and enddatetime = '1970-02-01 00:00:00'
+     ]]>
+     </query>
+
+  <query name="TechLogin.by.loginid">
+    <![CDATA[
+     from Techlogin where   loginid = :loginid 
+     ]]>
+     </query>
+
+  <query name="TechLogin.active.by.loginid">
+    <![CDATA[
+     from Techlogin where   loginid = :loginid 
+						and enddatetime = '1970-02-01 00:00:00'
+     ]]>
+     </query>
+
+    <query name="TechLogin.count.active.by.loginid">
+      <![CDATA[
+       select count(techlogin) from Techlogin as techlogin where techlogin.loginid= :loginid 
+						and techlogin.enddatetime= '1970-02-01 00:00:00'
+       ]]>
+     </query>
+
+
+    <query name="TechLogin.count.by.loginid">
+      <![CDATA[
+       select count(techlogin) from Techlogin as techlogin where techlogin.loginid = :loginid
+       ]]>
+     </query>
+
+    <query name="TechLogin.count.active.by.companyid">
+      <![CDATA[
+       select count(techlogin) from Techlogin as techlogin where techlogin.companyid = :companyid
+						and techlogin.enddatetime= '1970-02-01 00:00:00'
+       ]]>
+     </query>
+
+    <query name="TechLogin.count.all.by.companyid">
+    <![CDATA[
+       select count(techlogin) from Techlogin as techlogin where techlogin.companyid = :companyid
+       ]]>
+     </query>
+</hibernate-mapping>
